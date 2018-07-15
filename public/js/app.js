@@ -47507,38 +47507,42 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "table-responsive text-center" }, [
-    _c(
-      "table",
-      { staticClass: "table table-sm table-striped table-bordered" },
-      [
-        _vm._m(0),
-        _vm._v(" "),
-        _c(
-          "tbody",
-          _vm._l(_vm.api, function(data) {
-            return _c("tr", { key: data.index }, [
-              _c("td", [_vm._v(_vm._s(data.store_id))]),
-              _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(data.date))]),
-              _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(data.gross))]),
-              _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(data.nett))]),
-              _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(data.voucher))]),
-              _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(data.cash))]),
-              _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(data.card))]),
-              _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(data.ticket))])
-            ])
-          })
-        )
-      ]
-    )
-  ])
+  return _c(
+    "div",
+    { staticClass: "table-responsive text-center bg-white px-4 py-4" },
+    [
+      _c(
+        "table",
+        { staticClass: "table table-sm table-striped table-bordered" },
+        [
+          _vm._m(0),
+          _vm._v(" "),
+          _c(
+            "tbody",
+            _vm._l(_vm.api, function(data) {
+              return _c("tr", { key: data.index }, [
+                _c("td", [_vm._v(_vm._s(data.store_id))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(data.date))]),
+                _vm._v(" "),
+                _c("td", [_vm._v("Rp." + _vm._s(data.gross))]),
+                _vm._v(" "),
+                _c("td", [_vm._v("Rp." + _vm._s(data.nett))]),
+                _vm._v(" "),
+                _c("td", [_vm._v("Rp." + _vm._s(data.voucher))]),
+                _vm._v(" "),
+                _c("td", [_vm._v("Rp." + _vm._s(data.cash))]),
+                _vm._v(" "),
+                _c("td", [_vm._v("Rp." + _vm._s(data.card))]),
+                _vm._v(" "),
+                _c("td", [_vm._v("Rp." + _vm._s(data.ticket))])
+              ])
+            })
+          )
+        ]
+      )
+    ]
+  )
 }
 var staticRenderFns = [
   function() {
@@ -47789,7 +47793,7 @@ var render = function() {
                 }
               ],
               staticClass: "form-control",
-              attrs: { type: "number", placeholder: "0 mililiter" },
+              attrs: { type: "number", placeholder: "0 Rupiah" },
               domProps: { value: _vm.gross },
               on: {
                 input: function($event) {
@@ -47822,7 +47826,7 @@ var render = function() {
                 }
               ],
               staticClass: "form-control",
-              attrs: { type: "number", placeholder: "0 mililiter" },
+              attrs: { type: "number", placeholder: "0 Rupiah" },
               domProps: { value: _vm.nett },
               on: {
                 input: function($event) {
@@ -47855,7 +47859,7 @@ var render = function() {
                 }
               ],
               staticClass: "form-control",
-              attrs: { type: "number", placeholder: "0 mililiter" },
+              attrs: { type: "number", placeholder: "0 Rupiah" },
               domProps: { value: _vm.voucher },
               on: {
                 input: function($event) {
@@ -47890,7 +47894,7 @@ var render = function() {
                 }
               ],
               staticClass: "form-control",
-              attrs: { type: "number", placeholder: "0 mililiter" },
+              attrs: { type: "number", placeholder: "0 Rupiah" },
               domProps: { value: _vm.cash },
               on: {
                 input: function($event) {
@@ -47923,7 +47927,7 @@ var render = function() {
                 }
               ],
               staticClass: "form-control",
-              attrs: { type: "number", placeholder: "0 mililiter" },
+              attrs: { type: "number", placeholder: "0 Rupiah" },
               domProps: { value: _vm.card },
               on: {
                 input: function($event) {
@@ -47956,7 +47960,7 @@ var render = function() {
                 }
               ],
               staticClass: "form-control",
-              attrs: { type: "number", placeholder: "0 mililiter" },
+              attrs: { type: "number", placeholder: "0 Rupiah" },
               domProps: { value: _vm.ticket },
               on: {
                 input: function($event) {

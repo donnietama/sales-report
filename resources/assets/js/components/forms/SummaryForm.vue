@@ -9,29 +9,29 @@
         <div class="row">
             <div class="form-group col-xs-12 col-sm-4 col-md-4 col-lg-4 col-xl-4">
                 <label>gross total</label>
-                <input type="number" class="form-control" v-model="gross" placeholder="0 mililiter">
+                <input type="number" class="form-control" v-model="gross" placeholder="0 Rupiah">
             </div>
             <div class="form-group col-xs-12 col-sm-4 col-md-4 col-lg-4 col-xl-4">
                 <label>nett total</label>
-                <input type="number" class="form-control" v-model="nett" placeholder="0 mililiter">
+                <input type="number" class="form-control" v-model="nett" placeholder="0 Rupiah">
             </div>
             <div class="form-group col-xs-12 col-sm-4 col-md-4 col-lg-4 col-xl-4">
                 <label>voucher total</label>
-                <input type="number" class="form-control" v-model="voucher" placeholder="0 mililiter">
+                <input type="number" class="form-control" v-model="voucher" placeholder="0 Rupiah">
             </div>
         </div>
         <div class="row">
             <div class="form-group col-xs-12 col-sm-4 col-md-4 col-lg-4 col-xl-4">
                 <label>cash total</label>
-                <input type="number" class="form-control" v-model="cash" placeholder="0 mililiter">
+                <input type="number" class="form-control" v-model="cash" placeholder="0 Rupiah">
             </div>
             <div class="form-group col-xs-12 col-sm-4 col-md-4 col-lg-4 col-xl-4">
                 <label>card total</label>
-                <input type="number" class="form-control" v-model="card" placeholder="0 mililiter">
+                <input type="number" class="form-control" v-model="card" placeholder="0 Rupiah">
             </div>
             <div class="form-group col-xs-12 col-sm-4 col-md-4 col-lg-4 col-xl-4">
                 <label>ticket total</label>
-                <input type="number" class="form-control" v-model="ticket" placeholder="0 mililiter">
+                <input type="number" class="form-control" v-model="ticket" placeholder="0 Rupiah">
             </div>
         </div>
         <div class="row">

@@ -1,5 +1,5 @@
 <template>
-    <div class="table-responsive text-center">
+    <div class="table-responsive text-center bg-white px-4 py-4">
         <table class="table table-sm table-striped table-bordered">
             <thead class="text-capitalize">
                 <th>store</th>
@@ -15,12 +15,12 @@
                 <tr v-for="data in api" :key="data.index">
                     <td>{{ data.store_id }}</td>
                     <td>{{ data.date }}</td>
-                    <td>{{ data.gross }}</td>
-                    <td>{{ data.nett }}</td>
-                    <td>{{ data.voucher }}</td>
-                    <td>{{ data.cash }}</td>
-                    <td>{{ data.card }}</td>
-                    <td>{{ data.ticket }}</td>
+                    <td>Rp.{{ data.gross }}</td>
+                    <td>Rp.{{ data.nett }}</td>
+                    <td>Rp.{{ data.voucher }}</td>
+                    <td>Rp.{{ data.cash }}</td>
+                    <td>Rp.{{ data.card }}</td>
+                    <td>Rp.{{ data.ticket }}</td>
                 </tr>
             </tbody>
         </table>
