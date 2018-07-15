@@ -15,6 +15,14 @@ class CreateReportSummariesTable extends Migration
     {
         Schema::create('report_summaries', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('store_id');
+            $table->date('date');
+            $table->string('gross');
+            $table->string('nett');
+            $table->string('voucher');
+            $table->string('cash');
+            $table->string('card');
+            $table->string('ticket');
             $table->timestamps();
         });
     }
