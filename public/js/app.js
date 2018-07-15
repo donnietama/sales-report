@@ -47504,33 +47504,37 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "table-responsive" }, [
-    _c("table", { staticClass: "table table-striped" }, [
-      _vm._m(0),
-      _vm._v(" "),
-      _c(
-        "tbody",
-        _vm._l(_vm.api, function(data) {
-          return _c("tr", { key: data.index }, [
-            _c("td", [_vm._v(_vm._s(data.store_id))]),
-            _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(data.date))]),
-            _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(data.gross))]),
-            _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(data.nett))]),
-            _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(data.voucher))]),
-            _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(data.cash))]),
-            _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(data.card))]),
-            _vm._v(" "),
-            _c("td", [_vm._v(_vm._s(data.ticket))])
-          ])
-        })
-      )
-    ])
+  return _c("div", { staticClass: "table-responsive text-center" }, [
+    _c(
+      "table",
+      { staticClass: "table table-sm table-striped table-bordered" },
+      [
+        _vm._m(0),
+        _vm._v(" "),
+        _c(
+          "tbody",
+          _vm._l(_vm.api, function(data) {
+            return _c("tr", { key: data.index }, [
+              _c("td", [_vm._v(_vm._s(data.store_id))]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(data.date))]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(data.gross))]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(data.nett))]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(data.voucher))]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(data.cash))]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(data.card))]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(data.ticket))])
+            ])
+          })
+        )
+      ]
+    )
   ])
 }
 var staticRenderFns = [
@@ -47538,7 +47542,7 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("thead", { staticClass: "text-center text-capitalize" }, [
+    return _c("thead", { staticClass: "text-capitalize" }, [
       _c("th", [_vm._v("store")]),
       _vm._v(" "),
       _c("th", [_vm._v("date")]),

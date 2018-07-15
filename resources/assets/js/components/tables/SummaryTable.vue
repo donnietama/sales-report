@@ -1,7 +1,7 @@
 <template>
-    <div class="table-responsive">
-        <table class="table table-striped">
-            <thead class="text-center text-capitalize">
+    <div class="table-responsive text-center">
+        <table class="table table-sm table-striped table-bordered">
+            <thead class="text-capitalize">
                 <th>store</th>
                 <th>date</th>
                 <th>gross</th>
