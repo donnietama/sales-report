@@ -44,6 +44,8 @@
     </form>
 </template>
 <script>
+import Event from '../../event.js'
+
 export default {
     data() {
         return {
@@ -53,18 +55,36 @@ export default {
             voucher: '',
             cash: '',
             card: '',
-            ticket: ''
+            ticket: '',
+            apis: {}
         }
     },
     methods: {
         submitReport() {
-            axios.post('/home/summaries', this.$data)
+            axios.post('/home/summaries', {
+                date: this.date,
+                gross: this.gross,
+                nett: this.nett,
+                voucher: this.voucher,
+                cash: this.cash,
+                card: this.card,
+                ticket: this.ticket
+            })
             .then(res => {
                 console.log(res)
+                this.apis = res.data
+                Event.$emit('added_summaries', this.apis)
             })
             .catch(err => {
                 console.log(err)
             })
+            this.date = '',
+            this.gross = '',
+            this.nett = '',
+            this.voucher = '',
+            this.cash = '',
+            this.card = '',
+            this.ticket = ''
         }
     }
 }

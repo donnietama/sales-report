@@ -27,21 +27,22 @@
     </div>
 </template>
 <script>
+import Event from '../../event.js'
+
 export default {
     data() {
         return {
-            api: []
+            api: [],
+            apiData: {}
         }
     },
     mounted() {
-        this.getAPI()
-    },
-    methods: {
-        getAPI() {
-            axios.get('/home/summaries').then(res => {
-                this.api = res.data
-            })
-        }
+        axios.get('/home/summaries').then(res => {
+            this.api = res.data
+        })
+        Event.$on('added_summaries', (apiData) => {
+            this.api.unshift(apiData)
+        })
     }
 }
 </script>
