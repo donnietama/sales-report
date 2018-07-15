@@ -12,7 +12,7 @@
                 <th>ticket</th>
             </thead>
             <tbody>
-                <tr v-for="data in api" :key="data.index">
+                <tr v-for="data in api.data" :key="data.index">
                     <td>{{ data.store_id }}</td>
                     <td>{{ data.date }}</td>
                     <td>Rp.{{ data.gross }}</td>
@@ -24,6 +24,9 @@
                 </tr>
             </tbody>
         </table>
+        <div class="float-right">
+            <pagination :data="api" :limit="2" @pagination-change-page="getAPI"></pagination>
+        </div>
     </div>
 </template>
 <script>
@@ -32,17 +35,22 @@ import Event from '../../event.js'
 export default {
     data() {
         return {
-            api: [],
+            api: {},
             apiData: {}
         }
     },
     mounted() {
-        axios.get('/home/summaries').then(res => {
-            this.api = res.data
-        })
-        Event.$on('added_summaries', (apiData) => {
-            this.api.unshift(apiData)
-        })
+        this.getAPI()
+    },
+    methods: {
+        getAPI(page = 1) {
+            axios.get('/home/summaries?page=' + page).then(res => {
+                this.api = res.data
+            })
+            Event.$on('added_summaries', (apiData) => {
+                this.api.unshift(apiData)
+            })
+        }
     }
 }
 </script>

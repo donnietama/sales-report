@@ -1,5 +1,5 @@
 <template>
-    <form method="post" @submit.prevent="submitReport" class="text-capitalize bg-white px-4 py-4 mb-5">
+    <form method="post" @submit.prevent="submitReport" class="text-capitalize bg-white px-4 py-4 mb-2">
         <div class="row">
             <div class="form-group col-xs-12 col-sm-4 col-md-4 col-lg-4 col-xl-4">
                 <label>tanggal</label>

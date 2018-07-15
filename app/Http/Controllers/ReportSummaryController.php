@@ -32,7 +32,7 @@ class ReportSummaryController extends Controller
     public function getReport()
     {
         $store_id = Auth::user()->id;
-        $data = ReportSummary::where('store_id', '=', $store_id)->orderBy('created_at', 'desc')->get();
+        $data = ReportSummary::where('store_id', '=', $store_id)->orderBy('created_at', 'desc')->paginate(15);
 
         return response()->json($data);
     }
