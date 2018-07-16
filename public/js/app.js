@@ -24959,6 +24959,8 @@ Vue.component('summary-table', __webpack_require__(43));
 Vue.component('summary-form', __webpack_require__(47));
 Vue.component('batch-table', __webpack_require__(57));
 Vue.component('batch-form', __webpack_require__(60));
+Vue.component('waste-table', __webpack_require__(63));
+Vue.component('waste-form', __webpack_require__(66));
 
 Vue.component('pagination', __webpack_require__(55));
 
@@ -48919,6 +48921,756 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
     require("vue-hot-reload-api")      .rerender("data-v-984765ec", module.exports)
+  }
+}
+
+/***/ }),
+/* 63 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(3)
+/* script */
+var __vue_script__ = __webpack_require__(64)
+/* template */
+var __vue_template__ = __webpack_require__(65)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\tables\\WasteTable.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-a53981f8", Component.options)
+  } else {
+    hotAPI.reload("data-v-a53981f8", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 64 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__event_js__ = __webpack_require__(45);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {
+            api: {},
+            apiData: {}
+        };
+    },
+    mounted: function mounted() {
+        this.getAPI();
+    },
+
+    methods: {
+        getAPI: function getAPI() {
+            var _this = this;
+
+            var page = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
+
+            axios.get('/home/waste?page=' + page).then(function (res) {
+                _this.api = res.data;
+            });
+            __WEBPACK_IMPORTED_MODULE_0__event_js__["a" /* default */].$on('added_waste', function (apiData) {
+                _this.api.data.unshift(apiData);
+            });
+        }
+    }
+});
+
+/***/ }),
+/* 65 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "table-responsive bg-white px-4 py-4" }, [
+    _c(
+      "table",
+      { staticClass: "table table-sm table-striped table-bordered" },
+      [
+        _vm._m(0),
+        _vm._v(" "),
+        _c(
+          "tbody",
+          _vm._l(_vm.api.data, function(data) {
+            return _c("tr", { key: data.index }, [
+              _c("td", [_vm._v(_vm._s(data.store_id))]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(data.created_at))]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(data.green_tea_jasmine) + " batch")]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(data.black_tea) + " batch")]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(data.quan_yin) + " batch")]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(data.matcha) + " batch")]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(data.royal) + " batch")]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(data.coffee) + " batch")]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(data.choco) + " batch")]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(data.cheese) + " batch")])
+            ])
+          })
+        )
+      ]
+    ),
+    _vm._v(" "),
+    _c(
+      "div",
+      { staticClass: "float-right" },
+      [
+        _c("pagination", {
+          attrs: { data: _vm.api, limit: 2 },
+          on: { "pagination-change-page": _vm.getAPI }
+        })
+      ],
+      1
+    )
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "thead",
+      { staticClass: "text-capitalize bg-dark table text-white" },
+      [
+        _c("th", [_vm._v("store")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("date")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("green tea")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("black tea")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("quan yin")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("matcha")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("royal")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("coffee")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("choco")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("cheese")])
+      ]
+    )
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-a53981f8", module.exports)
+  }
+}
+
+/***/ }),
+/* 66 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(3)
+/* script */
+var __vue_script__ = __webpack_require__(67)
+/* template */
+var __vue_template__ = __webpack_require__(68)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\forms\\WasteForm.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-2bca58ea", Component.options)
+  } else {
+    hotAPI.reload("data-v-2bca58ea", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 67 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__event_js__ = __webpack_require__(45);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_sweetalert__ = __webpack_require__(56);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_sweetalert___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_sweetalert__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {
+            date: '',
+            green_tea_jasmine: '',
+            black_tea: '',
+            quan_yin: '',
+            matcha: '',
+            royal: '',
+            coffee: '',
+            choco: '',
+            cheese: '',
+            apis: {}
+        };
+    },
+
+    methods: {
+        submitReport: function submitReport() {
+            var _this = this;
+
+            __WEBPACK_IMPORTED_MODULE_1_sweetalert___default()({
+                icon: 'warning',
+                title: 'Pastikan data sudah benar!',
+                text: 'Data yang telah masuk kedalam database tidak dapat dihapus / diperbaiki. Harap cek sekali lagi.',
+                button: {
+                    text: "Ya, data sudah benar",
+                    closeModal: false
+                }
+            }).then(function () {
+                axios.post('/home/waste', {
+                    date: _this.date,
+                    green_tea_jasmine: _this.green_tea_jasmine,
+                    black_tea: _this.black_tea,
+                    quan_yin: _this.quan_yin,
+                    matcha: _this.matcha,
+                    royal: _this.royal,
+                    coffee: _this.coffee,
+                    choco: _this.choco,
+                    cheese: _this.cheese
+                }).then(function (res) {
+                    _this.apis = res.data;
+                    __WEBPACK_IMPORTED_MODULE_0__event_js__["a" /* default */].$emit('added_waste', _this.apis);
+
+                    __WEBPACK_IMPORTED_MODULE_1_sweetalert___default()({
+                        title: 'Berhasil!',
+                        text: 'Data telah terkirim.',
+                        icon: 'success',
+                        button: {
+                            text: 'OK',
+                            closeModal: true
+                        }
+                    });
+                }).catch(function (err) {
+                    __WEBPACK_IMPORTED_MODULE_1_sweetalert___default()({
+                        title: 'Gagal!',
+                        text: 'Hmm... Sepertinya ada yang salah dengan data yang dimasukkan, coba cek kembali.',
+                        icon: 'error',
+                        button: {
+                            text: 'Baik, saya cek kembali',
+                            closeModal: true
+                        }
+                    });
+                });
+                _this.date = '', _this.green_tea_jasmine = '', _this.black_tea = '', _this.quan_yin = '', _this.matcha = '', _this.royal = '', _this.coffee = '', _this.choco = '', _this.cheese = '';
+            });
+        }
+    }
+});
+
+/***/ }),
+/* 68 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "form",
+    {
+      staticClass: "text-capitalize bg-white px-4 py-4 mb-2",
+      attrs: { method: "post" },
+      on: {
+        submit: function($event) {
+          $event.preventDefault()
+          return _vm.submitReport($event)
+        }
+      }
+    },
+    [
+      _c("div", { staticClass: "row" }, [
+        _c(
+          "div",
+          {
+            staticClass:
+              "form-group col-xs-12 col-sm-4 col-md-4 col-lg-4 col-xl-4"
+          },
+          [
+            _c("label", [_vm._v("tanggal")]),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.date,
+                  expression: "date"
+                }
+              ],
+              staticClass: "form-control",
+              attrs: { type: "date", placeholder: "dd/mm/yyyy" },
+              domProps: { value: _vm.date },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.date = $event.target.value
+                }
+              }
+            })
+          ]
+        )
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "row" }, [
+        _c(
+          "div",
+          {
+            staticClass:
+              "form-group col-xs-12 col-sm-3 col-md-3 col-lg-3 col-xl-3"
+          },
+          [
+            _c("label", [_vm._v("green tea jasmine total")]),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.green_tea_jasmine,
+                  expression: "green_tea_jasmine"
+                }
+              ],
+              staticClass: "form-control",
+              attrs: { type: "number", placeholder: "0 Batch" },
+              domProps: { value: _vm.green_tea_jasmine },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.green_tea_jasmine = $event.target.value
+                }
+              }
+            })
+          ]
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
+            staticClass:
+              "form-group col-xs-12 col-sm-3 col-md-3 col-lg-3 col-xl-3"
+          },
+          [
+            _c("label", [_vm._v("black tea total")]),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.black_tea,
+                  expression: "black_tea"
+                }
+              ],
+              staticClass: "form-control",
+              attrs: { type: "number", placeholder: "0 Batch" },
+              domProps: { value: _vm.black_tea },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.black_tea = $event.target.value
+                }
+              }
+            })
+          ]
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
+            staticClass:
+              "form-group col-xs-12 col-sm-3 col-md-3 col-lg-3 col-xl-3"
+          },
+          [
+            _c("label", [_vm._v("quan yin total")]),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.quan_yin,
+                  expression: "quan_yin"
+                }
+              ],
+              staticClass: "form-control",
+              attrs: { type: "number", placeholder: "0 Batch" },
+              domProps: { value: _vm.quan_yin },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.quan_yin = $event.target.value
+                }
+              }
+            })
+          ]
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
+            staticClass:
+              "form-group col-xs-12 col-sm-3 col-md-3 col-lg-3 col-xl-3"
+          },
+          [
+            _c("label", [_vm._v("matcha total")]),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.matcha,
+                  expression: "matcha"
+                }
+              ],
+              staticClass: "form-control",
+              attrs: { type: "number", placeholder: "0 Batch" },
+              domProps: { value: _vm.matcha },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.matcha = $event.target.value
+                }
+              }
+            })
+          ]
+        )
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "row" }, [
+        _c(
+          "div",
+          {
+            staticClass:
+              "form-group col-xs-12 col-sm-3 col-md-3 col-lg-3 col-xl-3"
+          },
+          [
+            _c("label", [_vm._v("royal milk tea total")]),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.royal,
+                  expression: "royal"
+                }
+              ],
+              staticClass: "form-control",
+              attrs: { type: "number", placeholder: "0 Batch" },
+              domProps: { value: _vm.royal },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.royal = $event.target.value
+                }
+              }
+            })
+          ]
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
+            staticClass:
+              "form-group col-xs-12 col-sm-3 col-md-3 col-lg-3 col-xl-3"
+          },
+          [
+            _c("label", [_vm._v("coffee total")]),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.coffee,
+                  expression: "coffee"
+                }
+              ],
+              staticClass: "form-control",
+              attrs: { type: "number", placeholder: "0 Batch" },
+              domProps: { value: _vm.coffee },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.coffee = $event.target.value
+                }
+              }
+            })
+          ]
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
+            staticClass:
+              "form-group col-xs-12 col-sm-3 col-md-3 col-lg-3 col-xl-3"
+          },
+          [
+            _c("label", [_vm._v("choco total")]),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.choco,
+                  expression: "choco"
+                }
+              ],
+              staticClass: "form-control",
+              attrs: { type: "number", placeholder: "0 Batch" },
+              domProps: { value: _vm.choco },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.choco = $event.target.value
+                }
+              }
+            })
+          ]
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
+            staticClass:
+              "form-group col-xs-12 col-sm-3 col-md-3 col-lg-3 col-xl-3"
+          },
+          [
+            _c("label", [_vm._v("cheese total")]),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.cheese,
+                  expression: "cheese"
+                }
+              ],
+              staticClass: "form-control",
+              attrs: { type: "number", placeholder: "0 Batch" },
+              domProps: { value: _vm.cheese },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.cheese = $event.target.value
+                }
+              }
+            })
+          ]
+        )
+      ]),
+      _vm._v(" "),
+      _vm._m(0)
+    ]
+  )
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-md-12" }, [
+        _c("div", { staticClass: "form-group float-right" }, [
+          _c("button", { staticClass: "btn btn-success" }, [_vm._v("Submit")])
+        ])
+      ])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-2bca58ea", module.exports)
   }
 }
 
