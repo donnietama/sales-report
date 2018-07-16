@@ -5,7 +5,13 @@ use Faker\Generator as Faker;
 $factory->define(App\BatchReport::class, function (Faker $faker) {
     return [
         'store_id' => $faker->randomDigitNotNull,
-        'product_id' => $faker->randomDigitNotNull,
-        'quantity' => $faker->numberBetween($min = 30000, $max = 100000),
+        'green_tea_jasmine' => $faker->randomDigitNotNull,
+        'black_tea' => $faker->randomDigitNotNull,
+        'quan_yin' => $faker->randomDigitNotNull,
+        'matcha' => $faker->randomDigitNotNull,
+        'royal' => $faker->randomDigitNotNull,
+        'coffee' => $faker->randomDigitNotNull,
+        'choco' => $faker->randomDigitNotNull,
+        'cheese' => $faker->randomDigitNotNull,
     ];
 });

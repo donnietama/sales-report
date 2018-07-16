@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class BatchReport extends Model
 {
     protected $fillable = [
-        'store_id', 'product_id', 'quantity'
+        'store_id', 'green_tea_jasmine', 'black_tea', 'quan_yin', 'matcha', 'royal', 'coffee', 'choco', 'cheese',
     ];
 
     public function ingredients()
