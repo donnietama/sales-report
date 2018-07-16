@@ -49066,21 +49066,21 @@ var render = function() {
               _vm._v(" "),
               _c("td", [_vm._v(_vm._s(data.created_at))]),
               _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(data.green_tea_jasmine) + " batch")]),
+              _c("td", [_vm._v(_vm._s(data.green_tea_jasmine) + " ml")]),
               _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(data.black_tea) + " batch")]),
+              _c("td", [_vm._v(_vm._s(data.black_tea) + " ml")]),
               _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(data.quan_yin) + " batch")]),
+              _c("td", [_vm._v(_vm._s(data.quan_yin) + " ml")]),
               _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(data.matcha) + " batch")]),
+              _c("td", [_vm._v(_vm._s(data.matcha) + " ml")]),
               _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(data.royal) + " batch")]),
+              _c("td", [_vm._v(_vm._s(data.royal) + " ml")]),
               _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(data.coffee) + " batch")]),
+              _c("td", [_vm._v(_vm._s(data.coffee) + " ml")]),
               _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(data.choco) + " batch")]),
+              _c("td", [_vm._v(_vm._s(data.choco) + " ml")]),
               _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(data.cheese) + " batch")])
+              _c("td", [_vm._v(_vm._s(data.cheese) + " ml")])
             ])
           })
         )
@@ -49399,7 +49399,7 @@ var render = function() {
                 }
               ],
               staticClass: "form-control",
-              attrs: { type: "number", placeholder: "0 Batch" },
+              attrs: { type: "number", placeholder: "0 mililiter" },
               domProps: { value: _vm.green_tea_jasmine },
               on: {
                 input: function($event) {
@@ -49432,7 +49432,7 @@ var render = function() {
                 }
               ],
               staticClass: "form-control",
-              attrs: { type: "number", placeholder: "0 Batch" },
+              attrs: { type: "number", placeholder: "0 mililiter" },
               domProps: { value: _vm.black_tea },
               on: {
                 input: function($event) {
@@ -49465,7 +49465,7 @@ var render = function() {
                 }
               ],
               staticClass: "form-control",
-              attrs: { type: "number", placeholder: "0 Batch" },
+              attrs: { type: "number", placeholder: "0 mililiter" },
               domProps: { value: _vm.quan_yin },
               on: {
                 input: function($event) {
@@ -49498,7 +49498,7 @@ var render = function() {
                 }
               ],
               staticClass: "form-control",
-              attrs: { type: "number", placeholder: "0 Batch" },
+              attrs: { type: "number", placeholder: "0 mililiter" },
               domProps: { value: _vm.matcha },
               on: {
                 input: function($event) {
@@ -49533,7 +49533,7 @@ var render = function() {
                 }
               ],
               staticClass: "form-control",
-              attrs: { type: "number", placeholder: "0 Batch" },
+              attrs: { type: "number", placeholder: "0 mililiter" },
               domProps: { value: _vm.royal },
               on: {
                 input: function($event) {
@@ -49566,7 +49566,7 @@ var render = function() {
                 }
               ],
               staticClass: "form-control",
-              attrs: { type: "number", placeholder: "0 Batch" },
+              attrs: { type: "number", placeholder: "0 mililiter" },
               domProps: { value: _vm.coffee },
               on: {
                 input: function($event) {
@@ -49599,7 +49599,7 @@ var render = function() {
                 }
               ],
               staticClass: "form-control",
-              attrs: { type: "number", placeholder: "0 Batch" },
+              attrs: { type: "number", placeholder: "0 mililiter" },
               domProps: { value: _vm.choco },
               on: {
                 input: function($event) {
@@ -49632,7 +49632,7 @@ var render = function() {
                 }
               ],
               staticClass: "form-control",
-              attrs: { type: "number", placeholder: "0 Batch" },
+              attrs: { type: "number", placeholder: "0 mililiter" },
               domProps: { value: _vm.cheese },
               on: {
                 input: function($event) {

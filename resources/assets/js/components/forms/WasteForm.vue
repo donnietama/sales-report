@@ -9,37 +9,37 @@
         <div class="row">
             <div class="form-group col-xs-12 col-sm-3 col-md-3 col-lg-3 col-xl-3">
                 <label>green tea jasmine total</label>
-                <input type="number" class="form-control" v-model="green_tea_jasmine" placeholder="0 Batch">
+                <input type="number" class="form-control" v-model="green_tea_jasmine" placeholder="0 mililiter">
             </div>
             <div class="form-group col-xs-12 col-sm-3 col-md-3 col-lg-3 col-xl-3">
                 <label>black tea total</label>
-                <input type="number" class="form-control" v-model="black_tea" placeholder="0 Batch">
+                <input type="number" class="form-control" v-model="black_tea" placeholder="0 mililiter">
             </div>
             <div class="form-group col-xs-12 col-sm-3 col-md-3 col-lg-3 col-xl-3">
                 <label>quan yin total</label>
-                <input type="number" class="form-control" v-model="quan_yin" placeholder="0 Batch">
+                <input type="number" class="form-control" v-model="quan_yin" placeholder="0 mililiter">
             </div>
             <div class="form-group col-xs-12 col-sm-3 col-md-3 col-lg-3 col-xl-3">
                 <label>matcha total</label>
-                <input type="number" class="form-control" v-model="matcha" placeholder="0 Batch">
+                <input type="number" class="form-control" v-model="matcha" placeholder="0 mililiter">
             </div>
         </div>
         <div class="row">
             <div class="form-group col-xs-12 col-sm-3 col-md-3 col-lg-3 col-xl-3">
                 <label>royal milk tea total</label>
-                <input type="number" class="form-control" v-model="royal" placeholder="0 Batch">
+                <input type="number" class="form-control" v-model="royal" placeholder="0 mililiter">
             </div>
             <div class="form-group col-xs-12 col-sm-3 col-md-3 col-lg-3 col-xl-3">
                 <label>coffee total</label>
-                <input type="number" class="form-control" v-model="coffee" placeholder="0 Batch">
+                <input type="number" class="form-control" v-model="coffee" placeholder="0 mililiter">
             </div>
             <div class="form-group col-xs-12 col-sm-3 col-md-3 col-lg-3 col-xl-3">
                 <label>choco total</label>
-                <input type="number" class="form-control" v-model="choco" placeholder="0 Batch">
+                <input type="number" class="form-control" v-model="choco" placeholder="0 mililiter">
             </div>
             <div class="form-group col-xs-12 col-sm-3 col-md-3 col-lg-3 col-xl-3">
                 <label>cheese total</label>
-                <input type="number" class="form-control" v-model="cheese" placeholder="0 Batch">
+                <input type="number" class="form-control" v-model="cheese" placeholder="0 mililiter">
             </div>
         </div>
         <div class="row">

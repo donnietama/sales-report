@@ -17,14 +17,14 @@
                 <tr v-for="data in api.data" :key="data.index">
                     <td>{{ data.store_id }}</td>
                     <td>{{ data.created_at }}</td>
-                    <td>{{ data.green_tea_jasmine }} batch</td>
-                    <td>{{ data.black_tea }} batch</td>
-                    <td>{{ data.quan_yin }} batch</td>
-                    <td>{{ data.matcha }} batch</td>
-                    <td>{{ data.royal }} batch</td>
-                    <td>{{ data.coffee }} batch</td>
-                    <td>{{ data.choco }} batch</td>
-                    <td>{{ data.cheese }} batch</td>
+                    <td>{{ data.green_tea_jasmine }} ml</td>
+                    <td>{{ data.black_tea }} ml</td>
+                    <td>{{ data.quan_yin }} ml</td>
+                    <td>{{ data.matcha }} ml</td>
+                    <td>{{ data.royal }} ml</td>
+                    <td>{{ data.coffee }} ml</td>
+                    <td>{{ data.choco }} ml</td>
+                    <td>{{ data.cheese }} ml</td>
                 </tr>
             </tbody>
         </table>
