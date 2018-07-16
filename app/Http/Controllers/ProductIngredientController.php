@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\ProductIngredient;
 
 class ProductIngredientController extends Controller
 {
@@ -17,5 +18,12 @@ class ProductIngredientController extends Controller
             'product_name' => $request->product_name,
             'ingredient' => $request->ingredient
         ]);
+    }
+
+    public function getIngredients()
+    {
+        $data = ProductIngredient::all();
+
+        return response()->json($data);
     }
 }
