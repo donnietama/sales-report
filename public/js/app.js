@@ -47574,7 +47574,7 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("thead", { staticClass: "text-capitalize" }, [
+    return _c("thead", { staticClass: "text-capitalize bg-dark text-white" }, [
       _c("th", [_vm._v("store")]),
       _vm._v(" "),
       _c("th", [_vm._v("date")]),
@@ -48042,7 +48042,7 @@ var staticRenderFns = [
     return _c("div", { staticClass: "row" }, [
       _c("div", { staticClass: "col-md-12" }, [
         _c("div", { staticClass: "form-group float-right" }, [
-          _c("button", { staticClass: "btn btn-danger" }, [_vm._v("Submit")])
+          _c("button", { staticClass: "btn btn-success" }, [_vm._v("Submit")])
         ])
       ])
     ])

@@ -1,7 +1,7 @@
 <template>
     <div class="table-responsive bg-white px-4 py-4">
         <table class="table table-sm table-striped table-bordered">
-            <thead class="text-capitalize">
+            <thead class="text-capitalize bg-dark text-white">
                 <th>store</th>
                 <th>date</th>
                 <th>gross</th>

@@ -37,7 +37,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="form-group float-right">
-                    <button class="btn btn-danger">Submit</button>
+                    <button class="btn btn-success">Submit</button>
                 </div>
             </div>
         </div>
