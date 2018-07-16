@@ -19,6 +19,11 @@ Route::get('home/batch', 'BatchReportController@getReport');
 Route::post('home/batch', 'BatchReportController@submitReport');
 
 // Product Ingredient
-Route::get('home/product/create', 'ProductIngredientController@index');
+Route::get('home/product/create', 'ProductIngredientController@index')->name('product-ingredient');
 Route::get('home/product', 'ProductIngredientController@getIngredients');
-Route::post('home/product', 'ProductIngredienControllert@storeIngredients');
+Route::post('home/product', 'ProductIngredientControllert@storeIngredients');
+
+// Waste Report
+Route::get('home/waste/create', 'WasteReportController@index')->name('report-waste');
+Route::get('home/waste', 'WasteReportController@getReport');
+Route::post('home/waste', 'WasteReportControllert@submitReport');
