@@ -11,7 +11,7 @@ class BatchReportSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\ReportSummary::class, 100)->create()->each(function ($batch) {
+        factory(App\BatchReport::class, 100)->create()->each(function ($batch) {
             $batch->save();
         });
         $this->command->info('Batch report table seeded!');
