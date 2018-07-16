@@ -16,6 +16,7 @@ class DatabaseSeeder extends Seeder
             ReportSummarySeeder::class,
             BatchReportSeeder::class,
             ProductIngredientSeeder::class,
+            WasteSeeder::class,
         ]);
     }
 }
