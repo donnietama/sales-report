@@ -1,5 +1,5 @@
 <template>
-    <div class="table-responsive text-center bg-white px-4 py-4">
+    <div class="table-responsive bg-white px-4 py-4">
         <table class="table table-sm table-striped table-bordered">
             <thead class="text-capitalize">
                 <th>store</th>

@@ -47520,54 +47520,50 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    { staticClass: "table-responsive text-center bg-white px-4 py-4" },
-    [
-      _c(
-        "table",
-        { staticClass: "table table-sm table-striped table-bordered" },
-        [
-          _vm._m(0),
-          _vm._v(" "),
-          _c(
-            "tbody",
-            _vm._l(_vm.api.data, function(data) {
-              return _c("tr", { key: data.index }, [
-                _c("td", [_vm._v(_vm._s(data.store_id))]),
-                _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(data.date))]),
-                _vm._v(" "),
-                _c("td", [_vm._v("Rp." + _vm._s(data.gross))]),
-                _vm._v(" "),
-                _c("td", [_vm._v("Rp." + _vm._s(data.nett))]),
-                _vm._v(" "),
-                _c("td", [_vm._v("Rp." + _vm._s(data.voucher))]),
-                _vm._v(" "),
-                _c("td", [_vm._v("Rp." + _vm._s(data.cash))]),
-                _vm._v(" "),
-                _c("td", [_vm._v("Rp." + _vm._s(data.card))]),
-                _vm._v(" "),
-                _c("td", [_vm._v("Rp." + _vm._s(data.ticket))])
-              ])
-            })
-          )
-        ]
-      ),
-      _vm._v(" "),
-      _c(
-        "div",
-        { staticClass: "float-right" },
-        [
-          _c("pagination", {
-            attrs: { data: _vm.api, limit: 2 },
-            on: { "pagination-change-page": _vm.getAPI }
+  return _c("div", { staticClass: "table-responsive bg-white px-4 py-4" }, [
+    _c(
+      "table",
+      { staticClass: "table table-sm table-striped table-bordered" },
+      [
+        _vm._m(0),
+        _vm._v(" "),
+        _c(
+          "tbody",
+          _vm._l(_vm.api.data, function(data) {
+            return _c("tr", { key: data.index }, [
+              _c("td", [_vm._v(_vm._s(data.store_id))]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(data.date))]),
+              _vm._v(" "),
+              _c("td", [_vm._v("Rp." + _vm._s(data.gross))]),
+              _vm._v(" "),
+              _c("td", [_vm._v("Rp." + _vm._s(data.nett))]),
+              _vm._v(" "),
+              _c("td", [_vm._v("Rp." + _vm._s(data.voucher))]),
+              _vm._v(" "),
+              _c("td", [_vm._v("Rp." + _vm._s(data.cash))]),
+              _vm._v(" "),
+              _c("td", [_vm._v("Rp." + _vm._s(data.card))]),
+              _vm._v(" "),
+              _c("td", [_vm._v("Rp." + _vm._s(data.ticket))])
+            ])
           })
-        ],
-        1
-      )
-    ]
-  )
+        )
+      ]
+    ),
+    _vm._v(" "),
+    _c(
+      "div",
+      { staticClass: "float-right" },
+      [
+        _c("pagination", {
+          attrs: { data: _vm.api, limit: 2 },
+          on: { "pagination-change-page": _vm.getAPI }
+        })
+      ],
+      1
+    )
+  ])
 }
 var staticRenderFns = [
   function() {
