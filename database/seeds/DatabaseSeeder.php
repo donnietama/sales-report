@@ -15,6 +15,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             ReportSummarySeeder::class,
             BatchReportSeeder::class,
+            ProductIngredientSeeder::class,
         ]);
     }
 }
