@@ -12,6 +12,6 @@ class BatchReport extends Model
 
     public function ingredients()
     {
-        return $this->hasMany(Ingredient::class);
+        return $this->hasMany(ProductIngredient::class);
     }
 }
