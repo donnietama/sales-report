@@ -45,6 +45,7 @@
 </template>
 <script>
 import Event from '../../event.js'
+import swal from 'sweetalert'
 
 export default {
     data() {
@@ -61,30 +62,58 @@ export default {
     },
     methods: {
         submitReport() {
-            axios.post('/home/summaries', {
-                date: this.date,
-                gross: this.gross,
-                nett: this.nett,
-                voucher: this.voucher,
-                cash: this.cash,
-                card: this.card,
-                ticket: this.ticket
+            swal({
+                icon: 'warning',
+                title: 'Pastikan data sudah benar!',
+                text: 'Data yang telah masuk kedalam database tidak dapat dihapus / diperbaiki. Harap cek sekali lagi.',
+                button: {
+                    text: "Ya, data sudah benar",
+                    closeModal: false,
+                }
             })
-            .then(res => {
-                console.log(res)
-                this.apis = res.data
-                Event.$emit('added_summaries', this.apis)
+            .then(() => {
+                axios.post('/home/summaries', {
+                    date: this.date,
+                    gross: this.gross,
+                    nett: this.nett,
+                    voucher: this.voucher,
+                    cash: this.cash,
+                    card: this.card,
+                    ticket: this.ticket
+                })
+                .then(res => {
+                    this.apis = res.data
+                    Event.$emit('added_summaries', this.apis)
+                    
+                    swal({
+                        title: 'Berhasil!',
+                        text: 'Data telah terkirim.',
+                        icon: 'success',
+                        button: {
+                            text: 'OK',
+                            closeModal: true
+                        }
+                    })
+                })
+                .catch(err => {
+                    swal({
+                        title: 'Gagal!',
+                        text: 'Hmm... Sepertinya ada yang salah dengan data yang dimasukkan, coba cek kembali.',
+                        icon: 'error',
+                        button: {
+                            text: 'Baik, saya cek kembali',
+                            closeModal: true
+                        }
+                    })
+                })
+                this.date = '',
+                this.gross = '',
+                this.nett = '',
+                this.voucher = '',
+                this.cash = '',
+                this.card = '',
+                this.ticket = ''
             })
-            .catch(err => {
-                console.log(err)
-            })
-            this.date = '',
-            this.gross = '',
-            this.nett = '',
-            this.voucher = '',
-            this.cash = '',
-            this.card = '',
-            this.ticket = ''
         }
     }
 }

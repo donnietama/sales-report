@@ -48,7 +48,7 @@ export default {
                 this.api = res.data
             })
             Event.$on('added_summaries', (apiData) => {
-                this.api.unshift(apiData)
+                this.api.data.unshift(apiData)
             })
         }
     }
