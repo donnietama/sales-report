@@ -9,4 +9,9 @@ class BatchReport extends Model
     protected $fillable = [
         'store_id', 'product_id', 'quantity'
     ];
+
+    public function ingredients()
+    {
+        return $this->hasMany(Ingredient::class);
+    }
 }
