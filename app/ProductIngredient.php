@@ -7,11 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 class ProductIngredient extends Model
 {
     protected $fillable = [
-        'product_name', 'ingredient',
+    'product_name', 'ingredient',
     ];
 
     public function batch()
     {
-        return $this->belongsTo(BatchReport::class);
+        return $this->belongsTo(BatchReport::class, 'id', 'product_id');
     }
 }
