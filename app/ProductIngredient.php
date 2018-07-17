@@ -14,4 +14,9 @@ class ProductIngredient extends Model
     {
         return $this->belongsTo(BatchReport::class, 'id', 'product_id');
     }
+
+    public function products()
+    {
+        return $this->belongsTo(ProductRegister::class);
+    }
 }
