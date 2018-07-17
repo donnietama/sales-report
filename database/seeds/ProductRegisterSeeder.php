@@ -11,7 +11,7 @@ class ProductRegisterSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\ProductRegister::class, 100)->create()->each(function($product) {
+        factory(App\ProductRegister::class, 6)->create()->each(function($product) {
             $product->save();
         });
         $this->command->info('Product register table seeded!');
