@@ -83,9 +83,8 @@ export default {
                         }
                     })
                 })
-                this.batch.date = '',
-                this.batch.product_id = '',
-                this.batch.quantity = ''
+                this.date = '',
+                this.batch[index].quantity = ''
             })
         }
     }

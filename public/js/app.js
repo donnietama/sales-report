@@ -48423,7 +48423,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                         }
                     });
                 });
-                _this2.batch.date = '', _this2.batch.product_id = '', _this2.batch.quantity = '';
+                _this2.date = '', _this2.batch[index].quantity = '';
             });
         }
     }
