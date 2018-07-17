@@ -58,17 +58,19 @@ import swal from 'sweetalert'
 export default {
     data() {
         return {
-            date: '',
-            green_tea_jasmine: '',
-            black_tea: '',
-            quan_yin: '',
-            matcha: '',
-            royal: '',
-            coffee: '',
-            choco: '',
-            cheese: '',
-            apis: {}
+            batch: {
+                product_id: '',
+                quantity: '',
+            },
+            apis: {},
+            productAPI: {},
         }
+    },
+    mounted(){
+        axios.get('home/products')
+        .then(res => {
+            this.productAPI = res.data
+        })
     },
     methods: {
         submitReport() {
@@ -82,17 +84,7 @@ export default {
                 }
             })
             .then(() => {
-                axios.post('/home/batch', {
-                    date: this.date,
-                    green_tea_jasmine: this.green_tea_jasmine,
-                    black_tea: this.black_tea,
-                    quan_yin: this.quan_yin,
-                    matcha: this.matcha,
-                    royal: this.royal,
-                    coffee: this.coffee,
-                    choco: this.choco,
-                    cheese: this.cheese
-                })
+                axios.post('/home/batch', this.$data)
                 .then(res => {
                     this.apis = res.data
                     Event.$emit('added_batch', this.apis)

@@ -17,14 +17,8 @@ class BatchReportController extends Controller
     {
         $resource = BatchReport::create([
             'store_id' => Auth::user()->id,
-            'green_tea_jasmine' => $request->green_tea_jasmine,
-            'black_tea' => $request->black_tea,
-            'quan_yin' => $request->quan_yin,
-            'matcha' => $request->matcha,
-            'royal' => $request->royal,
-            'coffee' => $request->coffee,
-            'choco' => $request->choco,
-            'cheese' => $request->cheese,
+            'product_id' => $request->product_id,
+            'quantity' => $request->quantity,
         ]);
 
         return response()->json(BatchReport::find($resource->id));
