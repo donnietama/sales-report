@@ -10,7 +10,7 @@
             <tbody>
                 <tr v-for="data in api.data" :key="data.index">
                     <td>{{ data.user_id.name }}</td>
-                    <td>{{ data.created_at }}</td>
+                    <td>{{ data.date }}</td>
                     <td>{{ data.product_name.product_name }}</td>
                     <td>{{ data.quantity }} batch</td>
                 </tr>

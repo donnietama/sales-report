@@ -83,8 +83,6 @@ export default {
                         }
                     })
                 })
-                this.date = '',
-                this.batch[index].quantity = ''
             })
         }
     }

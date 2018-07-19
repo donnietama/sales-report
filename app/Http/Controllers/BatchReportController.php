@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 use App\BatchReport;
 use Auth;
+use DB;
 
 class BatchReportController extends Controller
 {
@@ -15,13 +17,20 @@ class BatchReportController extends Controller
 
     public function submitReport(Request $request)
     {
-        $resource = BatchReport::create([
-            'store_id' => Auth::user()->id,
-            'product_id' => $request->product_id,
-            'quantity' => $request->quantity,
-        ]);
+        $data = [];
+        foreach ($request->batch as $requested)
+        {
+            $data[] = [
+                'store_id' => Auth::user()->id,
+                'date' => $request->date,
+                'product_id' => $requested['id'],
+                'quantity' => $requested['quantity'],
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ];
+        }
 
-        return response()->json(BatchReport::find($resource->id));
+        $store_data = DB::table('batch_reports')->insert($data);
     }
 
     public function getReport()

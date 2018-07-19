@@ -48192,7 +48192,7 @@ var render = function() {
             return _c("tr", { key: data.index }, [
               _c("td", [_vm._v(_vm._s(data.user_id.name))]),
               _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(data.created_at))]),
+              _c("td", [_vm._v(_vm._s(data.date))]),
               _vm._v(" "),
               _c("td", [_vm._v(_vm._s(data.product_name.product_name))]),
               _vm._v(" "),
@@ -48387,7 +48387,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                         }
                     });
                 });
-                _this2.date = '', _this2.batch[index].quantity = '';
             });
         }
     }
