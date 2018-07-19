@@ -48141,6 +48141,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 
 
@@ -48165,7 +48167,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 _this.api = res.data;
             });
             __WEBPACK_IMPORTED_MODULE_0__event_js__["a" /* default */].$on('added_batch', function (apiData) {
-                _this.api.data.unshift(apiData);
+                apiData.forEach(function (data) {
+                    _this.api.data.unshift(data);
+                });
             });
         }
     }
@@ -48188,8 +48192,12 @@ var render = function() {
         _vm._v(" "),
         _c(
           "tbody",
-          _vm._l(_vm.api.data, function(data) {
+          _vm._l(_vm.api.data, function(data, index) {
             return _c("tr", { key: data.index }, [
+              _c("td", { staticClass: "text-center" }, [
+                _vm._v(_vm._s(index + 1))
+              ]),
+              _vm._v(" "),
               _c("td", [_vm._v(_vm._s(data.user_id.name))]),
               _vm._v(" "),
               _c("td", [_vm._v(_vm._s(data.date))]),
@@ -48225,6 +48233,8 @@ var staticRenderFns = [
       "thead",
       { staticClass: "text-capitalize bg-dark table text-white" },
       [
+        _c("th", { staticClass: "text-center" }, [_vm._v("#")]),
+        _vm._v(" "),
         _c("th", [_vm._v("store")]),
         _vm._v(" "),
         _c("th", [_vm._v("date")]),
@@ -48333,7 +48343,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     data: function data() {
         return {
             date: '',
-            batch: []
+            batch: [],
+            apis: {}
         };
     },
     mounted: function mounted() {

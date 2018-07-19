@@ -4,14 +4,9 @@ use Faker\Generator as Faker;
 
 $factory->define(App\BatchReport::class, function (Faker $faker) {
     return [
+        'date' => $faker->date,
         'store_id' => $faker->randomDigitNotNull,
-        'green_tea_jasmine' => $faker->randomDigitNotNull,
-        'black_tea' => $faker->randomDigitNotNull,
-        'quan_yin' => $faker->randomDigitNotNull,
-        'matcha' => $faker->randomDigitNotNull,
-        'royal' => $faker->randomDigitNotNull,
-        'coffee' => $faker->randomDigitNotNull,
-        'choco' => $faker->randomDigitNotNull,
-        'cheese' => $faker->randomDigitNotNull,
+        'product_id' => $faker->randomDigitNotNull,
+        'quantity' => $faker->randomDigitNotNull,
     ];
 });

@@ -15,15 +15,10 @@ class CreateBatchReportsTable extends Migration
     {
         Schema::create('batch_reports', function (Blueprint $table) {
             $table->increments('id');
+            $table->date('date');
             $table->integer('store_id');
-            $table->integer('green_tea_jasmine');
-            $table->integer('black_tea');
-            $table->integer('quan_yin');
-            $table->integer('matcha');
-            $table->integer('royal');
-            $table->integer('coffee');
-            $table->integer('choco');
-            $table->integer('cheese');
+            $table->integer('product_id');
+            $table->integer('quantity');
             $table->timestamps();
         });
     }

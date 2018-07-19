@@ -14,7 +14,7 @@ class DatabaseSeeder extends Seeder
         // $this->call(UsersTableSeeder::class);
         $this->call([
             ReportSummarySeeder::class,
-            BatchReportSeeder::class,
+            // BatchReportSeeder::class,
             ProductIngredientSeeder::class,
             WasteSeeder::class,
             ProductRegisterSeeder::class,

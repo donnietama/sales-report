@@ -31,6 +31,18 @@ class BatchReportController extends Controller
         }
 
         $store_data = DB::table('batch_reports')->insert($data);
+        $newly_added = BatchReport::where('date', '=', $data[0]['date'])
+                        ->where('created_at', '=', $data[0]['created_at'])
+                        ->with([
+                                'productName',
+                                'userId' => function($query) {
+                                    $query->select('id', 'name');
+                                }
+                            ])
+                        ->orderBy('id', 'desc')
+                        ->get();
+
+        return response()->json($newly_added);
     }
 
     public function getReport()
