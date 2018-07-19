@@ -48141,18 +48141,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -48202,25 +48190,13 @@ var render = function() {
           "tbody",
           _vm._l(_vm.api.data, function(data) {
             return _c("tr", { key: data.index }, [
-              _c("td", [_vm._v(_vm._s(data.store_id))]),
+              _c("td", [_vm._v(_vm._s(data.user_id.name))]),
               _vm._v(" "),
               _c("td", [_vm._v(_vm._s(data.created_at))]),
               _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(data.green_tea_jasmine) + " batch")]),
+              _c("td", [_vm._v(_vm._s(data.product_name.product_name))]),
               _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(data.black_tea) + " batch")]),
-              _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(data.quan_yin) + " batch")]),
-              _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(data.matcha) + " batch")]),
-              _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(data.royal) + " batch")]),
-              _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(data.coffee) + " batch")]),
-              _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(data.choco) + " batch")]),
-              _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(data.cheese) + " batch")])
+              _c("td", [_vm._v(_vm._s(data.quantity) + " batch")])
             ])
           })
         )
@@ -48253,21 +48229,9 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", [_vm._v("date")]),
         _vm._v(" "),
-        _c("th", [_vm._v("green tea")]),
+        _c("th", [_vm._v("product name")]),
         _vm._v(" "),
-        _c("th", [_vm._v("black tea")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("quan yin")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("matcha")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("royal")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("coffee")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("choco")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("cheese")])
+        _c("th", [_vm._v("quantity")])
       ]
     )
   }

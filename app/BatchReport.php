@@ -14,4 +14,14 @@ class BatchReport extends Model
     {
         return $this->hasMany(ProductIngredient::class);
     }
+
+    public function productName()
+    {
+        return $this->hasOne(ProductRegister::class, 'id', 'product_id');
+    }
+
+    public function userId()
+    {
+        return $this->hasOne(User::class, 'id', 'store_id');
+    }
 }

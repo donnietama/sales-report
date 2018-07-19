@@ -27,7 +27,9 @@ class BatchReportController extends Controller
     public function getReport()
     {
         $id = Auth::user()->id;
-        $data = BatchReport::where('store_id', '=', $id)->orderBy('id', 'desc')->paginate(15);
+        $data = BatchReport::where('store_id', '=', $id)->with(['productName', 'userId' => function($query) {
+            $query->select('id', 'name');
+        }])->orderBy('id', 'desc')->paginate(15);
 
         return response()->json($data);
     }

@@ -4,27 +4,15 @@
             <thead class="text-capitalize bg-dark table text-white">
                 <th>store</th>
                 <th>date</th>
-                <th>green tea</th>
-                <th>black tea</th>
-                <th>quan yin</th>
-                <th>matcha</th>
-                <th>royal</th>
-                <th>coffee</th>
-                <th>choco</th>
-                <th>cheese</th>
+                <th>product name</th>
+                <th>quantity</th>
             </thead>
             <tbody>
                 <tr v-for="data in api.data" :key="data.index">
-                    <td>{{ data.store_id }}</td>
+                    <td>{{ data.user_id.name }}</td>
                     <td>{{ data.created_at }}</td>
-                    <td>{{ data.green_tea_jasmine }} batch</td>
-                    <td>{{ data.black_tea }} batch</td>
-                    <td>{{ data.quan_yin }} batch</td>
-                    <td>{{ data.matcha }} batch</td>
-                    <td>{{ data.royal }} batch</td>
-                    <td>{{ data.coffee }} batch</td>
-                    <td>{{ data.choco }} batch</td>
-                    <td>{{ data.cheese }} batch</td>
+                    <td>{{ data.product_name.product_name }}</td>
+                    <td>{{ data.quantity }} batch</td>
                 </tr>
             </tbody>
         </table>
