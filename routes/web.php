@@ -32,3 +32,8 @@ Route::post('home/waste', 'WasteReportControllert@submitReport');
 Route::get('home/products/create', 'ProductRegisterController@index')->name('product-register');
 Route::get('home/products', 'ProductRegisterController@getProduct');
 Route::post('home/products', 'ProductRegisterController@submitProduct');
+
+// Product Sold
+Route::get('home/sold/create', 'ProductSoldController@index')->name('product-sold');
+Route::get('home/sold', 'ProductSoldController@getReport');
+Route::post('home/sold', 'ProductSoldController@submitReport');

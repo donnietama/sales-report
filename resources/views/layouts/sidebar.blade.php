@@ -21,7 +21,7 @@
                     waste reporting
                 </li>
             </a>
-            <a href="#" class="text-white">
+            <a href="{{ route('product-sold') }}" class="text-white">
                 <li class="bg-secondary p-3">
                     product sold reporting
                 </li>

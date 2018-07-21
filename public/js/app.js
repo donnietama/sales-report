@@ -25043,10 +25043,16 @@ __webpack_require__(18);
 window.Vue = __webpack_require__(15);
 
 Vue.component('example-component', __webpack_require__(42));
+
 Vue.component('summary-table', __webpack_require__(45));
 Vue.component('summary-form', __webpack_require__(48));
+
 Vue.component('batch-table', __webpack_require__(51));
 Vue.component('batch-form', __webpack_require__(54));
+
+Vue.component('product-sold-table', __webpack_require__(69));
+Vue.component('product-sold-form', __webpack_require__(72));
+
 Vue.component('waste-table', __webpack_require__(57));
 Vue.component('waste-form', __webpack_require__(60));
 
@@ -49381,6 +49387,472 @@ module.exports = {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 65 */,
+/* 66 */,
+/* 67 */,
+/* 68 */,
+/* 69 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(1)
+/* script */
+var __vue_script__ = __webpack_require__(70)
+/* template */
+var __vue_template__ = __webpack_require__(71)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\tables\\ProductSoldTable.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-9d16284a", Component.options)
+  } else {
+    hotAPI.reload("data-v-9d16284a", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 70 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__event_js__ = __webpack_require__(2);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {
+            api: {},
+            apiData: {}
+        };
+    },
+    mounted: function mounted() {
+        this.getAPI();
+    },
+
+    methods: {
+        getAPI: function getAPI() {
+            var _this = this;
+
+            var page = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
+
+            axios.get('/home/sold?page=' + page).then(function (res) {
+                _this.api = res.data;
+            });
+            __WEBPACK_IMPORTED_MODULE_0__event_js__["a" /* default */].$on('added_sold', function (apiData) {
+                apiData.forEach(function (data) {
+                    _this.api.data.unshift(data);
+                });
+            });
+        }
+    }
+});
+
+/***/ }),
+/* 71 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "table-responsive bg-white px-4 py-4" }, [
+    _c(
+      "table",
+      { staticClass: "table table-sm table-striped table-bordered" },
+      [
+        _vm._m(0),
+        _vm._v(" "),
+        _c(
+          "tbody",
+          _vm._l(_vm.api.data, function(data, index) {
+            return _c("tr", { key: data.index }, [
+              _c("td", { staticClass: "text-center" }, [
+                _vm._v(_vm._s(index + 1))
+              ]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(data.user_id.name))]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(data.date))]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(data.product_name.product_name))]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(data.quantity) + " sold")])
+            ])
+          })
+        )
+      ]
+    ),
+    _vm._v(" "),
+    _c(
+      "div",
+      { staticClass: "float-right" },
+      [
+        _c("pagination", {
+          attrs: { data: _vm.api, limit: 2 },
+          on: { "pagination-change-page": _vm.getAPI }
+        })
+      ],
+      1
+    )
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "thead",
+      { staticClass: "text-capitalize bg-dark table text-white" },
+      [
+        _c("th", { staticClass: "text-center" }, [_vm._v("#")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("store")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("date")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("product name")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("quantity")])
+      ]
+    )
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-9d16284a", module.exports)
+  }
+}
+
+/***/ }),
+/* 72 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(1)
+/* script */
+var __vue_script__ = __webpack_require__(73)
+/* template */
+var __vue_template__ = __webpack_require__(74)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\forms\\ProductSoldForm.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-4d6f579a", Component.options)
+  } else {
+    hotAPI.reload("data-v-4d6f579a", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 73 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__event_js__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_sweetalert__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_sweetalert___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_sweetalert__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {
+            date: '',
+            sold: [],
+            apis: {}
+        };
+    },
+    mounted: function mounted() {
+        var _this = this;
+
+        axios.get('/home/products').then(function (res) {
+            _this.sold = res.data;
+            _this.addQuantityToProduct(_this.sold);
+        });
+    },
+
+    methods: {
+        addQuantityToProduct: function addQuantityToProduct(products) {
+            products.forEach(function (sold) {
+                sold.quantity = '';
+            });
+        },
+        submitReport: function submitReport() {
+            var _this2 = this;
+
+            __WEBPACK_IMPORTED_MODULE_1_sweetalert___default()({
+                icon: 'warning',
+                title: 'Pastikan data sudah benar!',
+                text: 'Data yang telah masuk kedalam database tidak dapat dihapus / diperbaiki. Harap cek sekali lagi.',
+                button: {
+                    text: "Ya, data sudah benar",
+                    closeModal: false
+                }
+            }).then(function () {
+                axios.post('/home/sold', _this2.$data).then(function (res) {
+                    _this2.apis = res.data;
+                    __WEBPACK_IMPORTED_MODULE_0__event_js__["a" /* default */].$emit('added_sold', _this2.apis);
+
+                    __WEBPACK_IMPORTED_MODULE_1_sweetalert___default()({
+                        title: 'Berhasil!',
+                        text: 'Data telah terkirim.',
+                        icon: 'success',
+                        button: {
+                            text: 'OK',
+                            closeModal: true
+                        }
+                    });
+                }).catch(function (err) {
+                    __WEBPACK_IMPORTED_MODULE_1_sweetalert___default()({
+                        title: 'Gagal!',
+                        text: 'Hmm... Sepertinya ada yang salah dengan data yang dimasukkan, coba cek kembali.',
+                        icon: 'error',
+                        button: {
+                            text: 'Baik, saya cek kembali',
+                            closeModal: true
+                        }
+                    });
+                });
+            });
+        }
+    }
+});
+
+/***/ }),
+/* 74 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "form",
+    {
+      staticClass: "text-capitalize bg-white px-4 py-4 mb-2",
+      attrs: { method: "post" },
+      on: {
+        submit: function($event) {
+          $event.preventDefault()
+          return _vm.submitReport($event)
+        }
+      }
+    },
+    [
+      _c("div", { staticClass: "row" }, [
+        _c(
+          "div",
+          {
+            staticClass:
+              "form-group col-xs-12 col-sm-4 col-md-4 col-lg-4 col-xl-4"
+          },
+          [
+            _c("label", [_vm._v("tanggal")]),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.date,
+                  expression: "date"
+                }
+              ],
+              staticClass: "form-control",
+              attrs: { type: "date", placeholder: "dd/mm/yyyy" },
+              domProps: { value: _vm.date },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.date = $event.target.value
+                }
+              }
+            })
+          ]
+        )
+      ]),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "row" },
+        _vm._l(_vm.sold, function(product, index) {
+          return _c(
+            "div",
+            {
+              key: product.index,
+              staticClass:
+                "form-group col-xs-12 col-sm-3 col-md-3 col-lg-3 col-xl-3"
+            },
+            [
+              _c("label", [_vm._v(_vm._s(product.product_name))]),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.sold[index].quantity,
+                    expression: "sold[index].quantity"
+                  }
+                ],
+                staticClass: "form-control",
+                attrs: { type: "number", placeholder: "0 sold" },
+                domProps: { value: _vm.sold[index].quantity },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.sold[index], "quantity", $event.target.value)
+                  }
+                }
+              })
+            ]
+          )
+        })
+      ),
+      _vm._v(" "),
+      _vm._m(0)
+    ]
+  )
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-md-12" }, [
+        _c("div", { staticClass: "form-group float-right" }, [
+          _c("button", { staticClass: "btn btn-success" }, [_vm._v("Submit")])
+        ])
+      ])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-4d6f579a", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);
