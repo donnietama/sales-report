@@ -26,14 +26,24 @@ Route::post('home/ingredients', 'ProductIngredientControllert@storeIngredients')
 // Waste Report
 Route::get('home/waste/create', 'WasteReportController@index')->name('report-waste');
 Route::get('home/waste', 'WasteReportController@getReport');
-Route::post('home/waste', 'WasteReportControllert@submitReport');
+Route::post('home/waste', 'WasteReportController@submitReport');
 
 // Product Register
 Route::get('home/products/create', 'ProductRegisterController@index')->name('product-register');
 Route::get('home/products', 'ProductRegisterController@getProduct');
 Route::post('home/products', 'ProductRegisterController@submitProduct');
 
+// Topping Register
+Route::get('home/topping/create', 'ToppingController@index')->name('register-topping');
+Route::get('home/topping', 'ToppingController@getTopping');
+Route::post('home/topping', 'ToppingController@submitTopping');
+
 // Product Sold
 Route::get('home/sold/create', 'ProductSoldController@index')->name('product-sold');
 Route::get('home/sold', 'ProductSoldController@getReport');
 Route::post('home/sold', 'ProductSoldController@submitReport');
+
+// Additional Report
+Route::get('home/additional/create', 'AdditionalReportController@index')->name('additional-report');
+Route::get('home/additional', 'AdditionalReportController@getReport');
+Route::post('home/additional', 'AdditionalReportController@submitReport');

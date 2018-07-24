@@ -13,7 +13,7 @@ class WasteReportController extends Controller
         return view('waste.index');
     }
 
-    public function submitReport()
+    public function submitReport(Request $request)
     {
         $resource = WasteReport::create([
             'store_id' => Auth::user()->id,

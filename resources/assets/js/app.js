@@ -17,6 +17,9 @@ Vue.component('product-sold-form', require('./components/forms/ProductSoldForm.v
 Vue.component('waste-table', require('./components/tables/WasteTable.vue'))
 Vue.component('waste-form', require('./components/forms/WasteForm.vue'))
 
+Vue.component('additional-table', require('./components/tables/AdditionalTable.vue'))
+Vue.component('additional-form', require('./components/forms/AdditionalForm.vue'))
+
 Vue.component('pagination', require('laravel-vue-pagination'))
 
 const app = new Vue({

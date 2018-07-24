@@ -3,33 +3,33 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\ProductSold;
+use App\AdditionalReport;
 use Carbon\Carbon;
 use Auth;
 use DB;
 
-class ProductSoldController extends Controller
+class AdditionalReportController extends Controller
 {
     /**
-     * Display index view
+     * Show index view.
      * 
      * @return void
      */
     public function index()
     {
-        return view('product-sold.index');
+        return view('additional.index');
     }
 
     /**
-     * Store data to database.
+     * Store additional reports.
      * 
      * @param Illuminate\Http\Request $request.
-     * @return Illuminate\Http\Response;
+     * @return Illuminate\Http\Response.
      */
     public function submitReport(Request $request)
     {
         $data = [];
-        foreach ($request->sold as $requested) {
+        foreach ($request->additional as $requested) {
             $data[] = [
                 'store_id' => Auth::user()->id,
                 'date' => $request->date,
@@ -40,13 +40,13 @@ class ProductSoldController extends Controller
             ];
         }
 
-        DB::table('product_solds')->insert($data);
+        DB::table('additional_reports')->insert($data);
 
-        $newly_added = ProductSold::where('date', '=', $data[0]['date'])
+        $newly_added = AdditionalReport::where('date', '=', $data[0]['date'])
             ->where('created_at', '=', $data[0]['created_at'])
             ->with([
-                    'productName',
-                    'userId' => function($query) {
+                    'product',
+                    'user' => function($query) {
                     $query->select('id', 'name');
                 }
             ])
@@ -64,14 +64,13 @@ class ProductSoldController extends Controller
     public function getReport()
     {
         $id = Auth::user()->id;
-        $data = ProductSold::where('store_id', '=', $id)
-            ->with([
-                'productName',
-                'userId' => function($query) {
-                    $query->select('id', 'name');
-            }])
-            ->orderBy('id', 'desc')
-            ->paginate(15);
+        $data = AdditionalReport::where('store_id', '=', $id)
+                                ->with(['product', 'user' => function($query) {
+                                        $query->select('id', 'name');
+                                    }
+                                ])
+                                ->orderBy('id', 'desc')
+                                ->paginate(15);
 
         return response()->json($data);
     }

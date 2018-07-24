@@ -26,7 +26,7 @@
                     product sold reporting
                 </li>
             </a>
-            <a href="#" class="text-white">
+            <a href="{{ route('additional-report') }}" class="text-white">
                 <li class="bg-secondary p-3">
                     additional reporting
                 </li>
