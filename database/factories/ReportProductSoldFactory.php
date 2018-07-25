@@ -2,7 +2,7 @@
 
 use Faker\Generator as Faker;
 
-$factory->define(App\ProductSold::class, function (Faker $faker) {
+$factory->define(App\ReportProductSold::class, function (Faker $faker) {
     return [
         'date' => $faker->date,
         'store_id' => $faker->randomDigitNotNull,

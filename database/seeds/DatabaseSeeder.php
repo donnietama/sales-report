@@ -11,16 +11,22 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // $this->call(UsersTableSeeder::class);
         $this->call([
-            ReportSummarySeeder::class,
-            BatchReportSeeder::class,
-            ProductIngredientSeeder::class,
-            WasteSeeder::class,
-            // ProductRegisterSeeder::class,
-            ProductSoldSeeder::class,
+            /*
+             * Database objective component seeders...
+             */
+            IngredientSeeder::class,
+            ProductSeeder::class,
             ToppingSeeder::class,
-            AdditionalReportSeeder::class,
+            
+            /*
+             * Database reporting seeder...
+             */
+            ReportAdditionalSeedeer::class,
+            ReportBatchSeeder::class,
+            ReportProductSoldSeeder::class,
+            ReportSummarySeeder::class,
+            ReportWasteSeeder::class,
         ]);
     }
 }

@@ -7,39 +7,10 @@
             </div>
         </div>
         <div class="row">
-            <div class="form-group col-xs-12 col-sm-3 col-md-3 col-lg-3 col-xl-3">
-                <label>green tea jasmine total</label>
-                <input type="number" class="form-control" v-model="green_tea_jasmine" placeholder="0 mililiter">
-            </div>
-            <div class="form-group col-xs-12 col-sm-3 col-md-3 col-lg-3 col-xl-3">
-                <label>black tea total</label>
-                <input type="number" class="form-control" v-model="black_tea" placeholder="0 mililiter">
-            </div>
-            <div class="form-group col-xs-12 col-sm-3 col-md-3 col-lg-3 col-xl-3">
-                <label>quan yin total</label>
-                <input type="number" class="form-control" v-model="quan_yin" placeholder="0 mililiter">
-            </div>
-            <div class="form-group col-xs-12 col-sm-3 col-md-3 col-lg-3 col-xl-3">
-                <label>matcha total</label>
-                <input type="number" class="form-control" v-model="matcha" placeholder="0 mililiter">
-            </div>
-        </div>
-        <div class="row">
-            <div class="form-group col-xs-12 col-sm-3 col-md-3 col-lg-3 col-xl-3">
-                <label>royal milk tea total</label>
-                <input type="number" class="form-control" v-model="royal" placeholder="0 mililiter">
-            </div>
-            <div class="form-group col-xs-12 col-sm-3 col-md-3 col-lg-3 col-xl-3">
-                <label>coffee total</label>
-                <input type="number" class="form-control" v-model="coffee" placeholder="0 mililiter">
-            </div>
-            <div class="form-group col-xs-12 col-sm-3 col-md-3 col-lg-3 col-xl-3">
-                <label>choco total</label>
-                <input type="number" class="form-control" v-model="choco" placeholder="0 mililiter">
-            </div>
-            <div class="form-group col-xs-12 col-sm-3 col-md-3 col-lg-3 col-xl-3">
-                <label>cheese total</label>
-                <input type="number" class="form-control" v-model="cheese" placeholder="0 mililiter">
+            <div class="form-group col-xs-12 col-sm-3 col-md-3 col-lg-3 col-xl-3"
+             v-for="(product, index) in waste" :key="product.index">
+                <label>{{ product.product_name }}</label>
+                <input type="number" class="form-control" v-model="waste[index].quantity" placeholder="0 waste">
             </div>
         </div>
         <div class="row">
@@ -59,18 +30,23 @@ export default {
     data() {
         return {
             date: '',
-            green_tea_jasmine: '',
-            black_tea: '',
-            quan_yin: '',
-            matcha: '',
-            royal: '',
-            coffee: '',
-            choco: '',
-            cheese: '',
-            apis: {}
+            waste: [],
+            apis: {},
         }
     },
+    mounted(){
+        axios.get('/home/products')
+        .then(res => {
+            this.waste = res.data
+            this.addQuantityToProduct(this.waste)
+        })
+    },
     methods: {
+        addQuantityToProduct(products) {
+            products.forEach((waste) => {
+                waste.quantity = ''
+            });
+        },
         submitReport() {
             swal({
                 icon: 'warning',
@@ -82,17 +58,7 @@ export default {
                 }
             })
             .then(() => {
-                axios.post('/home/waste', {
-                    date: this.date,
-                    green_tea_jasmine: this.green_tea_jasmine,
-                    black_tea: this.black_tea,
-                    quan_yin: this.quan_yin,
-                    matcha: this.matcha,
-                    royal: this.royal,
-                    coffee: this.coffee,
-                    choco: this.choco,
-                    cheese: this.cheese
-                })
+                axios.post('/home/waste', this.$data)
                 .then(res => {
                     this.apis = res.data
                     Event.$emit('added_waste', this.apis)
@@ -118,15 +84,6 @@ export default {
                         }
                     })
                 })
-                this.date = '',
-                this.green_tea_jasmine = '',
-                this.black_tea = '',
-                this.quan_yin = '',
-                this.matcha = '',
-                this.royal = '',
-                this.coffee = '',
-                this.choco = '',
-                this.cheese = ''
             })
         }
     }

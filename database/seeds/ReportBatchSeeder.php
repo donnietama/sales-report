@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class BatchReportSeeder extends Seeder
+class ReportBatchSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,9 +11,9 @@ class BatchReportSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\BatchReport::class, 100)->create()->each(function ($batch) {
+        factory(App\ReportBatch::class, 100)->create()->each(function ($batch) {
             $batch->save();
         });
-        $this->command->info('Batch report table seeded!');
+        $this->command->info('Batch seeded!');
     }
 }

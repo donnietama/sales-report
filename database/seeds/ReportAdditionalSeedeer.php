@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class AdditionalReportSeeder extends Seeder
+class ReportAdditionalSeedeer extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,9 +11,9 @@ class AdditionalReportSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\AdditionalReport::class, 100)->create()->each(function ($additional) {
+        factory(App\ReportAdditional::class, 100)->create()->each(function ($additional) {
             $additional->save();
         });
-        $this->command->info('Additional report table seeded!');
+        $this->command->info('Additional report seeded!');
     }
 }

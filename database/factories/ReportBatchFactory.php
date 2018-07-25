@@ -2,7 +2,7 @@
 
 use Faker\Generator as Faker;
 
-$factory->define(App\BatchReport::class, function (Faker $faker) {
+$factory->define(App\ReportBatch::class, function (Faker $faker) {
     return [
         'date' => $faker->date,
         'store_id' => $faker->randomDigitNotNull,

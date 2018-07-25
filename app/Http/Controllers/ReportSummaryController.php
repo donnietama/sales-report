@@ -10,10 +10,10 @@ class ReportSummaryController extends Controller
 {
     public function index()
     {
-        return view('summary.index');
+        return view('reports.summary.index');
     }
 
-    public function submitReport(Request $request)
+    public function store(Request $request)
     {
         $resource = ReportSummary::create([
             'store_id' => Auth::user()->id,
@@ -29,7 +29,7 @@ class ReportSummaryController extends Controller
         return response()->json(ReportSummary::find($resource->id));
     }
 
-    public function getReport()
+    public function show()
     {
         $store_id = Auth::user()->id;
         $data = ReportSummary::where('store_id', '=', $store_id)->orderBy('created_at', 'desc')->paginate(15);

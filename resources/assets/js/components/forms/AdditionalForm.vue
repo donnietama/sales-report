@@ -9,7 +9,7 @@
         <div class="row">
             <div class="form-group col-xs-12 col-sm-3 col-md-3 col-lg-3 col-xl-3"
              v-for="(product, index) in additional" :key="product.index">
-                <label>{{ product.product_name }}</label>
+                <label>{{ product.topping_name }}</label>
                 <input type="number" class="form-control" v-model="additional[index].quantity" placeholder="0 pcs">
             </div>
         </div>
@@ -35,7 +35,7 @@ export default {
         }
     },
     mounted(){
-        axios.get('/home/products')
+        axios.get('/home/topping')
         .then(res => {
             this.additional = res.data
             this.addQuantityToProduct(this.additional)

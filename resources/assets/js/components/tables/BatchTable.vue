@@ -11,9 +11,9 @@
             <tbody>
                 <tr v-for="(data, index) in api.data" :key="data.index">
                     <td class="text-center">{{ index + 1 }}</td>
-                    <td>{{ data.user_id.name }}</td>
+                    <td>{{ data.user.name }}</td>
                     <td>{{ data.date }}</td>
-                    <td>{{ data.product_name.product_name }}</td>
+                    <td>{{ data.product.product_name }}</td>
                     <td>{{ data.quantity }} batch</td>
                 </tr>
             </tbody>

@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class ProductSoldSeeder extends Seeder
+class ReportProductSoldSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,9 +11,9 @@ class ProductSoldSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\ProductSold::class, 100)->create()->each(function ($product_sold) {
+        factory(App\ReportProductSold::class, 100)->create()->each(function ($product_sold) {
             $product_sold->save();
         });
-        $this->command->info('Product sold report table seeded!');
+        $this->command->info('Product sold seeded!');
     }
 }

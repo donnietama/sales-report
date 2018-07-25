@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class ProductRegisterSeeder extends Seeder
+class ProductSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,9 +11,9 @@ class ProductRegisterSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\ProductRegister::class, 8)->create()->each(function($product) {
+        factory(App\Product::class, 8)->create()->each(function($product) {
             $product->save();
         });
-        $this->command->info('Product register table seeded!');
+        $this->command->info('Product seeded!');
     }
 }

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateBatchReportsTable extends Migration
+class CreateReportWastesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateBatchReportsTable extends Migration
      */
     public function up()
     {
-        Schema::create('batch_reports', function (Blueprint $table) {
+        Schema::create('report_wastes', function (Blueprint $table) {
             $table->increments('id');
             $table->date('date');
             $table->integer('store_id');
@@ -30,6 +30,6 @@ class CreateBatchReportsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('batch_reports');
+        Schema::dropIfExists('report_wastes');
     }
 }

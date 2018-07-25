@@ -48207,11 +48207,11 @@ var render = function() {
                 _vm._v(_vm._s(index + 1))
               ]),
               _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(data.user_id.name))]),
+              _c("td", [_vm._v(_vm._s(data.user.name))]),
               _vm._v(" "),
               _c("td", [_vm._v(_vm._s(data.date))]),
               _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(data.product_name.product_name))]),
+              _c("td", [_vm._v(_vm._s(data.product.product_name))]),
               _vm._v(" "),
               _c("td", [_vm._v(_vm._s(data.quantity) + " batch")])
             ])
@@ -48669,11 +48669,11 @@ var render = function() {
                 _vm._v(_vm._s(index + 1))
               ]),
               _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(data.user_id.name))]),
+              _c("td", [_vm._v(_vm._s(data.user.name))]),
               _vm._v(" "),
               _c("td", [_vm._v(_vm._s(data.date))]),
               _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(data.product_name.product_name))]),
+              _c("td", [_vm._v(_vm._s(data.product.product_name))]),
               _vm._v(" "),
               _c("td", [_vm._v(_vm._s(data.quantity) + " sold")])
             ])
@@ -49076,16 +49076,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -49110,7 +49100,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 _this.api = res.data;
             });
             __WEBPACK_IMPORTED_MODULE_0__event_js__["a" /* default */].$on('added_waste', function (apiData) {
-                _this.api.data.unshift(apiData);
+                apiData.forEach(function (data) {
+                    _this.api.data.unshift(data);
+                });
             });
         }
     }
@@ -49133,27 +49125,19 @@ var render = function() {
         _vm._v(" "),
         _c(
           "tbody",
-          _vm._l(_vm.api.data, function(data) {
+          _vm._l(_vm.api.data, function(data, index) {
             return _c("tr", { key: data.index }, [
-              _c("td", [_vm._v(_vm._s(data.store_id))]),
+              _c("td", { staticClass: "text-center" }, [
+                _vm._v(_vm._s(index + 1))
+              ]),
               _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(data.created_at))]),
+              _c("td", [_vm._v(_vm._s(data.user.name))]),
               _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(data.green_tea_jasmine) + " ml")]),
+              _c("td", [_vm._v(_vm._s(data.date))]),
               _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(data.black_tea) + " ml")]),
+              _c("td", [_vm._v(_vm._s(data.product.product_name))]),
               _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(data.quan_yin) + " ml")]),
-              _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(data.matcha) + " ml")]),
-              _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(data.royal) + " ml")]),
-              _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(data.coffee) + " ml")]),
-              _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(data.choco) + " ml")]),
-              _vm._v(" "),
-              _c("td", [_vm._v(_vm._s(data.cheese) + " ml")])
+              _c("td", [_vm._v(_vm._s(data.quantity) + " waste")])
             ])
           })
         )
@@ -49182,25 +49166,15 @@ var staticRenderFns = [
       "thead",
       { staticClass: "text-capitalize bg-dark table text-white" },
       [
+        _c("th", { staticClass: "text-center" }, [_vm._v("#")]),
+        _vm._v(" "),
         _c("th", [_vm._v("store")]),
         _vm._v(" "),
         _c("th", [_vm._v("date")]),
         _vm._v(" "),
-        _c("th", [_vm._v("green tea")]),
+        _c("th", [_vm._v("product name")]),
         _vm._v(" "),
-        _c("th", [_vm._v("black tea")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("quan yin")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("matcha")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("royal")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("coffee")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("choco")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("cheese")])
+        _c("th", [_vm._v("quantity")])
       ]
     )
   }
@@ -49294,35 +49268,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -49331,21 +49276,27 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     data: function data() {
         return {
             date: '',
-            green_tea_jasmine: '',
-            black_tea: '',
-            quan_yin: '',
-            matcha: '',
-            royal: '',
-            coffee: '',
-            choco: '',
-            cheese: '',
+            waste: [],
             apis: {}
         };
     },
+    mounted: function mounted() {
+        var _this = this;
+
+        axios.get('/home/products').then(function (res) {
+            _this.waste = res.data;
+            _this.addQuantityToProduct(_this.waste);
+        });
+    },
 
     methods: {
+        addQuantityToProduct: function addQuantityToProduct(products) {
+            products.forEach(function (waste) {
+                waste.quantity = '';
+            });
+        },
         submitReport: function submitReport() {
-            var _this = this;
+            var _this2 = this;
 
             __WEBPACK_IMPORTED_MODULE_1_sweetalert___default()({
                 icon: 'warning',
@@ -49356,19 +49307,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     closeModal: false
                 }
             }).then(function () {
-                axios.post('/home/waste', {
-                    date: _this.date,
-                    green_tea_jasmine: _this.green_tea_jasmine,
-                    black_tea: _this.black_tea,
-                    quan_yin: _this.quan_yin,
-                    matcha: _this.matcha,
-                    royal: _this.royal,
-                    coffee: _this.coffee,
-                    choco: _this.choco,
-                    cheese: _this.cheese
-                }).then(function (res) {
-                    _this.apis = res.data;
-                    __WEBPACK_IMPORTED_MODULE_0__event_js__["a" /* default */].$emit('added_waste', _this.apis);
+                axios.post('/home/waste', _this2.$data).then(function (res) {
+                    _this2.apis = res.data;
+                    __WEBPACK_IMPORTED_MODULE_0__event_js__["a" /* default */].$emit('added_waste', _this2.apis);
 
                     __WEBPACK_IMPORTED_MODULE_1_sweetalert___default()({
                         title: 'Berhasil!',
@@ -49390,7 +49331,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                         }
                     });
                 });
-                _this.date = '', _this.green_tea_jasmine = '', _this.black_tea = '', _this.quan_yin = '', _this.matcha = '', _this.royal = '', _this.coffee = '', _this.choco = '', _this.cheese = '';
             });
         }
     }
@@ -49452,273 +49392,45 @@ var render = function() {
         )
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "row" }, [
-        _c(
-          "div",
-          {
-            staticClass:
-              "form-group col-xs-12 col-sm-3 col-md-3 col-lg-3 col-xl-3"
-          },
-          [
-            _c("label", [_vm._v("green tea jasmine total")]),
-            _vm._v(" "),
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.green_tea_jasmine,
-                  expression: "green_tea_jasmine"
-                }
-              ],
-              staticClass: "form-control",
-              attrs: { type: "number", placeholder: "0 mililiter" },
-              domProps: { value: _vm.green_tea_jasmine },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
+      _c(
+        "div",
+        { staticClass: "row" },
+        _vm._l(_vm.waste, function(product, index) {
+          return _c(
+            "div",
+            {
+              key: product.index,
+              staticClass:
+                "form-group col-xs-12 col-sm-3 col-md-3 col-lg-3 col-xl-3"
+            },
+            [
+              _c("label", [_vm._v(_vm._s(product.product_name))]),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.waste[index].quantity,
+                    expression: "waste[index].quantity"
                   }
-                  _vm.green_tea_jasmine = $event.target.value
-                }
-              }
-            })
-          ]
-        ),
-        _vm._v(" "),
-        _c(
-          "div",
-          {
-            staticClass:
-              "form-group col-xs-12 col-sm-3 col-md-3 col-lg-3 col-xl-3"
-          },
-          [
-            _c("label", [_vm._v("black tea total")]),
-            _vm._v(" "),
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.black_tea,
-                  expression: "black_tea"
-                }
-              ],
-              staticClass: "form-control",
-              attrs: { type: "number", placeholder: "0 mililiter" },
-              domProps: { value: _vm.black_tea },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
+                ],
+                staticClass: "form-control",
+                attrs: { type: "number", placeholder: "0 waste" },
+                domProps: { value: _vm.waste[index].quantity },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.waste[index], "quantity", $event.target.value)
                   }
-                  _vm.black_tea = $event.target.value
                 }
-              }
-            })
-          ]
-        ),
-        _vm._v(" "),
-        _c(
-          "div",
-          {
-            staticClass:
-              "form-group col-xs-12 col-sm-3 col-md-3 col-lg-3 col-xl-3"
-          },
-          [
-            _c("label", [_vm._v("quan yin total")]),
-            _vm._v(" "),
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.quan_yin,
-                  expression: "quan_yin"
-                }
-              ],
-              staticClass: "form-control",
-              attrs: { type: "number", placeholder: "0 mililiter" },
-              domProps: { value: _vm.quan_yin },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.quan_yin = $event.target.value
-                }
-              }
-            })
-          ]
-        ),
-        _vm._v(" "),
-        _c(
-          "div",
-          {
-            staticClass:
-              "form-group col-xs-12 col-sm-3 col-md-3 col-lg-3 col-xl-3"
-          },
-          [
-            _c("label", [_vm._v("matcha total")]),
-            _vm._v(" "),
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.matcha,
-                  expression: "matcha"
-                }
-              ],
-              staticClass: "form-control",
-              attrs: { type: "number", placeholder: "0 mililiter" },
-              domProps: { value: _vm.matcha },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.matcha = $event.target.value
-                }
-              }
-            })
-          ]
-        )
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "row" }, [
-        _c(
-          "div",
-          {
-            staticClass:
-              "form-group col-xs-12 col-sm-3 col-md-3 col-lg-3 col-xl-3"
-          },
-          [
-            _c("label", [_vm._v("royal milk tea total")]),
-            _vm._v(" "),
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.royal,
-                  expression: "royal"
-                }
-              ],
-              staticClass: "form-control",
-              attrs: { type: "number", placeholder: "0 mililiter" },
-              domProps: { value: _vm.royal },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.royal = $event.target.value
-                }
-              }
-            })
-          ]
-        ),
-        _vm._v(" "),
-        _c(
-          "div",
-          {
-            staticClass:
-              "form-group col-xs-12 col-sm-3 col-md-3 col-lg-3 col-xl-3"
-          },
-          [
-            _c("label", [_vm._v("coffee total")]),
-            _vm._v(" "),
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.coffee,
-                  expression: "coffee"
-                }
-              ],
-              staticClass: "form-control",
-              attrs: { type: "number", placeholder: "0 mililiter" },
-              domProps: { value: _vm.coffee },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.coffee = $event.target.value
-                }
-              }
-            })
-          ]
-        ),
-        _vm._v(" "),
-        _c(
-          "div",
-          {
-            staticClass:
-              "form-group col-xs-12 col-sm-3 col-md-3 col-lg-3 col-xl-3"
-          },
-          [
-            _c("label", [_vm._v("choco total")]),
-            _vm._v(" "),
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.choco,
-                  expression: "choco"
-                }
-              ],
-              staticClass: "form-control",
-              attrs: { type: "number", placeholder: "0 mililiter" },
-              domProps: { value: _vm.choco },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.choco = $event.target.value
-                }
-              }
-            })
-          ]
-        ),
-        _vm._v(" "),
-        _c(
-          "div",
-          {
-            staticClass:
-              "form-group col-xs-12 col-sm-3 col-md-3 col-lg-3 col-xl-3"
-          },
-          [
-            _c("label", [_vm._v("cheese total")]),
-            _vm._v(" "),
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.cheese,
-                  expression: "cheese"
-                }
-              ],
-              staticClass: "form-control",
-              attrs: { type: "number", placeholder: "0 mililiter" },
-              domProps: { value: _vm.cheese },
-              on: {
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.cheese = $event.target.value
-                }
-              }
-            })
-          ]
-        )
-      ]),
+              })
+            ]
+          )
+        })
+      ),
       _vm._v(" "),
       _vm._m(0)
     ]
@@ -50033,7 +49745,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     mounted: function mounted() {
         var _this = this;
 
-        axios.get('/home/products').then(function (res) {
+        axios.get('/home/topping').then(function (res) {
             _this.additional = res.data;
             _this.addQuantityToProduct(_this.additional);
         });
@@ -50154,7 +49866,7 @@ var render = function() {
                 "form-group col-xs-12 col-sm-3 col-md-3 col-lg-3 col-xl-3"
             },
             [
-              _c("label", [_vm._v(_vm._s(product.product_name))]),
+              _c("label", [_vm._v(_vm._s(product.topping_name))]),
               _vm._v(" "),
               _c("input", {
                 directives: [

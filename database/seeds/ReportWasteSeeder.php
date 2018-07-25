@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class WasteSeeder extends Seeder
+class ReportWasteSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,9 +11,9 @@ class WasteSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\WasteReport::class, 100)->create()->each(function ($waste) {
+        factory(App\ReportWaste::class, 100)->create()->each(function ($waste) {
             $waste->save();
         });
-        $this->command->info('Waste report table seeded!');
+        $this->command->info('Waste seeded!');
     }
 }

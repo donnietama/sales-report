@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Topping;
 use Illuminate\Http\Request;
+use Auth;
+use DB;
 
 class ToppingController extends Controller
 {
@@ -22,7 +25,7 @@ class ToppingController extends Controller
      * @param Illuminate\Http\Request $request;
      * @return Illuminate\Http\Response;
      */
-    public function submitTopping()
+    public function store()
     {
         // Validate inputs.
         $valid = $this->validate([
@@ -42,5 +45,19 @@ class ToppingController extends Controller
             ]);
         }
         return response()->json($toppingList);
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Topping  $topping
+     * @return \Illuminate\Http\Response
+     */
+    public function show(Topping $topping)
+    {
+        $id = Auth::user()->id;
+        $data = $topping->all();
+
+        return $data;
     }
 }

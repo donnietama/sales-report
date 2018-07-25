@@ -11,7 +11,7 @@ class ToppingSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\Topping::class, 100)->create()->each(function($topping) {
+        factory(App\Topping::class, 2)->create()->each(function($topping) {
             $topping->save();
         });
         $this->command->info('Topping table seeded!');

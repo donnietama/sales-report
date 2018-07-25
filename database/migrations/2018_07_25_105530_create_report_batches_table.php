@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateProductRegistersTable extends Migration
+class CreateReportBatchesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,12 @@ class CreateProductRegistersTable extends Migration
      */
     public function up()
     {
-        Schema::create('product_registers', function (Blueprint $table) {
+        Schema::create('report_batches', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('product_name');
+            $table->date('date');
+            $table->integer('store_id');
+            $table->integer('product_id');
+            $table->integer('quantity');
             $table->timestamps();
         });
     }
@@ -27,6 +30,6 @@ class CreateProductRegistersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('product_registers');
+        Schema::dropIfExists('report_batches');
     }
 }

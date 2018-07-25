@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateAdditionalReportsTable extends Migration
+class CreateIngredientsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,10 @@ class CreateAdditionalReportsTable extends Migration
      */
     public function up()
     {
-        Schema::create('additional_reports', function (Blueprint $table) {
+        Schema::create('ingredients', function (Blueprint $table) {
             $table->increments('id');
-            $table->date('date');
-            $table->integer('store_id');
             $table->integer('product_id');
+            $table->string('ingredient');
             $table->integer('quantity');
             $table->timestamps();
         });
@@ -30,6 +29,6 @@ class CreateAdditionalReportsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('additional_reports');
+        Schema::dropIfExists('ingredients');
     }
 }
