@@ -35,7 +35,7 @@ export default {
         }
     },
     mounted(){
-        axios.get('/home/topping')
+        axios.get('/topping')
         .then(res => {
             this.additional = res.data
             this.addQuantityToProduct(this.additional)
@@ -58,7 +58,7 @@ export default {
                 }
             })
             .then(() => {
-                axios.post('/home/additional', this.$data)
+                axios.post('/additional', this.$data)
                 .then(res => {
                     this.apis = res.data
                     Event.$emit('added_additional', this.apis)

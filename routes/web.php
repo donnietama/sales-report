@@ -23,44 +23,44 @@ Route::get('api', 'UserController@index');
  */
 
 // Summaries.
-Route::get('home/summaries/create', 'ReportSummaryController@index')->name('report-summary');
-Route::get('home/summaries', 'ReportSummaryController@show');
-Route::post('home/summaries', 'ReportSummaryController@store');
+Route::get('summaries/create', 'ReportSummaryController@index')->name('report-summary');
+Route::get('summaries', 'ReportSummaryController@show');
+Route::post('summaries', 'ReportSummaryController@store');
 
 // Batches.
-Route::get('home/batch/create', 'ReportBatchController@index')->name('report-batch');
-Route::get('home/batch', 'ReportBatchController@show');
-Route::post('home/batch', 'ReportBatchController@store');
+Route::get('batch/create', 'ReportBatchController@index')->name('report-batch');
+Route::get('batch', 'ReportBatchController@show');
+Route::post('batch', 'ReportBatchController@store');
 
 // Ingredients.
-Route::get('home/ingredients/create', 'Ingredient@index')->name('product-ingredient');
-Route::get('home/ingredients', 'Ingredient@show');
-Route::post('home/ingredients', 'Ingredientt@store');
+Route::get('ingredients/create', 'Ingredient@index')->name('product-ingredient');
+Route::get('ingredients', 'Ingredient@show');
+Route::post('ingredients', 'Ingredientt@store');
 
 // Wastes.
-Route::get('home/waste/create', 'ReportWasteController@index')->name('report-waste');
-Route::get('home/waste', 'ReportWasteController@show');
-Route::post('home/waste', 'ReportWasteController@store');
+Route::get('waste/create', 'ReportWasteController@index')->name('report-waste');
+Route::get('waste', 'ReportWasteController@show');
+Route::post('waste', 'ReportWasteController@store');
 
 // Products.
-Route::get('home/products/create', 'ProductController@index')->name('product-register');
-Route::get('home/products', 'ProductController@show');
-Route::post('home/products', 'ProductController@store');
+Route::get('products/create', 'ProductController@index')->name('product-register');
+Route::get('products', 'ProductController@show');
+Route::post('products', 'ProductController@store');
 
 // Toppings.
-Route::get('home/topping/create', 'ToppingController@index')->name('register-topping');
-Route::get('home/topping', 'ToppingController@show');
-Route::post('home/topping', 'ToppingController@store');
+Route::get('topping/create', 'ToppingController@index')->name('register-topping');
+Route::get('topping', 'ToppingController@show');
+Route::post('topping', 'ToppingController@store');
 
 // Product Solds.
-Route::get('home/sold/create', 'ReportProductSoldController@index')->name('product-sold');
-Route::get('home/sold', 'ReportProductSoldController@show');
-Route::post('home/sold', 'ReportProductSoldController@store');
+Route::get('sold/create', 'ReportProductSoldController@index')->name('product-sold');
+Route::get('sold', 'ReportProductSoldController@show');
+Route::post('sold', 'ReportProductSoldController@store');
 
 // Additionals.
-Route::get('home/additional/create', 'ReportAdditionalController@index')->name('additional-report');
-Route::get('home/additional', 'ReportAdditionalController@show');
-Route::post('home/additional', 'ReportAdditionalController@store');
+Route::get('additional/create', 'ReportAdditionalController@index')->name('additional-report');
+Route::get('additional', 'ReportAdditionalController@show');
+Route::post('additional', 'ReportAdditionalController@store');
 
 /**
  * Administrator environtment.

@@ -47522,7 +47522,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             var page = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
 
-            axios.get('/home/summaries?page=' + page).then(function (res) {
+            axios.get('/summaries?page=' + page).then(function (res) {
                 _this.api = res.data;
             });
             __WEBPACK_IMPORTED_MODULE_0__event_js__["a" /* default */].$on('added_summaries', function (apiData) {
@@ -47750,7 +47750,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     closeModal: false
                 }
             }).then(function () {
-                axios.post('/home/summaries', {
+                axios.post('/summaries', {
                     date: _this.date,
                     gross: _this.gross,
                     nett: _this.nett,
@@ -48172,7 +48172,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             var page = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
 
-            axios.get('/home/batch?page=' + page).then(function (res) {
+            axios.get('/batch?page=' + page).then(function (res) {
                 _this.api = res.data;
             });
             __WEBPACK_IMPORTED_MODULE_0__event_js__["a" /* default */].$on('added_batch', function (apiData) {
@@ -48359,7 +48359,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     mounted: function mounted() {
         var _this = this;
 
-        axios.get('/home/products').then(function (res) {
+        axios.get('/products').then(function (res) {
             _this.batch = res.data;
             _this.addQuantityToProduct(_this.batch);
         });
@@ -48383,7 +48383,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     closeModal: false
                 }
             }).then(function () {
-                axios.post('/home/batch', _this2.$data).then(function (res) {
+                axios.post('/batch', _this2.$data).then(function (res) {
                     _this2.apis = res.data;
                     __WEBPACK_IMPORTED_MODULE_0__event_js__["a" /* default */].$emit('added_batch', _this2.apis);
 
@@ -48634,7 +48634,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             var page = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
 
-            axios.get('/home/sold?page=' + page).then(function (res) {
+            axios.get('/sold?page=' + page).then(function (res) {
                 _this.api = res.data;
             });
             __WEBPACK_IMPORTED_MODULE_0__event_js__["a" /* default */].$on('added_sold', function (apiData) {
@@ -48821,7 +48821,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     mounted: function mounted() {
         var _this = this;
 
-        axios.get('/home/products').then(function (res) {
+        axios.get('/products').then(function (res) {
             _this.sold = res.data;
             _this.addQuantityToProduct(_this.sold);
         });
@@ -48845,7 +48845,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     closeModal: false
                 }
             }).then(function () {
-                axios.post('/home/sold', _this2.$data).then(function (res) {
+                axios.post('/sold', _this2.$data).then(function (res) {
                     _this2.apis = res.data;
                     __WEBPACK_IMPORTED_MODULE_0__event_js__["a" /* default */].$emit('added_sold', _this2.apis);
 
@@ -49096,7 +49096,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             var page = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
 
-            axios.get('/home/waste?page=' + page).then(function (res) {
+            axios.get('/waste?page=' + page).then(function (res) {
                 _this.api = res.data;
             });
             __WEBPACK_IMPORTED_MODULE_0__event_js__["a" /* default */].$on('added_waste', function (apiData) {
@@ -49283,7 +49283,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     mounted: function mounted() {
         var _this = this;
 
-        axios.get('/home/products').then(function (res) {
+        axios.get('/products').then(function (res) {
             _this.waste = res.data;
             _this.addQuantityToProduct(_this.waste);
         });
@@ -49307,7 +49307,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     closeModal: false
                 }
             }).then(function () {
-                axios.post('/home/waste', _this2.$data).then(function (res) {
+                axios.post('/waste', _this2.$data).then(function (res) {
                     _this2.apis = res.data;
                     __WEBPACK_IMPORTED_MODULE_0__event_js__["a" /* default */].$emit('added_waste', _this2.apis);
 
@@ -49558,7 +49558,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             var page = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
 
-            axios.get('/home/additional?page=' + page).then(function (res) {
+            axios.get('/additional?page=' + page).then(function (res) {
                 _this.api = res.data;
             });
             __WEBPACK_IMPORTED_MODULE_0__event_js__["a" /* default */].$on('added_additional', function (apiData) {
@@ -49745,7 +49745,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     mounted: function mounted() {
         var _this = this;
 
-        axios.get('/home/topping').then(function (res) {
+        axios.get('/topping').then(function (res) {
             _this.additional = res.data;
             _this.addQuantityToProduct(_this.additional);
         });
@@ -49769,7 +49769,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     closeModal: false
                 }
             }).then(function () {
-                axios.post('/home/additional', _this2.$data).then(function (res) {
+                axios.post('/additional', _this2.$data).then(function (res) {
                     _this2.apis = res.data;
                     __WEBPACK_IMPORTED_MODULE_0__event_js__["a" /* default */].$emit('added_additional', _this2.apis);
 

@@ -44,7 +44,7 @@ export default {
     },
     methods: {
         getAPI(page = 1) {
-            axios.get('/home/summaries?page=' + page).then(res => {
+            axios.get('/summaries?page=' + page).then(res => {
                 this.api = res.data
             })
             Event.$on('added_summaries', (apiData) => {

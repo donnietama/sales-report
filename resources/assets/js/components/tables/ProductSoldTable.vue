@@ -38,7 +38,7 @@ export default {
     },
     methods: {
         getAPI(page = 1) {
-            axios.get('/home/sold?page=' + page).then(res => {
+            axios.get('/sold?page=' + page).then(res => {
                 this.api = res.data
             })
             Event.$on('added_sold', (apiData) => {

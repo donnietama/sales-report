@@ -35,7 +35,7 @@ export default {
         }
     },
     mounted(){
-        axios.get('/home/products')
+        axios.get('/products')
         .then(res => {
             this.batch = res.data
             this.addQuantityToProduct(this.batch)
@@ -58,7 +58,7 @@ export default {
                 }
             })
             .then(() => {
-                axios.post('/home/batch', this.$data)
+                axios.post('/batch', this.$data)
                 .then(res => {
                     this.apis = res.data
                     Event.$emit('added_batch', this.apis)

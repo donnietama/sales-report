@@ -72,7 +72,7 @@ export default {
                 }
             })
             .then(() => {
-                axios.post('/home/summaries', {
+                axios.post('/summaries', {
                     date: this.date,
                     gross: this.gross,
                     nett: this.nett,
