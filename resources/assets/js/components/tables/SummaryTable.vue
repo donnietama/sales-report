@@ -2,6 +2,7 @@
     <div class="table-responsive bg-white px-4 py-4">
         <table class="table table-sm table-striped table-bordered">
             <thead class="text-capitalize bg-dark text-white">
+                <th class="text-center">#</th>
                 <th>store</th>
                 <th>date</th>
                 <th>gross</th>
@@ -12,8 +13,9 @@
                 <th>ticket</th>
             </thead>
             <tbody>
-                <tr v-for="data in api.data" :key="data.index">
-                    <td>{{ data.store_id }}</td>
+                <tr v-for="(data, index) in api.data" :key="data.index">
+                    <td class="text-center">{{ index + 1 }}</td>
+                    <td>{{ data.user.name }}</td>
                     <td>{{ data.date }}</td>
                     <td>Rp.{{ data.gross }}</td>
                     <td>Rp.{{ data.nett }}</td>

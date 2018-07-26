@@ -17,6 +17,6 @@ class ReportSummary extends Model
      */
     public function user()
     {
-        return $this->belongsTo(User::class, 'id', 'store_id');
+        return $this->belongsTo(User::class, 'store_id', 'id');
     }
 }

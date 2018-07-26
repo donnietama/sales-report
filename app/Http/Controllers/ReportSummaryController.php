@@ -32,7 +32,12 @@ class ReportSummaryController extends Controller
     public function show()
     {
         $store_id = Auth::user()->id;
-        $data = ReportSummary::where('store_id', '=', $store_id)->orderBy('created_at', 'desc')->paginate(15);
+        $data = ReportSummary::where('store_id', '=', $store_id)
+                            ->with(['user' => function ($query) {
+                                $query->select('id', 'name');
+                            }])
+                            ->orderBy('created_at', 'desc')
+                            ->paginate(15);
 
         return response()->json($data);
     }

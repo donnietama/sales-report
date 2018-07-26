@@ -47502,6 +47502,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 
 
@@ -47549,9 +47551,13 @@ var render = function() {
         _vm._v(" "),
         _c(
           "tbody",
-          _vm._l(_vm.api.data, function(data) {
+          _vm._l(_vm.api.data, function(data, index) {
             return _c("tr", { key: data.index }, [
-              _c("td", [_vm._v(_vm._s(data.store_id))]),
+              _c("td", { staticClass: "text-center" }, [
+                _vm._v(_vm._s(index + 1))
+              ]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(data.user.name))]),
               _vm._v(" "),
               _c("td", [_vm._v(_vm._s(data.date))]),
               _vm._v(" "),
@@ -47591,6 +47597,8 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("thead", { staticClass: "text-capitalize bg-dark text-white" }, [
+      _c("th", { staticClass: "text-center" }, [_vm._v("#")]),
+      _vm._v(" "),
       _c("th", [_vm._v("store")]),
       _vm._v(" "),
       _c("th", [_vm._v("date")]),
