@@ -32,6 +32,6 @@ class ReportProductSold extends Model
      */
     public function user()
     {
-        return $this->hasOne(User::class, 'id', 'store_id');
+        return $this->belongsTo(User::class, 'id', 'store_id');
     }
 }

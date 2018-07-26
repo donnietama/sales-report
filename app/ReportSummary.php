@@ -10,8 +10,13 @@ class ReportSummary extends Model
         'store_id', 'date', 'gross', 'nett', 'voucher', 'cash', 'card', 'ticket',
     ];
 
+    /**
+     * Relationship between user and this report.
+     * 
+     * @return void
+     */
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'id', 'store_id');
     }
 }
