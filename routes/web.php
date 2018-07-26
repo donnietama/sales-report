@@ -17,9 +17,9 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('api', 'UserController@index');
 
 /**
- * Administrator environtment.
+ * User environtment.
  * -------------------------------------
- * This routes would be used for administrators access.
+ * This routes would be used for Users access.
  */
 
 // Summaries.
