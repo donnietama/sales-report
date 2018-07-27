@@ -35,28 +35,20 @@
             </div>
         </div>
         <table class="table table-sm table-striped table-bordered">
-            <thead class="text-capitalize bg-dark text-white">
+            <thead class="text-capitalize bg-dark table text-white">
                 <th class="text-center">#</th>
                 <th>store</th>
                 <th>date</th>
-                <th>gross</th>
-                <th>nett</th>
-                <th>voucher</th>
-                <th>cash</th>
-                <th>card</th>
-                <th>ticket</th>
+                <th>product name</th>
+                <th>quantity</th>
             </thead>
             <tbody>
                 <tr v-for="(data, index) in api.data" :key="data.index">
                     <td class="text-center">{{ index + 1 }}</td>
                     <td>{{ data.user.name }}</td>
                     <td>{{ data.date }}</td>
-                    <td>Rp.{{ data.gross }}</td>
-                    <td>Rp.{{ data.nett }}</td>
-                    <td>Rp.{{ data.voucher }}</td>
-                    <td>Rp.{{ data.cash }}</td>
-                    <td>Rp.{{ data.card }}</td>
-                    <td>Rp.{{ data.ticket }}</td>
+                    <td>{{ data.product.product_name }}</td>
+                    <td>{{ data.quantity }} pcs/ml</td>
                 </tr>
             </tbody>
         </table>
@@ -87,11 +79,13 @@ export default {
     },
     methods: {
         getAPI(page = 1) {
-            axios.get('/api/reports/summary?page=' + page).then(res => {
+            axios.get('/api/reports/additional?page=' + page).then(res => {
                 this.api = res.data
             })
-            Event.$on('added_summaries', (apiData) => {
-                this.api.data.unshift(apiData)
+            Event.$on('added_additional', (apiData) => {
+                apiData.forEach(data => {
+                    this.api.data.unshift(data)
+                });
             })
         },
         getStoreList() {
@@ -101,7 +95,7 @@ export default {
             })
         },
         getRequested() {
-            axios.post('/search/summaries', {
+            axios.post('/search/additionals', {
                 start: this.exportData.start,
                 end: this.exportData.end,
                 store: this.exportData.store
@@ -112,7 +106,7 @@ export default {
         },
         exportAsExcel() {
             axios({
-                url: '/export/summaries',
+                url: '/export/additionals',
                 method: 'POST',
                 data: {
                     start: this.exportData.start,

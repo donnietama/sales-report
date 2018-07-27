@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Auth;
 use App\ReportSummary;
+use App\ExportSummaries;
 use Illuminate\Http\Request;
+use Auth;
 
 class ReportSummaryController extends Controller
 {
@@ -26,19 +27,66 @@ class ReportSummaryController extends Controller
             'ticket' => $request->ticket ?: 0,
         ]);
 
-        return response()->json(ReportSummary::find($resource->id));
+        return response()
+        ->json(ReportSummary::find($resource->id));
     }
 
     public function show()
     {
         $store_id = Auth::user()->id;
         $data = ReportSummary::where('store_id', '=', $store_id)
-                            ->with(['user' => function ($query) {
-                                $query->select('id', 'name');
-                            }])
-                            ->orderBy('created_at', 'desc')
-                            ->paginate(15);
+            ->orderBy('created_at', 'desc')
+            ->with('user')
+            ->paginate(15);
 
-        return response()->json($data);
+        return $data;
+    }
+
+    /**
+     * Display all resource.
+     *
+     * @param  \App\ReportSummary  $reportSummary
+     * @return \Illuminate\Http\Response
+     */
+    public function showAll(ReportSummary $reportSummary)
+    {
+        $data = $reportSummary->with('user')
+            ->orderBy('id', 'desc')
+            ->paginate(15);
+
+        return $data;
+    }
+
+    /**
+     * Display the requested export data.
+     * 
+     * @param \App\ReportSummary $reportSummary
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\Response
+     */
+    public function getRequested(ReportSummary $reportSummary, Request $request)
+    {
+        $data = $reportSummary->where('store_id', '=', $request->store)
+            ->whereBetween('date', [$request->start, $request->end])
+            ->with('user')
+            ->paginate(15);
+        
+        return $data;
+    }
+
+    /**
+     * Export the displayed data as Excel file.
+     * 
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\Response
+     */
+    public function export(Request $request)
+    {
+        $store = $request->store;
+        $start = $request->start;
+        $end = $request->end;
+        
+        return (new ExportSummaries)
+        ->withRequest($request)->download('Product solds.xlsx');
     }
 }

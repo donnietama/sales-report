@@ -6,27 +6,27 @@
                     Kembali ke menu awal
                 </li>
             </a>
-            <a href="" class="text-white">
+            <a href="{{ route('reporting-summaries') }}" class="text-white">
                 <li class="bg-secondary p-3">
                     summary
                 </li>
             </a>
-            <a href="" class="text-white">
+            <a href="{{ route('reporting-batches') }}" class="text-white">
                 <li class="bg-secondary p-3">
                     batch
                 </li>
             </a>
-            <a href="" class="text-white">
+            <a href="{{ route('reporting-wastes') }}" class="text-white">
                 <li class="bg-secondary p-3">
                     waste
                 </li>
             </a>
-            <a href="" class="text-white">
+            <a href="{{ route('reporting-productsolds') }}" class="text-white">
                 <li class="bg-secondary p-3">
                     product sold
                 </li>
             </a>
-            <a href="" class="text-white">
+            <a href="{{ route('reporting-additionals') }}" class="text-white">
                 <li class="bg-secondary p-3">
                     additional
                 </li>

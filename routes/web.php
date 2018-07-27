@@ -16,6 +16,10 @@ Route::get('/home', 'HomeController@index')->name('home');
  */
 Route::get('api/reports', 'ReportsController@index');
 Route::get('api/reports/batch', 'ReportBatchController@showAll');
+Route::get('api/reports/productsold', 'ReportProductSoldController@showAll');
+Route::get('api/reports/waste', 'ReportWasteController@showAll');
+Route::get('api/reports/additional', 'ReportAdditionalController@showAll');
+Route::get('api/reports/summary', 'ReportSummaryController@showAll');
 
 /**
  * User environtment.
@@ -80,6 +84,17 @@ Route::get('admin/reporting/batches', function () {
     return view('admin.reporting.batches');
 })->name('reporting-batches');
 
+Route::get('admin/reporting/productsolds', function () {
+    return view('admin.reporting.productsolds');
+})->name('reporting-productsolds');
+
+Route::get('admin/reporting/wastes', function () {
+    return view('admin.reporting.wastes');
+})->name('reporting-wastes');
+
+Route::get('admin/reporting/additionals', function () {
+    return view('admin.reporting.additionals');
+})->name('reporting-additionals');
 
 /**
  * Search engine environtment.
@@ -87,6 +102,10 @@ Route::get('admin/reporting/batches', function () {
  * This routes would be used for Search engine data.
  */
 Route::post('search/batches', 'ReportBatchController@getRequested');
+Route::post('search/productsolds', 'ReportProductSoldController@getRequested');
+Route::post('search/wastes', 'ReportWasteController@getRequested');
+Route::post('search/additionals', 'ReportAdditionalController@getRequested');
+Route::post('search/summaries', 'ReportSummaryController@getRequested');
 
 /**
  * Exporting environtment.
@@ -94,3 +113,7 @@ Route::post('search/batches', 'ReportBatchController@getRequested');
  * This routes would be used for Exporting data.
  */
 Route::post('export/batches', 'ReportBatchController@export');
+Route::post('export/productsolds', 'ReportProductSoldController@export');
+Route::post('export/wastes', 'ReportWasteController@export');
+Route::post('export/additionals', 'ReportAdditionalController@export');
+Route::post('export/summaries', 'ReportSummaryController@export');

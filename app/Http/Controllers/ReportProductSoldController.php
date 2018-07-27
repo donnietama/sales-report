@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\ReportProductSold;
+use App\ExportProductSold;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Auth;
@@ -18,16 +19,6 @@ class ReportProductSoldController extends Controller
     public function index()
     {
         return view('reports.product-sold.index');
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
     }
 
     /**
@@ -53,17 +44,10 @@ class ReportProductSoldController extends Controller
         DB::table('report_product_solds')->insert($data);
 
         $newly_added = ReportProductSold::where('date', '=', $data[0]['date'])
-                                        ->where('created_at', '=', $data[0]['created_at'])
-                                        ->with([
-                                            'product' => function($query) {
-                                                $query->select('id', 'product_name');
-                                            },
-                                            'user' => function($query) {
-                                                $query->select('id', 'name');
-                                            }
-                                        ])
-                                        ->orderBy('id', 'desc')
-                                        ->get();
+            ->where('created_at', '=', $data[0]['created_at'])
+            ->with(['product', 'user'])
+            ->orderBy('id', 'desc')
+            ->get();
 
         return response()->json($newly_added);
     }
@@ -78,17 +62,58 @@ class ReportProductSoldController extends Controller
     {
         $id = Auth::user()->id;
         $data = $reportProductSold->where('store_id', '=', $id)
-                                    ->with([
-                                        'product' => function($query) {
-                                            $query->select('id', 'product_name');
-                                        },
-                                        'user' => function($query) {
-                                            $query->select('id', 'name');
-                                        }
-                                    ])
-                                    ->orderBy('id', 'desc')
-                                    ->paginate(15);
+            ->with(['product', 'user'])
+            ->orderBy('id', 'desc')
+            ->paginate(15);
 
-        return response()->json($data);
+        return $data;
+    }
+
+    /**
+     * Display all resource.
+     *
+     * @param  \App\ReportProductSold  $reportProductSold
+     * @return \Illuminate\Http\Response
+     */
+    public function showAll(ReportProductSold $reportProductSold)
+    {
+        $data = $reportProductSold->with(['product', 'user'])
+            ->orderBy('id', 'desc')
+            ->paginate(15);
+
+        return $data;
+    }
+
+    /**
+     * Display the requested export data.
+     * 
+     * @param \App\ReportProductSold $reportProductSold
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\Response
+     */
+    public function getRequested(ReportProductSold $reportProductSold, Request $request)
+    {
+        $data = $reportProductSold->where('store_id', '=', $request->store)
+            ->whereBetween('date', [$request->start, $request->end])
+            ->with(['product', 'user'])
+            ->paginate(15);
+        
+        return $data;
+    }
+
+    /**
+     * Export the displayed data as Excel file.
+     * 
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\Response
+     */
+    public function export(Request $request)
+    {
+        $store = $request->store;
+        $start = $request->start;
+        $end = $request->end;
+        
+        return (new ExportProductSold)
+        ->withRequest($request)->download('Product solds.xlsx');
     }
 }

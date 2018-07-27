@@ -41,6 +41,9 @@ Vue.component('additional-form', require('./components/forms/AdditionalForm.vue'
  */
 Vue.component('summaries', require('./components/admin/tables/reporting/Summaries.vue'))
 Vue.component('batches', require('./components/admin/tables/reporting/Batches.vue'))
+Vue.component('productsolds', require('./components/admin/tables/reporting/ProductSolds.vue'))
+Vue.component('wastes', require('./components/admin/tables/reporting/Wastes.vue'))
+Vue.component('additionals', require('./components/admin/tables/reporting/Additionals.vue'))
 
 /**
  * Extensions components.

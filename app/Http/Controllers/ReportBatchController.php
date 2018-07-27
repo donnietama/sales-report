@@ -46,17 +46,10 @@ class ReportBatchController extends Controller
         DB::table('report_batches')->insert($data);
 
         $newly_added = ReportBatch::where('date', '=', $data[0]['date'])
-                        ->where('created_at', '=', $data[0]['created_at'])
-                        ->with([
-                            'product' => function($query) {
-                                $query->select('id', 'product_name');
-                            },
-                            'user' => function($query) {
-                                $query->select('id', 'name');
-                            }
-                        ])
-                        ->orderBy('id', 'desc')
-                        ->get();
+            ->where('created_at', '=', $data[0]['created_at'])
+            ->with(['product', 'user'])
+            ->orderBy('id', 'desc')
+            ->get();
 
         return response()->json($newly_added);
     }
@@ -71,18 +64,9 @@ class ReportBatchController extends Controller
     {
         $id = Auth::user()->id;
         $data = $reportBatch->where('store_id', '=', $id)
-                            ->with([
-                                'product' => function($query)
-                                {
-                                    $query->select('id', 'product_name');
-                                },
-                                'user' => function($query)
-                                {
-                                    $query->select('id', 'name');
-                                }
-                            ])
-                            ->orderBy('id', 'desc')
-                            ->paginate(15);
+            ->with(['product', 'user'])
+            ->orderBy('id', 'desc')
+            ->paginate(15);
 
         return $data;
     }
@@ -95,19 +79,9 @@ class ReportBatchController extends Controller
      */
     public function showAll(ReportBatch $reportBatch)
     {
-        $id = Auth::user()->id;
-        $data = $reportBatch->with([
-                                'product' => function($query)
-                                {
-                                    $query->select('id', 'product_name');
-                                },
-                                'user' => function($query)
-                                {
-                                    $query->select('id', 'name');
-                                }
-                            ])
-                            ->orderBy('id', 'desc')
-                            ->paginate(15);
+        $data = $reportBatch->orderBy('id', 'desc')
+            ->with(['product', 'user'])
+            ->paginate(15);
 
         return $data;
     }
@@ -122,18 +96,9 @@ class ReportBatchController extends Controller
     public function getRequested(ReportBatch $reportBatch, Request $request)
     {
         $data = $reportBatch->where('store_id', '=', $request->store)
-                            ->whereBetween('date', [$request->start, $request->end])
-                            ->with([
-                                'product' => function($query)
-                                {
-                                    $query->select('id', 'product_name');
-                                },
-                                'user' => function($query)
-                                {
-                                    $query->select('id', 'name');
-                                }
-                            ])
-                            ->paginate(15);
+            ->whereBetween('date', [$request->start, $request->end])
+            ->with(['product', 'user'])
+            ->paginate(15);
         
         return $data;
     }
@@ -150,6 +115,7 @@ class ReportBatchController extends Controller
         $start = $request->start;
         $end = $request->end;
         
-        return (new ExportBatches)->withRequest($request)->download('batches.xlsx');
+        return (new ExportBatches)
+        ->withRequest($request)->download('batches.xlsx');
     }
 }
