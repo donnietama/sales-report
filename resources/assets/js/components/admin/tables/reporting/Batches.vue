@@ -24,8 +24,10 @@
                         </div>
                         <div class="form-group">
                             <button class="btn btn-success text-capitalize">find</button>
+                        </div>
+                        <div class="form-group ml-auto pr-3">
                             <form method="post" @submit.prevent="exportAsExcel">
-                                <button class="btn btn-success text-capitalize">export</button>
+                                <button class="btn btn-success text-capitalize" >export</button>
                             </form>
                         </div>
                     </div>
