@@ -6,6 +6,13 @@ window.Vue = require('vue')
 Vue.component('example-component', require('./components/ExampleComponent.vue'))
 
 /**
+ * Imported components.
+ * -------------------------------------
+ * This components would be used to import required dependencies.
+ */
+
+
+/**
  * User components.
  * -------------------------------------
  * This components would be used for Users access.
@@ -28,17 +35,18 @@ Vue.component('additional-form', require('./components/forms/AdditionalForm.vue'
 
 
 /**
- * User components.
+ * Administrator components.
  * -------------------------------------
- * This components would be used for Users access.
+ * This components would be used for Administrators access.
  */
 Vue.component('summaries', require('./components/admin/tables/reporting/Summaries.vue'))
+Vue.component('batches', require('./components/admin/tables/reporting/Batches.vue'))
 
 /**
  * Extensions components.
  * -------------------------------------
  * This components would be used for both Users & Admins access.
- */
+ */ 
 Vue.component('pagination', require('laravel-vue-pagination'))
 
 const app = new Vue({

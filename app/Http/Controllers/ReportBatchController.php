@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\ExportBatches;
 use App\ReportBatch;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
+use Excel;
 use Auth;
 use DB;
 
@@ -18,16 +20,6 @@ class ReportBatchController extends Controller
     public function index()
     {
         return view('reports.batch.index');        
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
     }
 
     /**
@@ -93,5 +85,71 @@ class ReportBatchController extends Controller
                             ->paginate(15);
 
         return $data;
+    }
+
+    /**
+     * Display all resource.
+     *
+     * @param  \App\ReportBatch  $reportBatch
+     * @return \Illuminate\Http\Response
+     */
+    public function showAll(ReportBatch $reportBatch)
+    {
+        $id = Auth::user()->id;
+        $data = $reportBatch->with([
+                                'product' => function($query)
+                                {
+                                    $query->select('id', 'product_name');
+                                },
+                                'user' => function($query)
+                                {
+                                    $query->select('id', 'name');
+                                }
+                            ])
+                            ->orderBy('id', 'desc')
+                            ->paginate(15);
+
+        return $data;
+    }
+
+    /**
+     * Display the requested export data.
+     * 
+     * @param \App\ReportBatch $reportBatch
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\Response
+     */
+    public function getRequested(ReportBatch $reportBatch, Request $request)
+    {
+        $data = $reportBatch->where('store_id', '=', $request->store)
+                            ->whereBetween('date', [$request->start, $request->end])
+                            ->with([
+                                'product' => function($query)
+                                {
+                                    $query->select('id', 'product_name');
+                                },
+                                'user' => function($query)
+                                {
+                                    $query->select('id', 'name');
+                                }
+                            ])
+                            ->paginate(15);
+        
+        return $data;
+    }
+
+    /**
+     * Export the displayed data as Excel file.
+     * 
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\Response
+     */
+    public function export(Request $request)
+    {
+        $store = $request->store;
+        $start = $request->start;
+        $end = $request->end;
+        
+        return (new ExportBatches)->withRequest($request)->download('batches.xlsx');
     }
 }

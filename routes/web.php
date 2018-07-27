@@ -15,6 +15,7 @@ Route::get('/home', 'HomeController@index')->name('home');
  * This route would be used for accessing api.
  */
 Route::get('api/reports', 'ReportsController@index');
+Route::get('api/reports/batch', 'ReportBatchController@showAll');
 
 /**
  * User environtment.
@@ -74,3 +75,22 @@ Route::get('admin/reporting', function () {
 Route::get('admin/reporting/summaries', function () {
     return view('admin.reporting.summaries');
 })->name('reporting-summaries');
+
+Route::get('admin/reporting/batches', function () {
+    return view('admin.reporting.batches');
+})->name('reporting-batches');
+
+
+/**
+ * Search engine environtment.
+ * -------------------------------------
+ * This routes would be used for Search engine data.
+ */
+Route::post('search/batches', 'ReportBatchController@getRequested');
+
+/**
+ * Exporting environtment.
+ * -------------------------------------
+ * This routes would be used for Exporting data.
+ */
+Route::post('export/batches', 'ReportBatchController@export');
