@@ -5,6 +5,12 @@ window.Vue = require('vue')
 
 Vue.component('example-component', require('./components/ExampleComponent.vue'))
 
+/**
+ * User components.
+ * -------------------------------------
+ * This components would be used for Users access.
+ */
+
 Vue.component('summary-table', require('./components/tables/SummaryTable.vue'))
 Vue.component('summary-form', require('./components/forms/SummaryForm.vue'))
 
@@ -20,6 +26,19 @@ Vue.component('waste-form', require('./components/forms/WasteForm.vue'))
 Vue.component('additional-table', require('./components/tables/AdditionalTable.vue'))
 Vue.component('additional-form', require('./components/forms/AdditionalForm.vue'))
 
+
+/**
+ * User components.
+ * -------------------------------------
+ * This components would be used for Users access.
+ */
+Vue.component('summaries', require('./components/admin/tables/reporting/Summaries.vue'))
+
+/**
+ * Extensions components.
+ * -------------------------------------
+ * This components would be used for both Users & Admins access.
+ */
 Vue.component('pagination', require('laravel-vue-pagination'))
 
 const app = new Vue({

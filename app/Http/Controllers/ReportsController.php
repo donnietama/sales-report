@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\User;
 use Illuminate\Http\Request;
 
-class UserController extends Controller
+class ReportsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +14,13 @@ class UserController extends Controller
      */
     public function index()
     {
+        // ['summaries', 'batch', 'productSold', 'waste', 'additional']
         $data = User::select('id', 'name')
-                    ->with(['summaries', 'batch', 'productSold', 'waste', 'additional'])
+                    ->with('summaries')
+                    ->with('batch')
+                    ->with('productSold')
+                    ->with('waste')
+                    ->with('additional')
                     ->get();
 
         return $data;

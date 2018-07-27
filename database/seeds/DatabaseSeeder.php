@@ -22,11 +22,12 @@ class DatabaseSeeder extends Seeder
             /*
              * Database reporting seeder...
              */
-            ReportAdditionalSeedeer::class,
+            ReportAdditionalSeeder::class,
             ReportBatchSeeder::class,
             ReportProductSoldSeeder::class,
             ReportSummarySeeder::class,
             ReportWasteSeeder::class,
+            UsersTableSeeder::class,
         ]);
     }
 }

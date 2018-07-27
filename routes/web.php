@@ -14,7 +14,7 @@ Route::get('/home', 'HomeController@index')->name('home');
  * -------------------------------------
  * This route would be used for accessing api.
  */
-Route::get('api', 'UserController@index');
+Route::get('api/reports', 'ReportsController@index');
 
 /**
  * User environtment.
@@ -67,3 +67,10 @@ Route::post('additional', 'ReportAdditionalController@store');
  * -------------------------------------
  * This routes would be used for administrators access.
  */
+Route::get('admin/reporting', function () {
+    return view('admin.reporting.index');
+})->name('reporting-index');
+
+Route::get('admin/reporting/summaries', function () {
+    return view('admin.reporting.summaries');
+})->name('reporting-summaries');

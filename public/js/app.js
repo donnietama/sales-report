@@ -25044,6 +25044,12 @@ window.Vue = __webpack_require__(15);
 
 Vue.component('example-component', __webpack_require__(42));
 
+/**
+ * User components.
+ * -------------------------------------
+ * This components would be used for Users access.
+ */
+
 Vue.component('summary-table', __webpack_require__(45));
 Vue.component('summary-form', __webpack_require__(48));
 
@@ -25059,10 +25065,22 @@ Vue.component('waste-form', __webpack_require__(66));
 Vue.component('additional-table', __webpack_require__(69));
 Vue.component('additional-form', __webpack_require__(72));
 
+/**
+ * User components.
+ * -------------------------------------
+ * This components would be used for Users access.
+ */
+Vue.component('summaries', __webpack_require__(81));
+
+/**
+ * Extensions components.
+ * -------------------------------------
+ * This components would be used for both Users & Admins access.
+ */
 Vue.component('pagination', __webpack_require__(75));
 
 var app = new Vue({
-    el: '#app'
+  el: '#app'
 });
 
 /***/ }),
@@ -50038,6 +50056,219 @@ module.exports = {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 77 */,
+/* 78 */,
+/* 79 */,
+/* 80 */,
+/* 81 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(1)
+/* script */
+var __vue_script__ = __webpack_require__(82)
+/* template */
+var __vue_template__ = __webpack_require__(83)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\admin\\tables\\reporting\\Summaries.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-0302ae83", Component.options)
+  } else {
+    hotAPI.reload("data-v-0302ae83", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 82 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__event_js__ = __webpack_require__(2);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {
+            api: {},
+            apiData: {}
+        };
+    },
+    mounted: function mounted() {
+        this.getAPI();
+    },
+
+    methods: {
+        getAPI: function getAPI() {
+            var _this = this;
+
+            var page = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 1;
+
+            axios.get('/api/reports?page=' + page).then(function (res) {
+                _this.api = res.data;
+            });
+            __WEBPACK_IMPORTED_MODULE_0__event_js__["a" /* default */].$on('added_summaries', function (apiData) {
+                _this.api.data.unshift(apiData);
+            });
+        }
+    }
+});
+
+/***/ }),
+/* 83 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "table-responsive bg-white px-4 py-4" }, [
+    _c(
+      "table",
+      { staticClass: "table table-sm table-striped table-bordered" },
+      [
+        _vm._m(0),
+        _vm._v(" "),
+        _c(
+          "tbody",
+          _vm._l(_vm.api.data, function(data, index) {
+            return _c("tr", { key: data.index }, [
+              _c("td", { staticClass: "text-center" }, [
+                _vm._v(_vm._s(index + 1))
+              ]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(data.user.name))]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(data.date))]),
+              _vm._v(" "),
+              _c("td", [_vm._v("Rp." + _vm._s(data.gross))]),
+              _vm._v(" "),
+              _c("td", [_vm._v("Rp." + _vm._s(data.nett))]),
+              _vm._v(" "),
+              _c("td", [_vm._v("Rp." + _vm._s(data.voucher))]),
+              _vm._v(" "),
+              _c("td", [_vm._v("Rp." + _vm._s(data.cash))]),
+              _vm._v(" "),
+              _c("td", [_vm._v("Rp." + _vm._s(data.card))]),
+              _vm._v(" "),
+              _c("td", [_vm._v("Rp." + _vm._s(data.ticket))])
+            ])
+          })
+        )
+      ]
+    ),
+    _vm._v(" "),
+    _c(
+      "div",
+      { staticClass: "float-right" },
+      [
+        _c("pagination", {
+          attrs: { data: _vm.api, limit: 2 },
+          on: { "pagination-change-page": _vm.getAPI }
+        })
+      ],
+      1
+    )
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", { staticClass: "text-capitalize bg-dark text-white" }, [
+      _c("th", { staticClass: "text-center" }, [_vm._v("#")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("store")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("date")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("gross")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("nett")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("voucher")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("cash")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("card")]),
+      _vm._v(" "),
+      _c("th", [_vm._v("ticket")])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-0302ae83", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);
