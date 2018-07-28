@@ -8,9 +8,9 @@
         </div>
         <div class="row">
             <div class="form-group col-xs-12 col-sm-3 col-md-3 col-lg-3 col-xl-3"
-             v-for="(product, index) in sold" :key="product.index">
+             v-for="(product, index) in batch" :key="product.index">
                 <label>{{ product.product_name }}</label>
-                <input type="number" class="form-control" v-model="sold[index].quantity" placeholder="0 sold">
+                <input type="number" class="form-control" v-model="batch[index].quantity" placeholder="0 Batch">
             </div>
         </div>
         <div class="row">
@@ -23,28 +23,28 @@
     </form>
 </template>
 <script>
-import Event from '../../event.js'
+import Event from '../../../../event.js'
 import swal from 'sweetalert'
 
 export default {
     data() {
         return {
             date: '',
-            sold: [],
+            batch: [],
             apis: {},
         }
     },
     mounted(){
         axios.get('/products')
         .then(res => {
-            this.sold = res.data
-            this.addQuantityToProduct(this.sold)
+            this.batch = res.data
+            this.addQuantityToProduct(this.batch)
         })
     },
     methods: {
         addQuantityToProduct(products) {
-            products.forEach((sold) => {
-                sold.quantity = ''
+            products.forEach((batch) => {
+                batch.quantity = ''
             });
         },
         submitReport() {
@@ -58,10 +58,10 @@ export default {
                 }
             })
             .then(() => {
-                axios.post('/sold', this.$data)
+                axios.post('/batch', this.$data)
                 .then(res => {
                     this.apis = res.data
-                    Event.$emit('added_sold', this.apis)
+                    Event.$emit('added_batch', this.apis)
                     
                     swal({
                         title: 'Berhasil!',

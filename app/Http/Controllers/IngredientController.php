@@ -14,7 +14,7 @@ class IngredientController extends Controller
      */
     public function index()
     {
-        return view('ingredients.index');
+        return view('admin.product.ingredients.index');
     }
 
     /**
@@ -35,12 +35,25 @@ class IngredientController extends Controller
      */
     public function store(Request $request)
     {
-        Ingredient::create([
-            'product_name' => $request->product_name,
-            'ingredient' => $request->ingredient
-        ]);
+        $data = [];
+        foreach ($request->ingredients as $requested) {
+            $data[] = [
+                'users_id' => Auth::user()->id,
+                'product_name' => $request->product_names,
+                'ingredient' => $request->ingredients,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ];
+        }
+        DB::table('ingredients')->insert($data);
 
-        return response('New ingredient has been added!');
+        $newly_added = Ingredient::where('date', '=', $data[0]['date'])
+            ->where('created_at', '=', $data[0]['created_at'])
+            ->with(['product', 'user'])
+            ->orderBy('id', 'desc')
+            ->get();
+
+        return response()->json($newly_added);
     }
 
     /**
@@ -52,9 +65,9 @@ class IngredientController extends Controller
     public function show(Ingredient $ingredient)
     {
         $data = $ingredient->groupBy('product_id')
-                            ->OrderBy('id', 'desc')
-                            ->with('product')
-                            ->get();
+            ->OrderBy('id', 'desc')
+            ->with('product')
+            ->get();
 
         return $data;
     }

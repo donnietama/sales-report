@@ -23,7 +23,7 @@
     </form>
 </template>
 <script>
-import Event from '../../event.js'
+import Event from '../../../../event.js'
 import swal from 'sweetalert'
 
 export default {

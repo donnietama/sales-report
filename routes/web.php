@@ -37,11 +37,6 @@ Route::get('batch/create', 'ReportBatchController@index')->name('report-batch');
 Route::get('batch', 'ReportBatchController@show');
 Route::post('batch', 'ReportBatchController@store');
 
-// Ingredients.
-Route::get('ingredients/create', 'Ingredient@index')->name('product-ingredient');
-Route::get('ingredients', 'Ingredient@show');
-Route::post('ingredients', 'Ingredientt@store');
-
 // Wastes.
 Route::get('waste/create', 'ReportWasteController@index')->name('report-waste');
 Route::get('waste', 'ReportWasteController@show');
@@ -95,6 +90,11 @@ Route::get('admin/reporting/wastes', function () {
 Route::get('admin/reporting/additionals', function () {
     return view('admin.reporting.additionals');
 })->name('reporting-additionals');
+
+// Ingredients.
+Route::get('admin/ingredients', 'Ingredient@index')->name('product-ingredient');
+Route::get('ingredients', 'Ingredient@show');
+Route::post('ingredients', 'Ingredientt@store');
 
 /**
  * Search engine environtment.
