@@ -10,16 +10,20 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 /**
- * API environtment.
+ * Resource environtment.
  * -------------------------------------
  * This route would be used for accessing api.
  */
-Route::get('api/reports', 'ReportsController@index');
+// Reports.
+Route::get('api/reports', 'ReportsController@resource');
 Route::get('api/reports/batch', 'ReportBatchController@showAll');
 Route::get('api/reports/productsold', 'ReportProductSoldController@showAll');
 Route::get('api/reports/waste', 'ReportWasteController@showAll');
 Route::get('api/reports/additional', 'ReportAdditionalController@showAll');
 Route::get('api/reports/summary', 'ReportSummaryController@showAll');
+
+// Objective resources.
+Route::get('resources/products', 'Resources\ProductController@index');
 
 /**
  * User environtment.
@@ -41,11 +45,6 @@ Route::post('batch', 'ReportBatchController@store');
 Route::get('waste/create', 'ReportWasteController@index')->name('report-waste');
 Route::get('waste', 'ReportWasteController@show');
 Route::post('waste', 'ReportWasteController@store');
-
-// Products.
-Route::get('products/create', 'ProductController@index')->name('product-register');
-Route::get('products', 'ProductController@show');
-Route::post('products', 'ProductController@store');
 
 // Toppings.
 Route::get('topping/create', 'ToppingController@index')->name('register-topping');
@@ -69,32 +68,38 @@ Route::post('additional', 'ReportAdditionalController@store');
  */
 Route::get('admin/reporting', function () {
     return view('admin.reporting.index');
-})->name('reporting-index');
+})->name('view-reports');
 
 Route::get('admin/reporting/summaries', function () {
     return view('admin.reporting.summaries');
-})->name('reporting-summaries');
+})->name('view-summaries');
 
 Route::get('admin/reporting/batches', function () {
     return view('admin.reporting.batches');
-})->name('reporting-batches');
+})->name('view-batches');
 
 Route::get('admin/reporting/productsolds', function () {
     return view('admin.reporting.productsolds');
-})->name('reporting-productsolds');
+})->name('view-solds');
 
 Route::get('admin/reporting/wastes', function () {
     return view('admin.reporting.wastes');
-})->name('reporting-wastes');
+})->name('view-wastes');
 
 Route::get('admin/reporting/additionals', function () {
     return view('admin.reporting.additionals');
-})->name('reporting-additionals');
+})->name('view-additionals');
 
 // Ingredients.
-Route::get('admin/ingredients', 'Ingredient@index')->name('product-ingredient');
-Route::get('ingredients', 'Ingredient@show');
-Route::post('ingredients', 'Ingredientt@store');
+Route::get('admin/ingredient/create', 'IngredientController@index')->name('product-ingredient');
+Route::get('ingredient', 'IngredientController@show');
+Route::get('ingredient/paginated', 'IngredientController@showPaginated');
+Route::post('ingredient', 'IngredientController@store');
+
+// Products.
+Route::get('admin/product/create', 'ProductController@index')->name('product-register');
+Route::get('admin/product/{slug}', 'ProductController@show');
+Route::post('products', 'ProductController@store');
 
 /**
  * Search engine environtment.

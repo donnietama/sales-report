@@ -1,22 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">Dashboard</div>
-
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    You are logged in!
-                </div>
-            </div>
+<div class="container-fluid">
+    <div class="row">
+        @include('layouts.sidebar')
+        <div class="col-xs-12 col-sm-10 col-md-10 col-lg-10 col-xl-10 p-0">
+            <h1>Welcome to dashboard!</h1>
         </div>
     </div>
 </div>

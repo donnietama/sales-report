@@ -43,6 +43,11 @@ Vue.component('batches', require('./components/admin/tables/reporting/Batches.vu
 Vue.component('productsolds', require('./components/admin/tables/reporting/ProductSolds.vue'))
 Vue.component('wastes', require('./components/admin/tables/reporting/Wastes.vue'))
 Vue.component('additionals', require('./components/admin/tables/reporting/Additionals.vue'))
+Vue.component('ingredient-form', require('./components/admin/product/forms/Ingredient.vue'))
+Vue.component('ingredient-table', require('./components/admin/product/tables/Ingredient.vue'))
+Vue.component('product-search', require('./components/admin/product/forms/Product.vue'))
+Vue.component('product-list', require('./components/admin/grids/ProductGrids.vue'))
+// Vue.component('product-table', require('./components/admin/product/tables/Product.vue'))
 
 /**
  * Extensions components.

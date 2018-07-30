@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Ingredient;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
+use Auth;
+use DB;
 
 class IngredientController extends Controller
 {
@@ -14,17 +17,7 @@ class IngredientController extends Controller
      */
     public function index()
     {
-        return view('admin.product.ingredients.index');
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        return view('admin.ingredient.index');
     }
 
     /**
@@ -36,20 +29,20 @@ class IngredientController extends Controller
     public function store(Request $request)
     {
         $data = [];
-        foreach ($request->ingredients as $requested) {
+        foreach ($request->inputs as $requested) {
             $data[] = [
-                'users_id' => Auth::user()->id,
-                'product_name' => $request->product_names,
-                'ingredient' => $request->ingredients,
+                'product_id' => $request->product_id,
+                'ingredient' => $requested['ingredient_name'],
+                'quantity' => $requested['quantity'],
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ];
         }
         DB::table('ingredients')->insert($data);
 
-        $newly_added = Ingredient::where('date', '=', $data[0]['date'])
+        $newly_added = Ingredient::where('product_id', '=', $data[0]['product_id'])
             ->where('created_at', '=', $data[0]['created_at'])
-            ->with(['product', 'user'])
+            ->with('product')
             ->orderBy('id', 'desc')
             ->get();
 
@@ -64,10 +57,24 @@ class IngredientController extends Controller
      */
     public function show(Ingredient $ingredient)
     {
-        $data = $ingredient->groupBy('product_id')
-            ->OrderBy('id', 'desc')
+        $data = $ingredient->OrderBy('id', 'desc')
             ->with('product')
             ->get();
+
+        return $data;
+    }
+
+    /**
+     * Display paginated resource.
+     *
+     * @param  \App\Ingredient  $ingredient
+     * @return \Illuminate\Http\Response
+     */
+    public function showPaginated(Ingredient $ingredient)
+    {
+        $data = $ingredient->OrderBy('id', 'desc')
+            ->with('product')
+            ->paginate(15);
 
         return $data;
     }

@@ -3,18 +3,16 @@
         <table class="table table-sm table-striped table-bordered">
             <thead class="text-capitalize bg-dark table text-white">
                 <th class="text-center">#</th>
-                <th>store</th>
-                <th>date</th>
                 <th>product name</th>
+                <th>ingredient name</th>
                 <th>quantity</th>
             </thead>
             <tbody>
-                <tr v-for="(data, index) in api.data" :key="data.index">
+                <tr v-for="(data, index) in api.data" :key="data.id">
                     <td class="text-center">{{ index + 1 }}</td>
-                    <td>{{ data.user.name }}</td>
-                    <td>{{ data.date }}</td>
                     <td>{{ data.product.product_name }}</td>
-                    <td>{{ data.quantity }} waste</td>
+                    <td>{{ data.ingredient }}</td>
+                    <td>{{ data.quantity }} ml</td>
                 </tr>
             </tbody>
         </table>
@@ -38,10 +36,10 @@ export default {
     },
     methods: {
         getAPI(page = 1) {
-            axios.get('/waste?page=' + page).then(res => {
+            axios.get('/ingredient/paginated?page=' + page).then(res => {
                 this.api = res.data
             })
-            Event.$on('added_waste', (apiData) => {
+            Event.$on('added_ingredient', (apiData) => {
                 apiData.forEach(data => {
                     this.api.data.unshift(data)
                 });

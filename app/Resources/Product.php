@@ -1,20 +1,11 @@
 <?php
 
-namespace App;
+namespace App\Resources;
 
 use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
-    /**
-     * List of the mass assignable entry.
-     * 
-     * @param array
-     */
-    protected $fillable = [
-        'product_name',
-    ];
-
     /**
      * Relationship for ingredient on each product.
      * 

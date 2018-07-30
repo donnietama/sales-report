@@ -1,22 +1,15 @@
 <template>
-    <form method="post" @submit.prevent="submitReport" class="text-capitalize px-4 py-4 mb-2">
+    <form method="post" @submit.prevent="submitReport" class="text-capitalize">
         <div class="row">
-            <div class="form-group col-xs-12 col-sm-4 col-md-4 col-lg-4 col-xl-4">
-                <label>tanggal</label>
-                <input type="date" class="form-control" v-model="date" placeholder="dd/mm/yyyy">
+            <div class="form-group col-xs-3 col-sm-3 col-md-3 col-lg-3 col-xl-3">
+                
             </div>
-        </div>
-        <div class="row">
-            <div class="form-group col-xs-12 col-sm-3 col-md-3 col-lg-3 col-xl-3"
-             v-for="(product, index) in waste" :key="product.index">
-                <label>{{ product.product_name }}</label>
-                <input type="number" class="form-control" v-model="waste[index].quantity" placeholder="0 waste">
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12">
-                <div class="form-group float-right">
-                    <button class="btn btn-success">Submit</button>
+            <div class="form-group col-xs-3 col-sm-3 col-md-3 col-lg-3 col-xl-3 ml-auto">
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text bg-white">Cari</span>
+                    </div>
+                    <input type="text" class="form-control" placeholder="Search...">
                 </div>
             </div>
         </div>
@@ -30,21 +23,35 @@ export default {
     data() {
         return {
             date: '',
-            waste: [],
+            product_id: '',
+            inputs: [{
+                ingredient_name: '',
+                quantity: ''
+            }],
+            ingredients: [],
             apis: {},
         }
     },
     mounted(){
-        axios.get('/products')
+        axios.get('/ingredient')
         .then(res => {
-            this.waste = res.data
-            this.addQuantityToProduct(this.waste)
+            this.ingredients = res.data
+            this.addQuantityToProduct(this.ingredients)
         })
     },
     methods: {
-        addQuantityToProduct(products) {
-            products.forEach((waste) => {
-                waste.quantity = ''
+        addIngredient() {
+            this.inputs.push({
+                ingredient_name: '',
+                quantity: ''
+            })
+        },
+        removeIngredient(index) {
+            this.inputs.splice(index, 1)
+        },
+        addQuantityToProduct(ingredients) {
+            ingredients.forEach((ingredients) => {
+                ingredients.quantity = ''
             });
         },
         submitReport() {
@@ -58,10 +65,10 @@ export default {
                 }
             })
             .then(() => {
-                axios.post('/waste', this.$data)
+                axios.post('/ingredient', this.$data)
                 .then(res => {
                     this.apis = res.data
-                    Event.$emit('added_waste', this.apis)
+                    Event.$emit('added_ingredient', this.apis)
                     
                     swal({
                         title: 'Berhasil!',

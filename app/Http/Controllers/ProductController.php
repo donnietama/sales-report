@@ -17,7 +17,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        return view('products.index');
+        return view('admin.product.index');
     }
 
     /**
@@ -27,7 +27,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.product.create');
     }
 
     /**
@@ -64,11 +64,13 @@ class ProductController extends Controller
      * @param  \App\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function show(Product $product)
+    public function show(Product $product, $slug)
     {
-        $data = Product::all();
+        $data = $product->where('slug', '=', $slug)
+            ->with('ingredient')
+            ->get();
 
-        return response()->json($data);
+        return view('admin.product.show', compact('data'));
     }
 
     /**
