@@ -1,8 +1,8 @@
 <template>
-    <div class="table-responsive bg-white px-4 py-4">
+    <div class="px-4 py-4">
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                <h3 class="text-capitalize">export data</h3>
+                <h3 class="text-capitalize">export data wastes</h3>
                 <hr>
                 <form method="post" @submit.prevent="getRequested">
                     <div class="row">
@@ -34,26 +34,35 @@
                 </form>
             </div>
         </div>
-        <table class="table table-sm table-striped table-bordered">
-            <thead class="text-capitalize bg-dark table text-white">
-                <th class="text-center">#</th>
-                <th>store</th>
-                <th>date</th>
-                <th>product name</th>
-                <th>quantity</th>
-            </thead>
-            <tbody>
-                <tr v-for="(data, index) in api.data" :key="data.index">
-                    <td class="text-center">{{ index + 1 }}</td>
-                    <td>{{ data.user.name }}</td>
-                    <td>{{ data.date }}</td>
-                    <td>{{ data.product.product_name }}</td>
-                    <td>{{ data.quantity }} ml</td>
-                </tr>
-            </tbody>
-        </table>
-        <div class="float-right">
-            <pagination :data="api" :limit="2" @pagination-change-page="getAPI"></pagination>
+        <div class="table-responsive">
+            <div class="card">
+                <div class="card-body p-0">
+                    <table class="table table-hover bg-white">
+                        <thead class="text-capitalize">
+                            <th class="text-center">#</th>
+                            <th>store</th>
+                            <th>date</th>
+                            <th>product name</th>
+                            <th>quantity</th>
+                        </thead>
+                        <tbody>
+                            <tr v-for="(data, index) in api.data" :key="data.index">
+                                <td class="text-center">{{ index + 1 }}</td>
+                                <td>{{ data.user.name }}</td>
+                                <td>{{ data.date }}</td>
+                                <td>
+                                    {{ data.product.product_name }}
+                                    <small class="text-muted">{{ data.product.product_size }}</small>
+                                </td>
+                                <td>{{ data.quantity }} waste</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="float-right">
+                <pagination :data="api" :limit="2" @pagination-change-page="getAPI"></pagination>
+            </div>
         </div>
     </div>
 </template>

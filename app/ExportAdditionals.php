@@ -38,14 +38,12 @@ class ExportAdditionals implements FromQuery, WithHeadings, ShouldAutoSize,
         ||  $this->store != null && $this->start != null && $this->end == null)
         {
             return ReportAdditional::query()
-                ->select('report_additionals.id', 'users.name', 'date', 'products.product_name', 'quantity')
-                ->join('products', 'products.id', '=', 'report_additionals.product_id')
+                ->select('report_additionals.id', 'users.name', 'date', 'topping_name', 'quantity')
                 ->join('users', 'users.id', '=', 'report_additionals.store_id');
         }
 
         return ReportAdditional::query()
-            ->select('report_additionals.id', 'users.name', 'date', 'products.product_name', 'quantity')
-            ->join('products', 'products.id', '=', 'report_additionals.product_id')
+            ->select('report_additionals.id', 'users.name', 'date', 'topping_name', 'quantity')
             ->join('users', 'users.id', '=', 'report_additionals.store_id')
             ->where('store_id', '=', $this->store)
             ->whereBetween('date', [$this->start, $this->end]);

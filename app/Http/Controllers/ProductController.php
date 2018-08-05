@@ -38,23 +38,22 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        // Do a validation.
-        $validation = $this->validate([
-            'product_name' => 'string|unique'
+        $file = $request->preview;
+        $destinationPath = public_path().'/uploads/';
+        $fileName = $file->getClientOriginalName();
+        $file->move($destinationPath, $fileName);
+
+        $sluggedName = $request->product_name . " " . $request->product_size;
+        
+        Product::create([
+            'slug' => str_slug($sluggedName, '-'),
+            'product_name' => $request->product_name,
+            'preview_url' => 'uploads/'.$fileName,
+            'product_size' => $request->product_size,
+            'product_description' => $request->product_desc,
+            // 'preview_url' => $preview_url
         ]);
-
-        if (!$validation) // If validation doesn't pass, return error.
-        {
-            return response('Data tidak dapat diproses!');
-        }
-
-        $productLists = []; // Scatter requests into arrays.
-        foreach ($request->product as $requested)
-        {
-            $productLists[] = Product::create([
-                'product_name' => $requested['product_name'],
-            ]);
-        }
+        return 'berhasil';
         return response()->json($productLists);
     }
 
@@ -66,10 +65,10 @@ class ProductController extends Controller
      */
     public function show(Product $product, $slug)
     {
-        $data = $product->where('slug', '=', $slug)
+        $data = Product::where('slug', '=', $slug)
             ->with('ingredient')
-            ->get();
-
+            ->first();
+        // return $data;
         return view('admin.product.show', compact('data'));
     }
 

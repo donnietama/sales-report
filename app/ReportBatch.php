@@ -34,4 +34,14 @@ class ReportBatch extends Model
     {
         return $this->belongsTo(User::class, 'store_id', 'id');
     }
+
+    /**
+     * Relationship between product and ingredient.
+     * 
+     * @return void
+     */
+    public function ingredients()
+    {
+        return $this->hasMany(Ingredient::class, 'product_id', 'product_id');
+    }
 }

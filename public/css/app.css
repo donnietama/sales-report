@@ -10477,7 +10477,13 @@ a.text-dark:focus {
 }
 
 .sidebar {
-  height: 100vh;
+  position: fixed;
+  top: 50px;
+  width: 220px;
+  height: 100%;
+  z-index: 1000;
+  display: block;
+  padding-top: 25px;
 }
 
 .table > thead > tr > td,

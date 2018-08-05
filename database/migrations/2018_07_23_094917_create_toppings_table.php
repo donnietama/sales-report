@@ -15,7 +15,9 @@ class CreateToppingsTable extends Migration
     {
         Schema::create('toppings', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('product_id');
             $table->string('topping_name');
+            $table->integer('quantity');
             $table->timestamps();
         });
     }

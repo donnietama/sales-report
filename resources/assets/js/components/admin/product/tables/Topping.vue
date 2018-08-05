@@ -4,14 +4,14 @@
             <thead class="text-capitalize bg-dark table text-white">
                 <th class="text-center">#</th>
                 <th>product name</th>
-                <th>ingredient name</th>
+                <th>topping name</th>
                 <th>quantity</th>
             </thead>
             <tbody>
                 <tr v-for="(data, index) in api.data" :key="data.id">
                     <td class="text-center">{{ index + 1 + "." }}</td>
                     <td class="text-capitalize">{{ data.product.product_name }} {{ data.product.product_size }}</td>
-                    <td class="text-capitalize">{{ data.ingredient }}</td>
+                    <td class="text-capitalize">{{ data.topping_name }}</td>
                     <td>{{ data.quantity }} ml</td>
                 </tr>
             </tbody>
@@ -36,10 +36,10 @@ export default {
     },
     methods: {
         getAPI(page = 1) {
-            axios.get('/ingredient/paginated?page=' + page).then(res => {
+            axios.get('/topping/paginated?page=' + page).then(res => {
                 this.api = res.data
             })
-            Event.$on('added_ingredient', (apiData) => {
+            Event.$on('added_topping', (apiData) => {
                 apiData.forEach(data => {
                     this.api.data.unshift(data)
                 });

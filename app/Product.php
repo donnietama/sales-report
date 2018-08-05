@@ -12,7 +12,7 @@ class Product extends Model
      * @param array
      */
     protected $fillable = [
-        'product_name',
+        'slug', 'product_name', 'preview_url', 'product_size', 'product_description',
     ];
 
     /**

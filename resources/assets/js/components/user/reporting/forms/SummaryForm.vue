@@ -57,10 +57,20 @@ export default {
             cash: '',
             card: '',
             ticket: '',
+            user: {},
             apis: {}
         }
     },
+    mounted() {
+        this.getUserInformation()
+    },
     methods: {
+        getUserInformation() {
+            axios.get('/users')
+            .then(response => {
+                this.user = response.data
+            })
+        },
         submitReport() {
             swal({
                 icon: 'warning',
@@ -79,9 +89,11 @@ export default {
                     voucher: this.voucher,
                     cash: this.cash,
                     card: this.card,
-                    ticket: this.ticket
+                    ticket: this.ticket,
+                    user: this.user
                 })
                 .then(res => {
+                console.log(res.data)
                     this.apis = res.data
                     Event.$emit('added_summaries', this.apis)
                     
@@ -106,13 +118,6 @@ export default {
                         }
                     })
                 })
-                this.date = '',
-                this.gross = '',
-                this.nett = '',
-                this.voucher = '',
-                this.cash = '',
-                this.card = '',
-                this.ticket = ''
             })
         }
     }

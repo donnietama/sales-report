@@ -2,7 +2,7 @@
     <form method="post" @submit.prevent="submitReport" class="text-capitalize bg-white px-4 pt-4 mb-2">
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                <h3>Add Ingredients</h3>
+                <h3>Add Toppings</h3>
                 <hr>
             </div>
         </div>
@@ -11,7 +11,7 @@
                 <label>Product name</label>
                 <select class="form-control text-capitalize" v-model="product_id">
                     <option value="" disabled hidden>select product</option>
-                    <option v-for="product in ingredients"
+                    <option v-for="product in toppings"
                             :key="product.id"
                             :value="product.id">
                         
@@ -20,14 +20,14 @@
                 </select>
             </div>
             <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8 col-xl-8">
-                <label>Ingredient</label>
+                <label>Topping</label>
                 <div class="form-group" v-for="(input, index) in inputs"
                                                 :key="input.index">
                     <div class="input-group">
-                        <input type="text" class="form-control" v-model="input.ingredient_name" placeholder="Ingredient name">
+                        <input type="text" class="form-control" v-model="input.topping_name" placeholder="Topping name">
                         <input type="number" class="form-control" v-model="input.quantity" placeholder="Quantity">
                         <div class="input-group-append">
-                            <button type="button" class="btn btn-danger text-capitalize" @click="removeIngredient(index)">remove</button>
+                            <button type="button" class="btn btn-danger text-capitalize" @click="removeTopping(index)">remove</button>
                         </div>
                     </div>
                 </div>
@@ -36,7 +36,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="form-group float-right pt-4">
-                    <button type="button" class="btn btn-success text-capitalize" @click="addIngredient()">add ingredient</button>
+                    <button type="button" class="btn btn-success text-capitalize" @click="addTopping()">add topping</button>
                     <button class="btn btn-success">Submit</button>
                 </div>
             </div>
@@ -53,10 +53,10 @@ export default {
             date: '',
             product_id: '',
             inputs: [{
-                ingredient_name: '',
+                topping_name: '',
                 quantity: ''
             }],
-            ingredients: [],
+            toppings: [],
             apis: {},
         }
     },
@@ -67,22 +67,22 @@ export default {
         getProductList() {
             axios.get('/resources/products/all')
             .then(res => {
-                this.ingredients = res.data
-                this.addQuantityToProduct(this.ingredients)
+                this.toppings = res.data
+                this.addQuantityToProduct(this.toppings)
             })
         },
-        addIngredient() {
+        addTopping() {
             this.inputs.push({
-                ingredient_name: '',
+                topping_name: '',
                 quantity: ''
             })
         },
-        removeIngredient(index) {
+        removeTopping(index) {
             this.inputs.splice(index, 1)
         },
-        addQuantityToProduct(ingredients) {
-            ingredients.forEach((ingredients) => {
-                ingredients.quantity = ''
+        addQuantityToProduct(toppings) {
+            toppings.forEach((toppings) => {
+                toppings.quantity = ''
             });
         },
         submitReport() {
@@ -96,10 +96,10 @@ export default {
                 }
             })
             .then(() => {
-                axios.post('/ingredient', this.$data)
+                axios.post('/topping', this.$data)
                 .then(res => {
                     this.apis = res.data
-                    Event.$emit('added_ingredient', this.apis)
+                    Event.$emit('added_topping', this.apis)
                     
                     swal({
                         title: 'Berhasil!',

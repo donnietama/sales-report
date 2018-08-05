@@ -26,9 +26,8 @@ class ReportSummaryController extends Controller
             'card' => $request->card ?: 0,
             'ticket' => $request->ticket ?: 0,
         ]);
-
-        return response()
-        ->json(ReportSummary::find($resource->id));
+        $newly_added = ReportSummary::where('id', '=', $resource->id)->with('user')->first();
+        return response()->json($newly_added);
     }
 
     public function show()

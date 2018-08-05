@@ -21,4 +21,15 @@ class ProductController extends Controller
                     
         return $resource;
     }
+
+    /**
+     * Display all data without pagination.
+     * 
+     * @return \Illuminate\Http\Response
+     */
+    public function showAll()
+    {
+        $resource = Product::with('ingredient')->orderBy('product_name', 'asc')->get();
+        return $resource;
+    }
 }

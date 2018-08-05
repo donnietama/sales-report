@@ -32,7 +32,7 @@ class IngredientController extends Controller
         foreach ($request->inputs as $requested) {
             $data[] = [
                 'product_id' => $request->product_id,
-                'ingredient' => $requested['ingredient_name'],
+                'ingredient_name' => $requested['ingredient_name'],
                 'quantity' => $requested['quantity'],
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),

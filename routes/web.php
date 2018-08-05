@@ -15,7 +15,7 @@ Route::get('/home', 'HomeController@index')->name('home');
  * This route would be used for accessing api.
  */
 // Reports.
-Route::get('api/reports', 'ReportsController@resource');
+Route::get('api/reports', 'ReportsController@index');
 Route::get('api/reports/batch', 'ReportBatchController@showAll');
 Route::get('api/reports/productsold', 'ReportProductSoldController@showAll');
 Route::get('api/reports/waste', 'ReportWasteController@showAll');
@@ -24,6 +24,7 @@ Route::get('api/reports/summary', 'ReportSummaryController@showAll');
 
 // Objective resources.
 Route::get('resources/products', 'Resources\ProductController@index');
+Route::get('resources/products/all', 'Resources\ProductController@showAll');
 
 /**
  * User environtment.
@@ -47,8 +48,9 @@ Route::get('waste', 'ReportWasteController@show');
 Route::post('waste', 'ReportWasteController@store');
 
 // Toppings.
-Route::get('topping/create', 'ToppingController@index')->name('register-topping');
+Route::get('admin/topping/create', 'ToppingController@index')->name('add-topping');
 Route::get('topping', 'ToppingController@show');
+Route::get('topping/paginated', 'ToppingController@showPaginated');
 Route::post('topping', 'ToppingController@store');
 
 // Product Solds.
@@ -91,15 +93,18 @@ Route::get('admin/reporting/additionals', function () {
 })->name('view-additionals');
 
 // Ingredients.
-Route::get('admin/ingredient/create', 'IngredientController@index')->name('product-ingredient');
+Route::get('admin/ingredient/create', 'IngredientController@index')->name('add-ingredient');
 Route::get('ingredient', 'IngredientController@show');
 Route::get('ingredient/paginated', 'IngredientController@showPaginated');
 Route::post('ingredient', 'IngredientController@store');
 
 // Products.
-Route::get('admin/product/create', 'ProductController@index')->name('product-register');
+Route::get('admin/product', 'ProductController@index')->name('view-product');
+Route::get('admin/product/create', 'ProductController@create')->name('add-product');
+Route::get('admin/product/{slug}', 'Resources\ProductController@getBatchQuantity');
 Route::get('admin/product/{slug}', 'ProductController@show');
-Route::post('products', 'ProductController@store');
+Route::get('admin/product/{slug}/edit', 'ProductController@edit')->name('edit-product');
+Route::post('admin/product', 'ProductController@store');
 
 /**
  * Search engine environtment.
@@ -122,3 +127,7 @@ Route::post('export/productsolds', 'ReportProductSoldController@export');
 Route::post('export/wastes', 'ReportWasteController@export');
 Route::post('export/additionals', 'ReportAdditionalController@export');
 Route::post('export/summaries', 'ReportSummaryController@export');
+
+
+Route::get('counted/batches', 'CountBatchesController@index')->name('view-counted-batches');
+Route::get('/users', 'UserController@index');

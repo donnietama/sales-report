@@ -13,7 +13,13 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
 }
 .sidebar {
-  height: 100vh;
+  position: fixed;
+  top: 50px;
+  width: 220px;
+  height: 100%;
+  z-index: 1000;
+  display: block;
+  padding-top: 25px;
 }
 .table>thead>tr>td, .table>thead>tr>th
 {

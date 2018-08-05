@@ -34,7 +34,7 @@ class ReportAdditionalController extends Controller
             $data[] = [
                 'store_id' => Auth::user()->id,
                 'date' => $request->date,
-                'product_id' => $requested['id'],
+                'topping_name' => $requested['topping_name'],
                 'quantity' => $requested['quantity'],
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),

@@ -9,7 +9,10 @@
         <div class="row">
             <div class="form-group col-xs-12 col-sm-3 col-md-3 col-lg-3 col-xl-3"
              v-for="(product, index) in batch" :key="product.index">
-                <label>{{ product.product_name }}</label>
+                <label>
+                    {{ product.product_name }}
+                    <small class="text-muted">{{ product.product_size }}</small>
+                </label>
                 <input type="number" class="form-control" v-model="batch[index].quantity" placeholder="0 Batch">
             </div>
         </div>
@@ -35,7 +38,7 @@ export default {
         }
     },
     mounted(){
-        axios.get('/products')
+        axios.get('/resources/products/all')
         .then(res => {
             this.batch = res.data
             this.addQuantityToProduct(this.batch)

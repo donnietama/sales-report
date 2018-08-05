@@ -17,7 +17,7 @@ class CreateReportAdditionalsTable extends Migration
             $table->increments('id');
             $table->date('date');
             $table->integer('store_id');
-            $table->integer('product_id');
+            $table->string('topping_name');
             $table->integer('quantity');
             $table->timestamps();
         });

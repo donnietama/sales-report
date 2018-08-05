@@ -8,8 +8,11 @@
         </div>
         <div class="row">
             <div class="form-group col-xs-12 col-sm-3 col-md-3 col-lg-3 col-xl-3"
-             v-for="(product, index) in additional" :key="product.index">
-                <label>{{ product.topping_name }}</label>
+             v-for="(topping, index) in additional" :key="topping.index">
+                <label>
+                    {{ topping.topping_name }}
+                    <small class="text-muted">{{ topping.topping_size }}</small>
+                </label>
                 <input type="number" class="form-control" v-model="additional[index].quantity" placeholder="0 pcs">
             </div>
         </div>
@@ -42,8 +45,8 @@ export default {
         })
     },
     methods: {
-        addQuantityToProduct(products) {
-            products.forEach((additional) => {
+        addQuantityToProduct(toppings) {
+            toppings.forEach((additional) => {
                 additional.quantity = ''
             });
         },

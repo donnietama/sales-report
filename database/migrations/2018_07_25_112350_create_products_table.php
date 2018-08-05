@@ -17,7 +17,8 @@ class CreateProductsTable extends Migration
             $table->increments('id');
             $table->string('slug');
             $table->string('product_name');
-            $table->string('preview_url');
+            $table->string('product_size');
+            $table->string('preview_url')->nullable();
             $table->text('product_description');
             $table->timestamps();
         });

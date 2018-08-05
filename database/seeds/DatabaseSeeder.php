@@ -27,7 +27,7 @@ class DatabaseSeeder extends Seeder
             ReportProductSoldSeeder::class,
             ReportSummarySeeder::class,
             ReportWasteSeeder::class,
-            // UsersTableSeeder::class,
+            UsersTableSeeder::class,
         ]);
     }
 }
