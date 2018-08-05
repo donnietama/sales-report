@@ -72,7 +72,12 @@
         </nav>
 
         <main>
-            @yield('content')
+            <div class="container-fluid">
+                <div class="row">
+                    @include('layouts.sidebar')
+                    @yield('content')
+                </div>
+            </div>
         </main>
     </div>
 </body>
