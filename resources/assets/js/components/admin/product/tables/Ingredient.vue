@@ -11,7 +11,7 @@
                 <tr v-for="(data, index) in api.data" :key="data.id">
                     <td class="text-center">{{ index + 1 + "." }}</td>
                     <td class="text-capitalize">{{ data.product.product_name }} {{ data.product.product_size }}</td>
-                    <td class="text-capitalize">{{ data.ingredient }}</td>
+                    <td class="text-capitalize">{{ data.ingredient_name }}</td>
                     <td>{{ data.quantity }} ml</td>
                 </tr>
             </tbody>

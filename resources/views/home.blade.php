@@ -9,7 +9,7 @@
                 <div class="card bg-primary text-white">
                     <p class="card-header">Batches (weekly)</p>
                     <div class="card-body">
-                        <h1 class="card-title display-4">{{ $batches->quantity }}</h1>
+                        <h1 class="card-title display-4">{{ number_format($batches->quantity, 0, '.', '.') ?: 0 }}</h1>
                     </div>
                 </div>
             </div>
@@ -17,7 +17,7 @@
                 <div class="card bg-warning text-white">
                     <p class="card-header">Additionals (weekly)</p>
                     <div class="card-body">
-                        <h1 class="card-title display-4">{{ $additionals->quantity }}</h1>
+                        <h1 class="card-title display-4">{{ number_format($additionals->quantity, 0, '.', '.') ?: 0 }}</h1>
                     </div>
                 </div>
             </div>
@@ -25,7 +25,7 @@
                 <div class="card bg-success text-white">
                     <p class="card-header">Solds (weekly)</p>
                     <div class="card-body">
-                        <h1 class="card-title display-4">{{ $solds->quantity }}</h1>
+                        <h1 class="card-title display-4">{{ number_format($solds->quantity, 0, '.', '.') ?: 0 }}</h1>
                     </div>
                 </div>
             </div>
@@ -33,7 +33,7 @@
                 <div class="card bg-danger text-white">
                     <p class="card-header">Wastes (weekly)</p>
                     <div class="card-body">
-                        <h1 class="card-title display-4">{{ $wastes->quantity }}</h1>
+                        <h1 class="card-title display-4">{{ number_format($wastes->quantity, 0, '.', '.') ?: 0 }}</h1>
                     </div>
                 </div>
             </div>

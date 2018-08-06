@@ -9,7 +9,7 @@
                 <div class="row">
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
                         <a href="#" class="btn btn-primary text-capitalize">edit product</a>
-                        <a href="#" class="btn btn-success text-capitalize">add ingredient</a>
+                        <a href="{{ route('add-ingredient') }}" class="btn btn-success text-capitalize">add ingredient</a>
                         <a href="#" class="btn btn-danger text-capitalize">remove product</a>
                         <hr>
                         <h1 class="display-3 text-capitalize">{{ $data->product_name }}</h1>

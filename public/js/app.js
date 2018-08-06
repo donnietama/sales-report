@@ -52887,7 +52887,7 @@ var render = function() {
               ]),
               _vm._v(" "),
               _c("td", { staticClass: "text-capitalize" }, [
-                _vm._v(_vm._s(data.ingredient))
+                _vm._v(_vm._s(data.ingredient_name))
               ]),
               _vm._v(" "),
               _c("td", [_vm._v(_vm._s(data.quantity) + " ml")])
@@ -53841,7 +53841,7 @@ exports = module.exports = __webpack_require__(108)(false);
 
 
 // module
-exports.push([module.i, "\n.card {\n  color: black;\n  text-decoration: none !important;\n  -webkit-transition: all .2s ease-in-out;\n  transition: all .2s ease-in-out;\n}\n.card:hover {\n  color: black;\n}\n", ""]);
+exports.push([module.i, "\n.card-grid {\n  color: black;\n  text-decoration: none !important;\n}\n.card-grid img {\n    height: 250px;\n    width: 100%;\n}\n.card:hover {\n  color: black;\n}\n", ""]);
 
 // exports
 
@@ -54236,6 +54236,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 
 
@@ -54300,7 +54303,7 @@ var render = function() {
                 _c(
                   "a",
                   {
-                    staticClass: "card",
+                    staticClass: "card card-grid",
                     attrs: { href: "/admin/product/" + product.slug }
                   },
                   [

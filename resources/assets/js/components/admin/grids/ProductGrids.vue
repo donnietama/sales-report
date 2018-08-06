@@ -10,7 +10,7 @@
             </div>
         </div>
         <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 col-xl-3 px-1 py-2" v-else v-for="product in product_list.data" :key="product.id">
-            <a :href="'/admin/product/' + product.slug" class="card">
+            <a :href="'/admin/product/' + product.slug" class="card card-grid">
                 <img :src="'http://localhost:8000/' + product.preview_url" alt="card-image" class="card-img-top">
                 <div class="card-body">
                     <h5 class="card-title text-capitalize text-center">{{ product.product_name }} <small class="text-muted">{{ product.product_size }}</small></h5>
@@ -27,10 +27,13 @@
     </div>
 </template>
 <style lang="scss">
-.card {
+.card-grid {
+    img {
+        height:250px;
+        width:100%;
+    }
     color: black;
     text-decoration: none !important;
-    transition: all .2s ease-in-out;
 }
 .card:hover {
     color: black;
