@@ -116,4 +116,71 @@ class ReportProductSoldController extends Controller
         return (new ExportProductSold)
         ->withRequest($request)->download('Product solds.xlsx');
     }
+
+    /**
+     * Show total product sold for this month.
+     * 
+     * @param \App\ReportProductSold $reportProductSold
+     * @return \Illuminate\Http\Response
+     */
+    public function showCountedNow(ReportProductSold $reportProductSold)
+    {
+        $thisMonth = date('m');
+        $resource = $reportProductSold->select(DB::raw('sum(quantity) as this_month_quantity'))
+                    ->whereMonth('date', '=', $thisMonth)
+                    ->first();
+        return $resource;
+    }
+
+    /**
+     * Show total product sold for last month.
+     * 
+     * @param \App\ReportProductSold $reportProductSold
+     * @return \Illuminate\Http\Response
+     */
+    public function showCountedLastMonth(ReportProductSold $reportProductSold)
+    {
+        $lastMonth = date('m', strtotime('- 1 month'));
+        $resource = $reportProductSold->select(DB::raw('sum(quantity) as last_month_quantity'))
+                    ->whereMonth('date', '=', $lastMonth)
+                    ->first();
+        return $resource;
+    }
+
+    /**
+     * Show total product sold in last two months.
+     * 
+     * @param \App\ReportProductSold $reportProductSold
+     * @return \Illuminate\Http\Response
+     */
+    public function showCountedLastTwoMonth(ReportProductSold $reportProductSold)
+    {
+        $lastTwoMonth = date('m', strtotime('-2 month'));
+        $resource = $reportProductSold->select(DB::raw('sum(quantity) as last_two_month_quantity'))
+                    ->whereMonth('date', '=', $lastTwoMonth)
+                    ->first();
+
+        return $resource;
+    }
+
+    /**
+     * Show top 5 best seller store.
+     * 
+     * @param \App\ReportProductSold $reportProductSold
+     * @return \Illuminate\Http\Response
+     */
+    public function showBestSeller()
+    {
+        $thisWeek = date('Y-m-d');
+        $lastWeek = date('Y-m-d', strtotime('-1 week'));
+
+        return \DB::table('users')
+                ->select('users.id', 'name', DB::raw('SUM(report_product_solds.quantity) as total_quantity'))
+                ->whereBetween('date', [$lastWeek, $thisWeek])
+                ->join('report_product_solds', 'store_id', '=', 'users.id')
+                ->orderBy('total_quantity', 'desc')
+                ->groupBy('users.id', 'users.name')
+                ->take(5)
+                ->get();
+    }
 }

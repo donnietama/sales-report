@@ -8,6 +8,7 @@ $factory->define(App\Product::class, function (Faker $faker) {
     return [
         'slug' => str_slug($productName, '-'),
         'product_name' => $productName,
+        'product_size' => $faker->sentence,
         'preview_url' => '//picsum.photos/1024/1024/?random',
         'product_description' => $faker->text($maxNbChars = 450),
     ];

@@ -49,6 +49,8 @@ Vue.component('topping-form', require('./components/admin/product/forms/Topping.
 Vue.component('topping-table', require('./components/admin/product/tables/Topping.vue'))
 Vue.component('product-search', require('./components/admin/product/forms/Search.vue'))
 Vue.component('product-list', require('./components/admin/grids/ProductGrids.vue'))
+Vue.component('sold-chart', require('./components/charts/SoldChart.vue'))
+Vue.component('top-five-store', require('./components/charts/TopFiveStore.vue'))
 // Vue.component('product-table', require('./components/admin/product/tables/Product.vue'))
 
 /**
