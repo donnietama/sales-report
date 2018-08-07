@@ -41,6 +41,11 @@ class ReportProductSoldController extends Controller
             ];
         }
 
+        $checkExistence = ReportProductSold::where('date', '=', $data[0]['date'])->where('store_id', '=', Auth::user()->id)->orderBy('id', 'desc')->get();
+        if (count($checkExistence) != 0) {
+            return response('data exists');
+        }
+
         DB::table('report_product_solds')->insert($data);
 
         $newly_added = ReportProductSold::where('date', '=', $data[0]['date'])

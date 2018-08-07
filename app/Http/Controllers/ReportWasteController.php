@@ -42,6 +42,11 @@ class ReportWasteController extends Controller
             ];
         }
 
+        $checkExistence = ReportWaste::where('date', '=', $data[0]['date'])->where('store_id', '=', Auth::user()->id)->get();
+        if (count($checkExistence) != 0) {
+            return response('data exists');
+        }
+
         DB::table('report_wastes')->insert($data);
         
         $newly_added = ReportWaste::where('date', '=', $data[0]['date'])

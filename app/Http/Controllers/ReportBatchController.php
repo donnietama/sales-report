@@ -42,6 +42,11 @@ class ReportBatchController extends Controller
                 'updated_at' => Carbon::now(),
             ];
         }
+        
+        $checkExistence = ReportBatch::where('date', '=', $data[0]['date'])->where('store_id', '=', Auth::user()->id)->get();
+        if (count($checkExistence) != 0) {
+            return response('data exists');
+        }
 
         DB::table('report_batches')->insert($data);
 

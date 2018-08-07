@@ -16,6 +16,11 @@ class ReportSummaryController extends Controller
 
     public function store(Request $request)
     {
+        $checkExistence = ReportSummary::where('date', '=', $request->date)->where('store_id', '=', Auth::user()->id)->get();
+        if (count($checkExistence) != 0) {
+            return response('data exists');
+        }
+
         $resource = ReportSummary::create([
             'store_id' => Auth::user()->id,
             'date' => $request->date ?: 0,

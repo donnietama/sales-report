@@ -41,6 +41,11 @@ class ReportAdditionalController extends Controller
             ];
         }
 
+        $checkExistence = ReportAdditional::where('date', '=', $data[0]['date'])->where('store_id', '=', Auth::user()->id)->get();
+        if (count($checkExistence) != 0) {
+            return response('data exists');
+        }
+
         DB::table('report_additionals')->insert($data);
 
         $newly_added = ReportAdditional::where('date', '=', $data[0]['date'])

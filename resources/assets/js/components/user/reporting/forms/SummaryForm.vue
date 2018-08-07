@@ -74,50 +74,58 @@ export default {
         submitReport() {
             swal({
                 icon: 'warning',
-                title: 'Pastikan data sudah benar!',
-                text: 'Data yang telah masuk kedalam database tidak dapat dihapus / diperbaiki. Harap cek sekali lagi.',
-                button: {
-                    text: "Ya, data sudah benar",
-                    closeModal: false,
-                }
+                title: 'Are you sure?',
+                text: 'This action cannot be undone!',
+                buttons: true,
+                dangerMode: true,
             })
-            .then(() => {
-                axios.post('/summaries', {
-                    date: this.date,
-                    gross: this.gross,
-                    nett: this.nett,
-                    voucher: this.voucher,
-                    cash: this.cash,
-                    card: this.card,
-                    ticket: this.ticket,
-                    user: this.user
-                })
-                .then(res => {
-                console.log(res.data)
-                    this.apis = res.data
-                    Event.$emit('added_summaries', this.apis)
-                    
-                    swal({
-                        title: 'Berhasil!',
-                        text: 'Data telah terkirim.',
-                        icon: 'success',
-                        button: {
-                            text: 'OK',
-                            closeModal: true
+            .then((proceedSubmit) => {
+                if (proceedSubmit) {
+                    axios.post('/summaries', {
+                        date: this.date,
+                        gross: this.gross,
+                        nett: this.nett,
+                        voucher: this.voucher,
+                        cash: this.cash,
+                        card: this.card,
+                        ticket: this.ticket,
+                        user: this.user
+                    })
+                    .then(res => {
+                        if (res.data === 'data exists') {
+                            swal({
+                                title: 'Check your data!',
+                                text: 'The data you have inserted is already exist',
+                                icon: 'info',
+                                button: {
+                                    closeModal: true
+                                }
+                            })
+                        } else {
+                            this.apis = res.data
+                            Event.$emit('added_summaries', this.apis)
+                            
+                            swal({
+                                title: 'Success!',
+                                text: 'Your data has been saved into database!',
+                                icon: 'success',
+                                button: {
+                                    closeModal: true
+                                }
+                            })
                         }
                     })
-                })
-                .catch(err => {
-                    swal({
-                        title: 'Gagal!',
-                        text: 'Hmm... Sepertinya ada yang salah dengan data yang dimasukkan, coba cek kembali.',
-                        icon: 'error',
-                        button: {
-                            text: 'Baik, saya cek kembali',
-                            closeModal: true
-                        }
+                    .catch(err => {
+                        swal({
+                            title: 'Uh, oh!',
+                            text: 'Looks like we cannot process your request right now, please contact IT Support!',
+                            icon: 'error',
+                            button: {
+                                closeModal: true
+                            }
+                        })
                     })
-                })
+                }
             })
         }
     }

@@ -47804,47 +47804,55 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             __WEBPACK_IMPORTED_MODULE_1_sweetalert___default()({
                 icon: 'warning',
-                title: 'Pastikan data sudah benar!',
-                text: 'Data yang telah masuk kedalam database tidak dapat dihapus / diperbaiki. Harap cek sekali lagi.',
-                button: {
-                    text: "Ya, data sudah benar",
-                    closeModal: false
-                }
-            }).then(function () {
-                axios.post('/summaries', {
-                    date: _this2.date,
-                    gross: _this2.gross,
-                    nett: _this2.nett,
-                    voucher: _this2.voucher,
-                    cash: _this2.cash,
-                    card: _this2.card,
-                    ticket: _this2.ticket,
-                    user: _this2.user
-                }).then(function (res) {
-                    console.log(res.data);
-                    _this2.apis = res.data;
-                    __WEBPACK_IMPORTED_MODULE_0__event_js__["a" /* default */].$emit('added_summaries', _this2.apis);
+                title: 'Are you sure?',
+                text: 'This action cannot be undone!',
+                buttons: true,
+                dangerMode: true
+            }).then(function (proceedSubmit) {
+                if (proceedSubmit) {
+                    axios.post('/summaries', {
+                        date: _this2.date,
+                        gross: _this2.gross,
+                        nett: _this2.nett,
+                        voucher: _this2.voucher,
+                        cash: _this2.cash,
+                        card: _this2.card,
+                        ticket: _this2.ticket,
+                        user: _this2.user
+                    }).then(function (res) {
+                        if (res.data === 'data exists') {
+                            __WEBPACK_IMPORTED_MODULE_1_sweetalert___default()({
+                                title: 'Check your data!',
+                                text: 'The data you have inserted is already exist',
+                                icon: 'info',
+                                button: {
+                                    closeModal: true
+                                }
+                            });
+                        } else {
+                            _this2.apis = res.data;
+                            __WEBPACK_IMPORTED_MODULE_0__event_js__["a" /* default */].$emit('added_summaries', _this2.apis);
 
-                    __WEBPACK_IMPORTED_MODULE_1_sweetalert___default()({
-                        title: 'Berhasil!',
-                        text: 'Data telah terkirim.',
-                        icon: 'success',
-                        button: {
-                            text: 'OK',
-                            closeModal: true
+                            __WEBPACK_IMPORTED_MODULE_1_sweetalert___default()({
+                                title: 'Success!',
+                                text: 'Your data has been saved into database!',
+                                icon: 'success',
+                                button: {
+                                    closeModal: true
+                                }
+                            });
                         }
+                    }).catch(function (err) {
+                        __WEBPACK_IMPORTED_MODULE_1_sweetalert___default()({
+                            title: 'Uh, oh!',
+                            text: 'Looks like we cannot process your request right now, please contact IT Support!',
+                            icon: 'error',
+                            button: {
+                                closeModal: true
+                            }
+                        });
                     });
-                }).catch(function (err) {
-                    __WEBPACK_IMPORTED_MODULE_1_sweetalert___default()({
-                        title: 'Gagal!',
-                        text: 'Hmm... Sepertinya ada yang salah dengan data yang dimasukkan, coba cek kembali.',
-                        icon: 'error',
-                        button: {
-                            text: 'Baik, saya cek kembali',
-                            closeModal: true
-                        }
-                    });
-                });
+                }
             });
         }
     }
@@ -48453,37 +48461,46 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             __WEBPACK_IMPORTED_MODULE_1_sweetalert___default()({
                 icon: 'warning',
-                title: 'Pastikan data sudah benar!',
-                text: 'Data yang telah masuk kedalam database tidak dapat dihapus / diperbaiki. Harap cek sekali lagi.',
-                button: {
-                    text: "Ya, data sudah benar",
-                    closeModal: false
-                }
-            }).then(function () {
-                axios.post('/batch', _this2.$data).then(function (res) {
-                    _this2.apis = res.data;
-                    __WEBPACK_IMPORTED_MODULE_0__event_js__["a" /* default */].$emit('added_batch', _this2.apis);
+                title: 'Are you sure?',
+                text: 'This action cannot be undone!',
+                buttons: true,
+                dangerMode: true
+            }).then(function (proceedSubmit) {
+                if (proceedSubmit) {
+                    axios.post('/batch', _this2.$data).then(function (res) {
+                        if (res.data === 'data exists') {
+                            __WEBPACK_IMPORTED_MODULE_1_sweetalert___default()({
+                                title: 'Check your data!',
+                                text: 'The data you have inserted is already exist',
+                                icon: 'info',
+                                button: {
+                                    closeModal: true
+                                }
+                            });
+                        } else {
+                            _this2.apis = res.data;
+                            __WEBPACK_IMPORTED_MODULE_0__event_js__["a" /* default */].$emit('added_batch', _this2.apis);
 
-                    __WEBPACK_IMPORTED_MODULE_1_sweetalert___default()({
-                        title: 'Berhasil!',
-                        text: 'Data telah terkirim.',
-                        icon: 'success',
-                        button: {
-                            text: 'OK',
-                            closeModal: true
+                            __WEBPACK_IMPORTED_MODULE_1_sweetalert___default()({
+                                title: 'Success!',
+                                text: 'Your data has been saved into database!',
+                                icon: 'success',
+                                button: {
+                                    closeModal: true
+                                }
+                            });
                         }
+                    }).catch(function (err) {
+                        __WEBPACK_IMPORTED_MODULE_1_sweetalert___default()({
+                            title: 'Uh, oh!',
+                            text: 'Looks like we cannot process your request right now, please contact IT Support!',
+                            icon: 'error',
+                            button: {
+                                closeModal: true
+                            }
+                        });
                     });
-                }).catch(function (err) {
-                    __WEBPACK_IMPORTED_MODULE_1_sweetalert___default()({
-                        title: 'Gagal!',
-                        text: 'Hmm... Sepertinya ada yang salah dengan data yang dimasukkan, coba cek kembali.',
-                        icon: 'error',
-                        button: {
-                            text: 'Baik, saya cek kembali',
-                            closeModal: true
-                        }
-                    });
-                });
+                }
             });
         }
     }
@@ -48939,37 +48956,46 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             __WEBPACK_IMPORTED_MODULE_1_sweetalert___default()({
                 icon: 'warning',
-                title: 'Pastikan data sudah benar!',
-                text: 'Data yang telah masuk kedalam database tidak dapat dihapus / diperbaiki. Harap cek sekali lagi.',
-                button: {
-                    text: "Ya, data sudah benar",
-                    closeModal: false
-                }
-            }).then(function () {
-                axios.post('/sold', _this2.$data).then(function (res) {
-                    _this2.apis = res.data;
-                    __WEBPACK_IMPORTED_MODULE_0__event_js__["a" /* default */].$emit('added_sold', _this2.apis);
+                title: 'Are you sure?',
+                text: 'This action cannot be undone!',
+                buttons: true,
+                dangerMode: true
+            }).then(function (proceedSubmit) {
+                if (proceedSubmit) {
+                    axios.post('/sold', _this2.$data).then(function (res) {
+                        if (res.data === 'data exists') {
+                            __WEBPACK_IMPORTED_MODULE_1_sweetalert___default()({
+                                title: 'Check your data!',
+                                text: 'The data you have inserted is already exist',
+                                icon: 'info',
+                                button: {
+                                    closeModal: true
+                                }
+                            });
+                        } else {
+                            _this2.apis = res.data;
+                            __WEBPACK_IMPORTED_MODULE_0__event_js__["a" /* default */].$emit('added_sold', _this2.apis);
 
-                    __WEBPACK_IMPORTED_MODULE_1_sweetalert___default()({
-                        title: 'Berhasil!',
-                        text: 'Data telah terkirim.',
-                        icon: 'success',
-                        button: {
-                            text: 'OK',
-                            closeModal: true
+                            __WEBPACK_IMPORTED_MODULE_1_sweetalert___default()({
+                                title: 'Success!',
+                                text: 'Your data has been saved into database!',
+                                icon: 'success',
+                                button: {
+                                    closeModal: true
+                                }
+                            });
                         }
+                    }).catch(function (err) {
+                        __WEBPACK_IMPORTED_MODULE_1_sweetalert___default()({
+                            title: 'Uh, oh!',
+                            text: 'Looks like we cannot process your request right now, please contact IT Support!',
+                            icon: 'error',
+                            button: {
+                                closeModal: true
+                            }
+                        });
                     });
-                }).catch(function (err) {
-                    __WEBPACK_IMPORTED_MODULE_1_sweetalert___default()({
-                        title: 'Gagal!',
-                        text: 'Hmm... Sepertinya ada yang salah dengan data yang dimasukkan, coba cek kembali.',
-                        icon: 'error',
-                        button: {
-                            text: 'Baik, saya cek kembali',
-                            closeModal: true
-                        }
-                    });
-                });
+                }
             });
         }
     }
@@ -49425,37 +49451,46 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             __WEBPACK_IMPORTED_MODULE_1_sweetalert___default()({
                 icon: 'warning',
-                title: 'Pastikan data sudah benar!',
-                text: 'Data yang telah masuk kedalam database tidak dapat dihapus / diperbaiki. Harap cek sekali lagi.',
-                button: {
-                    text: "Ya, data sudah benar",
-                    closeModal: false
-                }
-            }).then(function () {
-                axios.post('/waste', _this2.$data).then(function (res) {
-                    _this2.apis = res.data;
-                    __WEBPACK_IMPORTED_MODULE_0__event_js__["a" /* default */].$emit('added_waste', _this2.apis);
+                title: 'Are you sure?',
+                text: 'This action cannot be undone!',
+                buttons: true,
+                dangerMode: true
+            }).then(function (proceedSubmit) {
+                if (proceedSubmit) {
+                    axios.post('/waste', _this2.$data).then(function (res) {
+                        if (res.data === 'data exists') {
+                            __WEBPACK_IMPORTED_MODULE_1_sweetalert___default()({
+                                title: 'Check your data!',
+                                text: 'The data you have inserted is already exist',
+                                icon: 'info',
+                                button: {
+                                    closeModal: true
+                                }
+                            });
+                        } else {
+                            _this2.apis = res.data;
+                            __WEBPACK_IMPORTED_MODULE_0__event_js__["a" /* default */].$emit('added_waste', _this2.apis);
 
-                    __WEBPACK_IMPORTED_MODULE_1_sweetalert___default()({
-                        title: 'Berhasil!',
-                        text: 'Data telah terkirim.',
-                        icon: 'success',
-                        button: {
-                            text: 'OK',
-                            closeModal: true
+                            __WEBPACK_IMPORTED_MODULE_1_sweetalert___default()({
+                                title: 'Success!',
+                                text: 'Your data has been saved into database!',
+                                icon: 'success',
+                                button: {
+                                    closeModal: true
+                                }
+                            });
                         }
+                    }).catch(function (err) {
+                        __WEBPACK_IMPORTED_MODULE_1_sweetalert___default()({
+                            title: 'Uh, oh!',
+                            text: 'Looks like we cannot process your request right now, please contact IT Support!',
+                            icon: 'error',
+                            button: {
+                                closeModal: true
+                            }
+                        });
                     });
-                }).catch(function (err) {
-                    __WEBPACK_IMPORTED_MODULE_1_sweetalert___default()({
-                        title: 'Gagal!',
-                        text: 'Hmm... Sepertinya ada yang salah dengan data yang dimasukkan, coba cek kembali.',
-                        icon: 'error',
-                        button: {
-                            text: 'Baik, saya cek kembali',
-                            closeModal: true
-                        }
-                    });
-                });
+                }
             });
         }
     }
@@ -49899,37 +49934,46 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             __WEBPACK_IMPORTED_MODULE_1_sweetalert___default()({
                 icon: 'warning',
-                title: 'Pastikan data sudah benar!',
-                text: 'Data yang telah masuk kedalam database tidak dapat dihapus / diperbaiki. Harap cek sekali lagi.',
-                button: {
-                    text: "Ya, data sudah benar",
-                    closeModal: false
-                }
-            }).then(function () {
-                axios.post('/additional', _this2.$data).then(function (res) {
-                    _this2.apis = res.data;
-                    __WEBPACK_IMPORTED_MODULE_0__event_js__["a" /* default */].$emit('added_additional', _this2.apis);
+                title: 'Are you sure?',
+                text: 'This action cannot be undone!',
+                buttons: true,
+                dangerMode: true
+            }).then(function (proceedSubmit) {
+                if (proceedSubmit) {
+                    axios.post('/additional', _this2.$data).then(function (res) {
+                        if (res.data === 'data exists') {
+                            __WEBPACK_IMPORTED_MODULE_1_sweetalert___default()({
+                                title: 'Check your data!',
+                                text: 'The data you have inserted is already exist',
+                                icon: 'info',
+                                button: {
+                                    closeModal: true
+                                }
+                            });
+                        } else {
+                            _this2.apis = res.data;
+                            __WEBPACK_IMPORTED_MODULE_0__event_js__["a" /* default */].$emit('added_additional', _this2.apis);
 
-                    __WEBPACK_IMPORTED_MODULE_1_sweetalert___default()({
-                        title: 'Berhasil!',
-                        text: 'Data telah terkirim.',
-                        icon: 'success',
-                        button: {
-                            text: 'OK',
-                            closeModal: true
+                            __WEBPACK_IMPORTED_MODULE_1_sweetalert___default()({
+                                title: 'Success!',
+                                text: 'Your data has been saved into database!',
+                                icon: 'success',
+                                button: {
+                                    closeModal: true
+                                }
+                            });
                         }
+                    }).catch(function (err) {
+                        __WEBPACK_IMPORTED_MODULE_1_sweetalert___default()({
+                            title: 'Uh, oh!',
+                            text: 'Looks like we cannot process your request right now, please contact IT Support!',
+                            icon: 'error',
+                            button: {
+                                closeModal: true
+                            }
+                        });
                     });
-                }).catch(function (err) {
-                    __WEBPACK_IMPORTED_MODULE_1_sweetalert___default()({
-                        title: 'Gagal!',
-                        text: 'Hmm... Sepertinya ada yang salah dengan data yang dimasukkan, coba cek kembali.',
-                        icon: 'error',
-                        button: {
-                            text: 'Baik, saya cek kembali',
-                            closeModal: true
-                        }
-                    });
-                });
+                }
             });
         }
     }
