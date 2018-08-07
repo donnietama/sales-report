@@ -145,7 +145,7 @@ class ReportProductSoldController extends Controller
      */
     public function showCountedLastMonth(ReportProductSold $reportProductSold)
     {
-        $lastMonth = date('m', strtotime('- 1 month'));
+        $lastMonth = date('m', strtotime('-1 month'));
         $resource = $reportProductSold->select(DB::raw('sum(quantity) as last_month_quantity'))
                     ->whereMonth('date', '=', $lastMonth)
                     ->first();

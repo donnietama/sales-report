@@ -24,6 +24,9 @@ Route::get('api/reports/product-sold/last-two-month', 'ReportProductSoldControll
 Route::get('api/reports/waste', 'ReportWasteController@showAll');
 Route::get('api/reports/additional', 'ReportAdditionalController@showAll');
 Route::get('api/reports/summary', 'ReportSummaryController@showAll');
+Route::get('summaries', 'ReportSummaryController@show');
+Route::get('topping', 'ToppingController@show');
+
 
 Route::get('resources/products', 'Resources\ProductController@index');
 Route::get('resources/products/all', 'Resources\ProductController@showAll');
@@ -32,7 +35,7 @@ Route::group(['middleware' => 'auth'], function() {
 
     Route::group(['middleware' => 'users'], function() {
         Route::get('summaries/create', 'ReportSummaryController@index')->name('report-summary');
-        Route::get('summaries', 'ReportSummaryController@show');
+       
         Route::post('summaries', 'ReportSummaryController@store');
 
         Route::get('batch/create', 'ReportBatchController@index')->name('report-batch');
@@ -90,7 +93,6 @@ Route::group(['middleware' => 'auth'], function() {
         Route::post('admin/product', 'ProductController@store');
 
         Route::get('admin/topping/create', 'ToppingController@index')->name('add-topping');
-        Route::get('topping', 'ToppingController@show');
         Route::get('topping/paginated', 'ToppingController@showPaginated');
         Route::post('topping', 'ToppingController@store');
     });

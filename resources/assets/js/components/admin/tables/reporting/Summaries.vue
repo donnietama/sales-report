@@ -49,7 +49,7 @@
                         <th>ticket</th>
                     </thead>
                     <tbody>
-                        <tr v-for="(data, index) in api.data" :key="data.index">
+                        <tr v-for="(data, index) in api.data" :key="data.id">
                             <td class="text-center">{{ index + 1 }}</td>
                             <td>{{ data.user.name }}</td>
                             <td>{{ data.date }}</td>
@@ -93,6 +93,8 @@ export default {
         getAPI(page = 1) {
             axios.get('/api/reports/summary?page=' + page).then(res => {
                 this.api = res.data
+                console.log(res.data.data)
+
             })
             Event.$on('added_summaries', (apiData) => {
                 this.api.data.unshift(apiData)

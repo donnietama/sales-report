@@ -45,7 +45,7 @@
                                     @foreach ($data->ingredient as $key => $ingredient)
                                         <tr>
                                             <td class="text-center">{{ $key + 1 . "." }}</td>
-                                            <td>{{ $ingredient->ingredient }}</td>
+                                            <td>{{ $ingredient->ingredient_name }}</td>
                                             <td>{{ $ingredient->quantity }} ml/pcs</td>
                                         </tr>
                                     @endforeach

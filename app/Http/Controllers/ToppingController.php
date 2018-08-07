@@ -62,7 +62,7 @@ class ToppingController extends Controller
             ->groupBy('topping_name')
             ->get();
 
-        return $data;
+        return response()->json($data);
     }
 
     /**

@@ -54,8 +54,7 @@ class ProductController extends Controller
             'product_description' => $request->product_desc,
             // 'preview_url' => $preview_url
         ]);
-        return 'berhasil';
-        return response()->json($productLists);
+        return redirect()->back();
     }
 
     /**
