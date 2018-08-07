@@ -12,6 +12,24 @@
                         @csrf
 
                         <div class="form-group row">
+                            <label for="role" class="col-md-4 col-form-label text-md-right">Access</label>
+
+                            <div class="col-md-6">
+                                <select name="role" id="role" class="form-control" required>
+                                    <option value="" selected hidden>Select role</option>
+                                    <option value="1">Administrator</option>
+                                    <option value="0">User</option>
+                                </select>
+
+                                @if ($errors->has('role'))
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $errors->first('role') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
                             <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
 
                             <div class="col-md-6">

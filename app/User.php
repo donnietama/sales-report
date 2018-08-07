@@ -15,13 +15,23 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password', 'role',
     ];
 
 
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    /**
+     * Check users access.
+     * 
+     * @return void
+     */
+    public function isAdmin()
+    {
+        return $this->role;
+    }
 
     /**
      * Relationship between users table with summaries.

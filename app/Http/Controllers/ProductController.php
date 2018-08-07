@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Product;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
+use Gate;
 use Auth;
 use DB;
 
