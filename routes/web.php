@@ -43,11 +43,6 @@ Route::group(['middleware' => 'auth'], function() {
         Route::get('waste', 'ReportWasteController@show');
         Route::post('waste', 'ReportWasteController@store');
 
-        Route::get('admin/topping/create', 'ToppingController@index')->name('add-topping');
-        Route::get('topping', 'ToppingController@show');
-        Route::get('topping/paginated', 'ToppingController@showPaginated');
-        Route::post('topping', 'ToppingController@store');
-
         Route::get('sold/create', 'ReportProductSoldController@index')->name('product-sold');
         Route::get('sold', 'ReportProductSoldController@show');
         Route::post('sold', 'ReportProductSoldController@store');
@@ -93,6 +88,11 @@ Route::group(['middleware' => 'auth'], function() {
         Route::get('admin/product/{slug}', 'ProductController@show');
         Route::get('admin/product/{slug}/edit', 'ProductController@edit')->name('edit-product');
         Route::post('admin/product', 'ProductController@store');
+
+        Route::get('admin/topping/create', 'ToppingController@index')->name('add-topping');
+        Route::get('topping', 'ToppingController@show');
+        Route::get('topping/paginated', 'ToppingController@showPaginated');
+        Route::post('topping', 'ToppingController@store');
     });
 
     /**
