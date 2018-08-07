@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.master')
 @section('content')
     <div class="col-xs-10 col-sm-10 col-md-10 col-lg-10 col-xl-10 offset-2 py-4">
         <div class="row py-4">

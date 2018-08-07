@@ -71,9 +71,10 @@
             </div>
         </nav>
 
-        <main class="py-4">
+        <main>
             <div class="container-fluid">
                 <div class="row">
+                    @include('layouts.sidebar')
                     @yield('content')
                 </div>
             </div>
