@@ -1,5 +1,5 @@
 <template>
-    <form method="post" @submit.prevent="submitReport" class="text-capitalize bg-white px-4 pt-4 mb-2">
+    <form method="post" @submit.prevent="submitReport" class="text-capitalize pt-4 mb-2">
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
                 <h3>Add Ingredients</h3>
