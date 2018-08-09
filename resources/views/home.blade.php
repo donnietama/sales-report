@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="col-xs-12 col-sm-10 col-md-10 col-lg-10 col-xl-10 px-4 py-4">
-        <h1>Welcome, {{ Auth::user()->name }}!</h1>
+        <h1 class="text-capitalize">Welcome, {{ Auth::user()->name }}!</h1>
         <hr>
         <div class="row text-capitalize">
             <div class="col-xs-3 col-md-3 col-lg-3 col-xl-3">
